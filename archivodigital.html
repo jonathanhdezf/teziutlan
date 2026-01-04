@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archivo Histórico | Teziutlán</title>
+    <title>Archivo Histórico | Teziutlán - Versión Oficial</title>
     
     <!-- Framework & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -15,9 +15,9 @@
             --stone-gray: #4a4e69;
             --deep-blue: #002855;
             --iron-black: #1a1a1a;
-            --teja-red: #a54228;
             --cream: #f4f1de;
             --parchment: #fcfaf2;
+            --gold-leaf: #b8860b;
         }
 
         body {
@@ -25,38 +25,27 @@
             color: var(--iron-black);
             font-family: 'Cormorant Garamond', serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ESTILO DE ARCHIVO CLASIFICADO */
-        .archive-card {
-            background: white;
-            border: 1px solid rgba(212, 163, 115, 0.3);
-            position: relative;
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .serif-title { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 0.05em; }
+        .sans-label { font-family: 'Montserrat', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.65rem; }
+
+        /* TEXTURAS Y EFECTOS */
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/p6-mini.png');
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
         }
 
-        .archive-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            border-color: var(--cantera-rose);
-        }
-
-        .archive-card::before {
-            content: "CONFIDENCIAL";
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 8px;
-            letter-spacing: 2px;
-            opacity: 0.2;
-        }
-
-        /* REVELACIÓN DE CONTENIDO */
+        /* REVELACIÓN ANIMADA */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease-out;
+            transform: translateY(40px);
+            transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal.animate-in {
@@ -64,190 +53,328 @@
             transform: translateY(0);
         }
 
-        .serif-title { font-family: 'Cinzel', serif; font-weight: 700; }
-        
-        /* LÍNEA DE TIEMPO ACENTUADA */
-        .timeline-line {
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, var(--cantera-rose), transparent);
+        /* TARJETAS DE ARCHIVO */
+        .archive-card {
+            background: white;
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+
+        .archive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px -15px rgba(0,0,0,0.08);
+            border-color: var(--cantera-rose);
+        }
+
+        .archive-card::after {
+            content: "";
             position: absolute;
-            left: 50%;
-            height: 100%;
-            transform: translateX(-50%);
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cantera-rose), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
-        /* IMÁGENES CON GRANO FOTOGRÁFICO */
+        .archive-card:hover::after { opacity: 1; }
+
+        /* HEMEROTECA GRID */
+        .hemeroteca-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* VINTAGE FILTER */
         .vintage-photo {
-            filter: sepia(0.4) contrast(1.1) grayscale(0.2);
-            transition: filter 0.5s ease;
+            filter: sepia(0.2) contrast(1.05) brightness(0.95);
+            transition: all 1s ease;
         }
 
-        .vintage-photo:hover {
-            filter: sepia(0) contrast(1) grayscale(0);
+        .archive-card:hover .vintage-photo {
+            filter: sepia(0) contrast(1) brightness(1);
+            transform: scale(1.03);
         }
 
-        /* BOTÓN DE RETORNO */
-        .back-link {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--stone-gray);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* LÍNEA DE TIEMPO SUTIL */
+        .timeline-marker {
+            width: 12px;
+            height: 12px;
+            border: 1px solid var(--cantera-rose);
+            border-radius: 50%;
+            position: relative;
+            background: var(--parchment);
         }
 
-        .back-link:hover { color: var(--teja-red); }
+        .timeline-marker::after {
+            content: "";
+            position: absolute;
+            top: 50%; left: 100%;
+            width: 40px; height: 1px;
+            background: var(--cantera-rose);
+            opacity: 0.3;
+        }
+
+        /* MÓVIL OPTIMIZADO */
+        @media (max-width: 768px) {
+            .hero-title { font-size: clamp(3rem, 10vw, 5rem) !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- CABECERA DEL ARCHIVO -->
-    <header class="py-12 md:py-24 px-6 border-b border-stone-200">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
-            <div>
-                <a href="index.html" class="back-link mb-8 group">
-                    <span class="group-hover:-translate-x-2 transition-transform">←</span> Volver al Portal
-                </a>
-                <h1 class="serif-title text-4xl md:text-7xl text-stone-900 leading-none">Anales de <br>Teziutlán</h1>
-                <p class="text-stone-500 mt-6 max-w-lg italic text-lg">
-                    Una exploración cronológica por los documentos, sucesos y memorias que forjaron la Perla de la Sierra.
+    <div class="grain-overlay"></div>
+
+    <!-- NAVEGACIÓN DE REGRESO -->
+    <nav class="fixed top-0 w-full z-[100] px-6 py-8 flex justify-between items-center pointer-events-none">
+        <a href="index.html" class="pointer-events-auto bg-white/80 backdrop-blur-md px-6 py-3 rounded-full border border-stone-200 shadow-sm transition-all hover:bg-stone-900 hover:text-white group flex items-center gap-4">
+            <span class="sans-label !text-[8px] !tracking-[0.5em] group-hover:text-white transition-colors">← Volver al Portal</span>
+        </a>
+        <div class="hidden md:block sans-label text-stone-400 !tracking-[0.8em]">Acervo Histórico Digital</div>
+    </nav>
+
+    <!-- CABECERA MONUMENTAL -->
+    <header class="min-h-[70vh] flex items-center px-6 md:px-12 bg-white relative overflow-hidden border-b border-stone-200">
+        <div class="absolute right-0 top-0 w-1/3 h-full bg-stone-50 -z-10 opacity-50"></div>
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-8">
+                <div class="flex items-center gap-6 mb-8 reveal">
+                    <div class="timeline-marker"></div>
+                    <span class="sans-label text-amber-700">Sección Documental</span>
+                </div>
+                <h1 class="serif-title hero-title text-6xl md:text-8xl lg:text-9xl text-stone-900 leading-[0.85] reveal">Anales de <br><span class="text-stone-400">Teziutlán</span></h1>
+                <p class="text-stone-500 mt-12 max-w-2xl text-xl md:text-2xl font-light leading-relaxed italic reveal">
+                    Un viaje a través de los siglos, desde los orígenes náhuatl hasta la consolidación como la capital cultural de la sierra.
                 </p>
             </div>
-            <div class="text-right hidden md:block">
-                <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-stone-400">Sección: Hemeroteca Digital</span>
-                <p class="serif-title text-stone-800 text-xl">Expediente No. 1552-2026</p>
+            <div class="lg:col-span-4 flex flex-col justify-end lg:text-right reveal">
+                <div class="border-t border-stone-200 pt-8">
+                    <span class="sans-label text-stone-400 block mb-2">Folio de Archivo</span>
+                    <p class="serif-title text-2xl text-stone-800">MCMXLVIII / MMXXVI</p>
+                    <p class="text-stone-400 text-xs mt-4 font-mono leading-relaxed uppercase">Preservación de la <br>Memoria Colectiva</p>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- EXPLORADOR POR ÉPOCAS -->
-    <main class="py-20 bg-stone-50/50">
-        <section class="max-w-7xl mx-auto px-6">
+    <!-- CRONOLOGÍA EDITORIAL -->
+    <main class="py-24 md:py-48">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
             
-            <!-- Época Prehispánica -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-center reveal">
-                <div class="lg:col-span-1 serif-title text-6xl text-stone-200 hidden lg:block">01</div>
-                <div class="lg:col-span-5">
-                    <span class="text-amber-700 font-bold uppercase tracking-widest text-[10px] mb-4 block">Raíces Profundas</span>
-                    <h3 class="serif-title text-3xl mb-6">El Teziutlán Prehispánico</h3>
-                    <p class="text-stone-600 leading-relaxed font-light mb-6">
-                        Antes de la llegada de los españoles, la región era un punto de confluencia entre las culturas náhuatl y totonaca. El nombre "Teziutlán" proviene del náhuatl <i>Teziutl-lan</i>, que significa "Lugar junto al cerro de granizo".
-                    </p>
-                    <ul class="space-y-3 text-sm italic text-stone-500">
-                        <li>• Restos arqueológicos en Chignautla y sus alrededores.</li>
-                        <li>• Rutas comerciales de tributo para el imperio Azteca.</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-6">
-                    <div class="archive-card p-4">
-                        <img src="https://images.unsplash.com/photo-1518107616385-ad30833dd6cd?auto=format&fit=crop&w=800&q=80" alt="Vista Antigua" class="vintage-photo w-full h-80 object-cover">
-                        <p class="text-[9px] mt-4 tracking-widest text-stone-400 uppercase">Referencia: Paisaje Serrano Primigenio</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Siglo XIX: El Auge -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-center reveal">
+            <!-- SIGLO XVI: Orígenes -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-24 items-center mb-40 md:mb-64 reveal">
                 <div class="lg:col-span-6 order-2 lg:order-1">
-                    <div class="archive-card p-4">
-                        <img src="https://images.unsplash.com/photo-1548588627-f9785d20fd13?auto=format&fit=crop&w=800&q=80" alt="Palacio Siglo XIX" class="vintage-photo w-full h-80 object-cover">
+                    <div class="relative">
+                        <div class="archive-card p-4 md:p-6 shadow-2xl rotate-1 hover:rotate-0 transition-all duration-700">
+                            <div class="overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1518107616385-ad30833dd6cd?auto=format&fit=crop&w=1200&q=80" alt="Paisaje Originario" class="vintage-photo w-full aspect-[4/5] object-cover">
+                            </div>
+                            <div class="mt-6 flex justify-between items-center">
+                                <span class="sans-label !text-[8px]">Ref: Paisaje Serrano</span>
+                                <span class="text-stone-300 italic text-xs">Fig. 01</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="lg:col-span-5 lg:col-start-8 order-1 lg:order-2">
-                    <span class="text-amber-700 font-bold uppercase tracking-widest text-[10px] mb-4 block">Siglo XIX - XX</span>
-                    <h3 class="serif-title text-3xl mb-6">La Era de la Perla</h3>
-                    <p class="text-stone-600 leading-relaxed font-light mb-6">
-                        Con la llegada del ferrocarril y el impulso de familias como los Ávila Camacho, Teziutlán se transformó en un centro cosmopolita. Se construyeron los portales, el teatro Victoria y la majestuosa Catedral.
+                <div class="lg:col-span-6 order-1 lg:order-2">
+                    <span class="serif-title text-stone-200 text-8xl md:text-[12rem] block leading-none -mb-12 md:-mb-20 opacity-40">1552</span>
+                    <h2 class="serif-title text-4xl md:text-6xl mb-10 text-stone-900 relative z-10">La Gesta de <br>la Fundación</h2>
+                    <p class="text-stone-600 text-lg md:text-xl leading-relaxed font-light mb-10">
+                        El 15 de marzo de 1552 se marca el hito oficial. Bajo el amparo de la corona española y la herencia de los pueblos originarios, Teziutlán surge como el nexo comercial entre el altiplano y el Golfo.
                     </p>
-                    <div class="bg-white p-6 border-l-2 border-stone-800 italic text-stone-500 text-sm">
-                        "En 1881 se inauguró el Teatro Victoria, siendo uno de los recintos culturales más importantes fuera de la capital poblana."
+                    <div class="p-8 bg-stone-100/50 border-l-2 border-amber-600 italic text-stone-500">
+                        "Un pueblo nacido de la niebla, tallado por manos que entendieron la nobleza de la piedra."
                     </div>
                 </div>
             </div>
 
-            <!-- Archivos de Personajes -->
-            <div class="py-20 border-t border-stone-200">
-                <h2 class="serif-title text-center text-4xl mb-16 reveal">Figuras Ilustres</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <div class="archive-card p-8 reveal">
-                        <h4 class="serif-title text-xl mb-4">Manuel Ávila Camacho</h4>
-                        <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-6 italic">Presidente de México (1940-1946)</p>
-                        <p class="text-stone-600 text-sm font-light leading-relaxed">
-                            Conocido como "El Presidente Caballero", su gestión marcó el inicio de la era de la estabilidad política y el crecimiento industrial del país.
-                        </p>
+            <!-- SIGLO XIX-XX: El Esplendor -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-24 items-center mb-40 md:mb-64 reveal">
+                <div class="lg:col-span-6">
+                    <span class="serif-title text-stone-200 text-8xl md:text-[12rem] block leading-none -mb-12 md:-mb-20 opacity-40">1881</span>
+                    <h2 class="serif-title text-4xl md:text-6xl mb-10 text-stone-900 relative z-10">Arquitectura <br>del Poder</h2>
+                    <p class="text-stone-600 text-lg md:text-xl leading-relaxed font-light mb-10">
+                        La llegada del Ferrocarril Interoceánico impulsó una era de opulencia. Se erigieron palacios de cantera rosa que hoy son el alma del centro histórico, consolidando el título de "La Perla de la Sierra".
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 py-10 border-t border-stone-200">
+                        <div>
+                            <p class="sans-label text-stone-400 mb-2">Hito Cultural</p>
+                            <p class="serif-title text-stone-800 text-lg">Teatro Victoria</p>
+                        </div>
+                        <div>
+                            <p class="sans-label text-stone-400 mb-2">Hito Espiritual</p>
+                            <p class="serif-title text-stone-800 text-lg">Catedral de la Asunción</p>
+                        </div>
                     </div>
-
-                    <div class="archive-card p-8 reveal" style="transition-delay: 150ms;">
-                        <h4 class="serif-title text-xl mb-4">Maximino Ávila Camacho</h4>
-                        <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-6 italic">Gobernador de Puebla</p>
-                        <p class="text-stone-600 text-sm font-light leading-relaxed">
-                            Figura polémica y poderosa que impulsó grandes obras de infraestructura en la región serrana durante la primera mitad del siglo XX.
-                        </p>
+                </div>
+                <div class="lg:col-span-6 mt-12 lg:mt-0">
+                    <div class="archive-card p-4 md:p-6 shadow-2xl -rotate-1 hover:rotate-0 transition-all duration-700">
+                        <div class="overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1548588627-f9785d20fd13?auto=format&fit=crop&w=1200&q=80" alt="Arquitectura Colonial" class="vintage-photo w-full aspect-[4/3] object-cover">
+                        </div>
+                        <div class="mt-6 p-4 bg-stone-50">
+                            <p class="sans-label !text-[8px] text-stone-400 mb-2">Clasificación: Patrimonio</p>
+                            <p class="text-stone-700 text-sm italic italic">Detalle de la fachada monumental de la Catedral, símbolo de identidad teziuteca.</p>
+                        </div>
                     </div>
-
-                    <div class="archive-card p-8 reveal" style="transition-delay: 300ms;">
-                        <h4 class="serif-title text-xl mb-4">Vicente Lombardo Toledano</h4>
-                        <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-6 italic">Intelectual y Político</p>
-                        <p class="text-stone-600 text-sm font-light leading-relaxed">
-                            Uno de los ideólogos más importantes del movimiento obrero en México, nacido en las montañas teziutecas.
-                        </p>
-                    </div>
-
                 </div>
             </div>
 
-        </section>
+            <!-- GALERÍA DE ILUSTRES -->
+            <div class="pt-24 border-t border-stone-200">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 reveal">
+                    <div class="max-w-xl">
+                        <h2 class="serif-title text-5xl md:text-7xl text-stone-900 mb-6">El Linaje</h2>
+                        <p class="text-stone-500 text-lg md:text-xl font-light italic">Aquellos que transformaron el destino de una nación entera desde nuestras montañas.</p>
+                    </div>
+                    <span class="sans-label text-stone-300 hidden md:block">Sección: Biografías</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="archive-card p-10 md:p-14 reveal">
+                        <span class="text-amber-700 serif-title text-xs mb-8 block tracking-widest">PRESIDENCIA</span>
+                        <h4 class="serif-title text-3xl mb-6">Manuel Ávila Camacho</h4>
+                        <p class="text-stone-600 text-sm font-light leading-relaxed mb-10">
+                            El "Presidente Caballero" cuyo liderazgo durante la Segunda Guerra Mundial puso a México en el escenario global de la modernidad.
+                        </p>
+                        <div class="mt-auto pt-6 border-t border-stone-100 flex items-center justify-between">
+                            <span class="sans-label !text-[7px]">Ver Biografía</span>
+                            <span class="text-stone-300 text-xs">→</span>
+                        </div>
+                    </div>
+
+                    <div class="archive-card p-10 md:p-14 reveal" style="transition-delay: 150ms;">
+                        <span class="text-stone-400 serif-title text-xs mb-8 block tracking-widest">POLÍTICA</span>
+                        <h4 class="serif-title text-3xl mb-6">Maximino Ávila Camacho</h4>
+                        <p class="text-stone-600 text-sm font-light leading-relaxed mb-10">
+                            Fuerza motriz del desarrollo infraestructural de Puebla y uno de los hombres más influyentes de la política post-revolucionaria.
+                        </p>
+                        <div class="mt-auto pt-6 border-t border-stone-100 flex items-center justify-between">
+                            <span class="sans-label !text-[7px]">Ver Biografía</span>
+                            <span class="text-stone-300 text-xs">→</span>
+                        </div>
+                    </div>
+
+                    <div class="archive-card p-10 md:p-14 reveal" style="transition-delay: 300ms;">
+                        <span class="text-amber-700 serif-title text-xs mb-8 block tracking-widest">IDEOLOGÍA</span>
+                        <h4 class="serif-title text-3xl mb-6">Lombardo Toledano</h4>
+                        <p class="text-stone-600 text-sm font-light leading-relaxed mb-10">
+                            Eminente filósofo y político. Su voz defendió los derechos de la clase trabajadora y resonó en toda Latinoamérica.
+                        </p>
+                        <div class="mt-auto pt-6 border-t border-stone-100 flex items-center justify-between">
+                            <span class="sans-label !text-[7px]">Ver Biografía</span>
+                            <span class="text-stone-300 text-xs">→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- HEMEROTECA VISUAL -->
-    <section class="bg-zinc-900 py-32 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 reveal">
-                <h2 class="serif-title text-5xl mb-4">Hemeroteca</h2>
-                <p class="text-zinc-500 tracking-widest text-[10px] uppercase">Fragmentos Visuales del Pasado</p>
+    <!-- HEMEROTECA VISUAL FINAL -->
+    <section class="bg-stone-900 py-32 md:py-56 text-white relative overflow-hidden">
+        <!-- Decoración de fondo -->
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-24 reveal">
+                <div class="lg:col-span-8">
+                    <h2 class="serif-title text-5xl md:text-8xl mb-8">Hemeroteca <br><span class="text-amber-500 italic">Visual</span></h2>
+                    <p class="text-stone-400 text-xl font-light max-w-xl">Fragmentos de tiempo recuperados de los archivos municipales y colecciones privadas de las familias fundadoras.</p>
+                </div>
+                <div class="lg:col-span-4 lg:text-right">
+                    <button class="bg-transparent border border-white/20 px-8 py-4 sans-label text-white hover:bg-white hover:text-black transition-all duration-500">Solicitar Acceso al Acervo</button>
+                </div>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="h-64 bg-zinc-800 overflow-hidden reveal">
-                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" alt="Teatro Antiguo">
+            <div class="hemeroteca-grid reveal">
+                <div class="group relative overflow-hidden aspect-[4/5] md:aspect-[3/4] archive-card !border-white/10">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Archivo 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent p-8 flex flex-col justify-end">
+                        <span class="sans-label text-amber-500 mb-2">001. Estructura</span>
+                        <p class="serif-title text-xl">Arquitectura Sacra</p>
+                    </div>
                 </div>
-                <div class="h-64 bg-zinc-800 overflow-hidden reveal" style="transition-delay: 100ms;">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" alt="Detalle Catedral">
+                <div class="group relative overflow-hidden aspect-[4/5] md:aspect-[3/4] archive-card !border-white/10">
+                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Archivo 2">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent p-8 flex flex-col justify-end">
+                        <span class="sans-label text-amber-500 mb-2">002. Cultura</span>
+                        <p class="serif-title text-xl">Recintos del Arte</p>
+                    </div>
                 </div>
-                <div class="h-64 bg-zinc-800 overflow-hidden reveal" style="transition-delay: 200ms;">
-                    <img src="https://images.unsplash.com/photo-1445013111720-992a3449079c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" alt="Paisaje Antiguo">
+                <div class="group relative overflow-hidden aspect-[4/5] md:aspect-[3/4] archive-card !border-white/10">
+                    <img src="https://images.unsplash.com/photo-1445013111720-992a3449079c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Archivo 3">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent p-8 flex flex-col justify-end">
+                        <span class="sans-label text-amber-500 mb-2">003. Paisaje</span>
+                        <p class="serif-title text-xl">Valles de Bruma</p>
+                    </div>
                 </div>
-                <div class="h-64 bg-zinc-800 overflow-hidden reveal" style="transition-delay: 300ms;">
-                    <img src="https://images.unsplash.com/photo-1548588627-f9785d20fd13?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" alt="Calle Antigua">
+                <div class="group relative overflow-hidden aspect-[4/5] md:aspect-[3/4] archive-card !border-white/10">
+                    <img src="https://images.unsplash.com/photo-1548588627-f9785d20fd13?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Archivo 4">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent p-8 flex flex-col justify-end">
+                        <span class="sans-label text-amber-500 mb-2">004. Patrimonio</span>
+                        <p class="serif-title text-xl">La Cantera Viva</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CIERRE DE ARCHIVO -->
-    <footer class="py-24 text-center border-t border-stone-200">
-        <p class="serif-title text-stone-400 text-xs mb-8">FIN DEL EXPEDIENTE DIGITAL</p>
-        <div class="w-12 h-px bg-stone-300 mx-auto mb-8"></div>
-        <p class="text-stone-500 font-light text-sm italic">
-            Este archivo es dinámico y se nutre de la memoria colectiva de Teziutlán.<br>
-            © 2026 - Crónicas de la Perla.
-        </p>
-    </footer>
+    <!-- CIERRE DE EXPEDIENTE -->
+    <footer class="py-32 px-6 bg-white border-t border-stone-200 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <div class="w-12 h-12 border border-stone-200 rounded-full flex items-center justify-center mx-auto mb-12">
+                <span class="text-stone-300 text-xs">†</span>
+            </div>
+            <h3 class="serif-title text-4xl mb-8">Preservar es Honrar</h3>
+            <p class="text-stone-400 font-light italic text-lg leading-relaxed mb-16">
+                Este acervo digital es una obra en constante expansión. Cada dato, cada imagen y cada relato nos permite entender que Teziutlán no es solo un punto en el mapa, sino un legado vivo que respira en cada rincón de sus calles.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-10 md:gap-20 mb-24">
+                <div class="text-center">
+                    <p class="sans-label text-stone-300 mb-2">Curaduría</p>
+                    <p class="serif-title text-sm">Cronistas de la Ciudad</p>
+                </div>
+                <div class="text-center">
+                    <p class="sans-label text-stone-300 mb-2">Tecnología</p>
+                    <p class="serif-title text-sm">Archivo Digital MMXXVI</p>
+                </div>
+            </div>
+            <div class="sans-label text-stone-200 !tracking-[1.2em] text-[8px]">
+                Teziutlán - Puebla - México
+            </div>
+        </div>
+    </header>
 
     <script>
-        // OBSERVADOR DE REVELACIÓN
+        // OBSERVADOR DE REVELACIÓN OPTIMIZADO
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        };
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-in');
+                    // Dejar de observar una vez animado para mejor performance
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // EFECTO SUTIL DE PARALLAX PARA EL TEXTO DE FONDO (Si existiera) O CABECERA
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const hero = document.querySelector('.hero-title');
+            if(hero && window.innerWidth > 1024) {
+                hero.style.transform = `translateY(${scroll * 0.1}px)`;
+            }
+        });
     </script>
 </body>
 </html>
