@@ -136,13 +136,24 @@
             .timeline-dot { left: 50%; width: 14px; height: 14px; border-width: 3px; }
         }
 
-        /* NAVEGACIÓN DE LUJO */
+        /* NAVEGACIÓN DE LUJO Y ADAPTABILIDAD */
         nav.scrolled {
             background: rgba(252, 250, 242, 0.95);
             padding-top: 1rem;
             padding-bottom: 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
+        }
+
+        /* CSS para ocultar el menú en móviles y solo dejar el botón regresar */
+        .nav-links-container {
+            display: none; /* Mobile first: oculto */
+        }
+
+        @media (min-width: 768px) {
+            .nav-links-container {
+                display: flex; /* Escritorio: visible */
+            }
         }
 
         /* BOTONES CON ALMA */
@@ -185,11 +196,14 @@
 
     <!-- NAVEGACIÓN ARTÍSTICA -->
     <nav id="mainNav" class="fixed top-0 w-full z-[100] px-6 md:px-16 py-6 md:py-8 flex justify-between items-center transition-all duration-500">
+        <!-- El botón "Regresar" siempre es visible -->
         <a href="index.html" class="sans-label text-stone-900 flex items-center gap-3 md:gap-4 group">
             <span class="text-lg md:text-xl group-hover:-rotate-180 transition-transform duration-700 text-amber-700">⟲</span> 
-            <span class=" xs:inline">Regresar</span>
+            <span>Regresar</span>
         </a>
-        <div class="flex gap-4 md:gap-12 sans-label text-[8px] md:text-[9px]">
+        
+        <!-- El contenedor de enlaces se oculta en mobile vía CSS -->
+        <div class="nav-links-container gap-4 md:gap-12 sans-label text-[8px] md:text-[9px]">
             <a href="#origenes" class="hover:text-amber-700 transition-colors">Orígenes</a>
             <a href="#cronica" class="hover:text-amber-700 transition-colors">Crónica</a>
             <a href="#hemeroteca" class="hover:text-amber-700 transition-colors">Hemeroteca</a>
