@@ -154,6 +154,76 @@
         /* Scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: var(--cantera-rose); }
+
+        /* ========== CHAT IA STYLES ========== */
+        .chat-toggle-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 20000;
+            background: var(--deep-blue);
+            color: white;
+            border-radius: 999px;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            cursor: pointer;
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 12px;
+        }
+
+        .chat-panel {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            width: min(420px, 92vw);
+            max-height: 70vh;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .chat-header {
+            background: linear-gradient(90deg, var(--deep-blue), #003f7a);
+            color: white;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .chat-messages {
+            padding: 12px;
+            overflow-y: auto;
+            flex: 1 1 auto;
+            background: linear-gradient(180deg, rgba(245,245,247,0.9), rgba(255,255,255,1));
+        }
+
+        .msg { margin-bottom: 12px; max-width: 100%; }
+        .msg.user { text-align: right; }
+        .bubble { display: inline-block; padding: 10px 12px; border-radius: 10px; font-size: 14px; }
+        .bubble.user { background: var(--deep-blue); color: white; border-bottom-right-radius: 2px; }
+        .bubble.assistant { background: #f3f4f6; color: #111827; border-bottom-left-radius: 2px; }
+
+        .chat-footer { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 8px; align-items: center; }
+        .chat-input { flex: 1; padding: 10px 12px; border-radius: 8px; border: 1px solid #ddd; }
+        .chat-send { background: var(--cantera-rose); border: none; color: white; padding: 10px 12px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+        .chat-notice { font-size: 12px; color: #6b7280; padding: 8px 12px; border-bottom: 1px dashed #eee; }
+
+        .chat-loading { width: 18px; height: 18px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.2); border-top-color: white; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
     </style>
 </head>
 <body class="antialiased">
@@ -225,7 +295,7 @@
                 </div>
                 <div class="relative reveal">
                     <div class="historic-img-container shadow-2xl">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Placa_de_la_fundaci%C3%B3n_de_Teziutl%C3%A1n.jpg/500px-Placa_de_la_fundaci%C3%B3n_de_Teziutl%C3%A1n.jpg" alt="Palacio Municipal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Placa_de_la_fundaci%C3%B3n_de_Teziutl%C3%A1n.jpg/500px-Placa_de_la_fundaci%C3%B3n_de_Teziutl%C3%A1n.jpg" alt[...]>
                     </div>
                     <div class="absolute -bottom-4 -left-4 bg-white p-4 shadow-lg hidden sm:block">
                         <p class="serif-title text-[9px] tracking-widest text-stone-400">Placa ubicada en los bajos del palacio municipal.</p>
@@ -247,12 +317,12 @@
                     <div class="reveal" style="transition-delay: 0.1s;">
                         <span class="text-amber-500 serif-title text-3xl mb-6 block">01.</span>
                         <h3 class="serif-title text-xl mb-4 tracking-wide">Plaza Techada</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">"El Pinal" ostenta el orgullo de ser la primera plaza de toros techada del mundo, una proeza técnica para vencer a la lluvia serrana.</p>
+                        <p class="text-zinc-500 font-light leading-relaxed">"El Pinal" ostenta el orgullo de ser la primera plaza de toros techada del mundo, una proeza técnica para vencer a la lluvi[...]
                     </div>
                     <div class="reveal" style="transition-delay: 0.2s;">
                         <span class="text-amber-500 serif-title text-3xl mb-6 block">02.</span>
                         <h3 class="serif-title text-xl mb-4 tracking-wide">Cuna de Poder</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">Pocos municipios pueden presumir ser la cuna de una dinastía política que definió el México moderno: los Ávila Camacho.</p>
+                        <p class="text-zinc-500 font-light leading-relaxed">Pocos municipios pueden presumir ser la cuna de una dinastía política que definió el México moderno: los Ávila Camacho.[...]
                     </div>
                     <div class="reveal" style="transition-delay: 0.3s;">
                         <span class="text-amber-500 serif-title text-3xl mb-6 block">03.</span>
@@ -276,7 +346,7 @@
                         <span class="accent-text text-[10px] tracking-[0.4em] uppercase mb-4 block">Misticismo Natural</span>
                         <h2 class="text-4xl md:text-6xl serif-title mb-8 text-stone-900 leading-tight">El Bosque que <br>Respira Agua</h2>
                         <p class="text-lg md:text-xl text-stone-600 leading-relaxed font-light mb-8">
-                            Nuestra niebla es vida. En los alrededores de la ciudad se conserva el bosque mesófilo de montaña, un ecosistema que parece sacado de un cuento antiguo, donde el musgo y los helechos guardan secretos milenarios.
+                            Nuestra niebla es vida. En los alrededores de la ciudad se conserva el bosque mesófilo de montaña, un ecosistema que parece sacado de un cuento antiguo, donde el musgo y [...]
                         </p>
                         <blockquote class="border-l-4 border-amber-600 pl-8 py-4 mb-8">
                             <p class="text-stone-800 italic text-xl italic font-serif">"En Teziutlán, la niebla no es clima, es el alma de la ciudad caminando por sus calles."</p>
@@ -339,6 +409,46 @@
         </div>
     </footer>
 
+    <!-- CHAT IA (INTERACCIÓN) -->
+    <!--
+        Nota rápida: Este chat cliente envía las preguntas a la ruta POST /api/teziutlan-chat.
+        Debes implementar un endpoint en el servidor (o una función serverless) que reciba { messages }
+        y reenvíe la conversación a tu proveedor de IA (OpenAI, etc.) usando un "system" prompt que limite
+        las respuestas exclusivamente a temas sobre Teziutlán, arte y cultura. Si no usas servidor, puedes
+        reemplazar la URL por tu proxy que incluya la API key.
+
+        Ejemplo de system prompt (para usar en el servidor):
+        "Eres un asistente experto en Teziutlán, su historia, arte y cultura. Responde de forma precisa y
+        concisa. Si la pregunta está fuera de este alcance, rechaza educadamente y proporciona sugerencias
+        sobre temas relacionados con Teziutlán/arte/cultura. Cuando sea posible, cita la fuente o indica
+        dónde se puede verificar la información. Nunca inventes eventos o citas; si no sabes, di que no
+        tienes información y sugiere recursos locales (museos, archivos, bibliotecas)."
+    -->
+
+    <button id="chatToggle" class="chat-toggle-btn" aria-expanded="false" aria-controls="chatPanel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        Chat IA
+    </button>
+
+    <div id="chatPanel" class="chat-panel" role="region" aria-label="Chat con IA sobre Teziutlán" style="display:none;">
+        <div class="chat-header">
+            <div>
+                <div class="serif-title">Asistente: Teziutlán</div>
+                <div style="font-size:12px; opacity:0.9;">Responde solo sobre Teziutlán, arte y cultura</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button id="chatClear" title="Limpiar chat" style="background:transparent; border:none; color:rgba(255,255,255,0.9); cursor:pointer">Limpiar</button>
+                <button id="chatClose" title="Cerrar" style="background:transparent; border:none; color:rgba(255,255,255,0.9); cursor:pointer">Cerrar</button>
+            </div>
+        </div>
+        <div class="chat-notice">Este chat ofrece información precisa sobre Teziutlán, arte y cultura. No responde consultas fuera de ese alcance.</div>
+        <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+        <div class="chat-footer">
+            <input id="chatInput" class="chat-input" placeholder="Pregunta sobre Teziutlán, su arte o su cultura..." aria-label="Escribe tu pregunta sobre Teziutlán" />
+            <button id="chatSend" class="chat-send">Enviar</button>
+        </div>
+    </div>
+
     <!-- LÓGICA DE INTERACCIÓN -->
     <script>
         // CONTROL DE CARGA Y ENTRADA
@@ -396,6 +506,113 @@
                 });
             });
         });
+
+        /* ================= CHAT IA CLIENT ================= */
+        const chatToggle = document.getElementById('chatToggle');
+        const chatPanel = document.getElementById('chatPanel');
+        const chatClose = document.getElementById('chatClose');
+        const chatClear = document.getElementById('chatClear');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+
+        // Palabras clave simples para ayudar a filtrar consultas fuera de alcance.
+        const allowedKeywords = [
+            'teziutl', 'teziutlán', 'teziutlan', 'arte', 'cultura', 'historia', 'arquitect', 'teatro', 'catedral',
+            'iglesia', 'tradición', 'musica', 'música', 'patrimonio', 'cantera', 'niebla', 'bosque', 'victoria', 'pinal', 'estación'
+        ];
+
+        function inScope(text){
+            const t = text.toLowerCase();
+            return allowedKeywords.some(k => t.includes(k));
+        }
+
+        function appendMessage(role, text){
+            const msg = document.createElement('div');
+            msg.className = 'msg ' + (role === 'user' ? 'user' : 'assistant');
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble ' + (role === 'user' ? 'user' : 'assistant');
+            bubble.textContent = text;
+            msg.appendChild(bubble);
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        chatToggle.addEventListener('click', () => {
+            const open = chatPanel.style.display !== 'none';
+            chatPanel.style.display = open ? 'none' : 'flex';
+            chatToggle.setAttribute('aria-expanded', String(!open));
+            if(!open) chatInput.focus();
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatPanel.style.display = 'none';
+            chatToggle.setAttribute('aria-expanded', 'false');
+        });
+
+        chatClear.addEventListener('click', () => {
+            chatMessages.innerHTML = '';
+            appendMessage('assistant', 'Hola — soy el asistente experto en Teziutlán. Pregunta sobre historia, arte o cultura.');
+            chatInput.focus();
+        });
+
+        // Mensaje de bienvenida inicial
+        appendMessage('assistant', 'Hola — soy el asistente experto en Teziutlán. Pregunta sobre historia, arte o cultura.');
+
+        async function sendQuestion(){
+            const text = chatInput.value.trim();
+            if(!text) return;
+
+            // comprobación rápida de alcance
+            if(!inScope(text)){
+                appendMessage('user', text);
+                appendMessage('assistant', 'Lo siento — este chat sólo responde preguntas relacionadas con Teziutlán, su arte y su cultura. Prueba con términos como "historia de la catedral", "Teatro Victoria" o "tradiciones de Teziutlán".');
+                chatInput.value = '';
+                return;
+            }
+
+            appendMessage('user', text);
+            chatInput.value = '';
+
+            // Mostrar indicador de carga
+            const loadingMsg = document.createElement('div');
+            loadingMsg.className = 'msg assistant';
+            loadingMsg.innerHTML = '<div class="bubble assistant"><span class="chat-loading" aria-hidden="true"></span> Consultando...</div>';
+            chatMessages.appendChild(loadingMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try{
+                const payload = {
+                    messages: [
+                        { role: 'system', content: 'Eres un asistente experto en Teziutlán, su historia, arte y cultura. Responde de forma precisa y concisa. Si la pregunta está fuera de este alcance, rechaza educadamente y sugiere temas relacionados.' },
+                        { role: 'user', content: text }
+                    ]
+                };
+
+                const res = await fetch('/api/teziutlan-chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                // El servidor debe devolver { reply: 'texto' } o similar.
+                if(!res.ok) throw new Error('Error en servidor: ' + res.status);
+                const data = await res.json();
+                const reply = data.reply || data.choices?.[0]?.message?.content || 'Lo siento, no obtuve respuesta.';
+
+                // eliminar indicador de carga
+                loadingMsg.remove();
+                appendMessage('assistant', reply);
+
+            }catch(err){
+                loadingMsg.remove();
+                appendMessage('assistant', 'Error al conectar con el servicio de IA. Revisa la configuración del endpoint /api/teziutlan-chat en el servidor.');
+                console.error(err);
+            }
+        }
+
+        chatSend.addEventListener('click', sendQuestion);
+        chatInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') sendQuestion(); });
     </script>
 </body>
 </html>
