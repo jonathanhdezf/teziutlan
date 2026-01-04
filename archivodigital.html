@@ -136,24 +136,35 @@
             .timeline-dot { left: 50%; width: 14px; height: 14px; border-width: 3px; }
         }
 
-        /* NAVEGACIÓN DE LUJO Y ADAPTABILIDAD */
-        nav.scrolled {
-            background: rgba(252, 250, 242, 0.95);
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
+        /* NAVEGACIÓN ARTÍSTICA - NUEVA IMPLEMENTACIÓN MOBILE FIRST */
+        #navContainer {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
-
-        /* CSS para ocultar el menú en móviles y solo dejar el botón regresar */
-        .nav-links-container {
-            display: none; /* Mobile first: oculto */
-        }
-
-        @media (min-width: 768px) {
-            .nav-links-container {
-                display: flex; /* Escritorio: visible */
+        
+        @media (max-width: 767px) {
+            #navContainer.hidden-mobile {
+                transform: translateY(-20px);
+                opacity: 0;
+                pointer-events: none;
             }
+            #navContainer.visible-mobile {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+            /* Menú hamburguesa animado */
+            .burger-line { transition: 0.3s ease; }
+            .open .line-1 { transform: translateY(6px) rotate(45deg); }
+            .open .line-2 { opacity: 0; }
+            .open .line-3 { transform: translateY(-6px) rotate(-45deg); }
+        }
+
+        nav.scrolled {
+            background: rgba(252, 250, 242, 0.9);
+            backdrop-filter: blur(12px);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
         }
 
         /* BOTONES CON ALMA */
@@ -194,20 +205,31 @@
 
     <div class="grain-overlay"></div>
 
-    <!-- NAVEGACIÓN ARTÍSTICA -->
-    <nav id="mainNav" class="fixed top-0 w-full z-[100] px-6 md:px-16 py-6 md:py-8 flex justify-between items-center transition-all duration-500">
-        <!-- El botón "Regresar" siempre es visible -->
-        <a href="index.html" class="sans-label text-stone-900 flex items-center gap-3 md:gap-4 group">
-            <span class="text-lg md:text-xl group-hover:-rotate-180 transition-transform duration-700 text-amber-700">⟲</span> 
-            <span>Regresar</span>
+    <!-- NAVEGACIÓN ARTÍSTICA (Actualizada) -->
+    <nav id="mainNav" class="fixed top-0 w-full z-[200] px-6 md:px-16 py-6 transition-all duration-500 flex justify-between items-center">
+        <!-- Regresar Adaptativo -->
+        <a href="index.html" class="group flex items-center gap-3">
+            <div class="w-10 h-10 md:w-9 md:h-9 rounded-full border border-stone-200 flex items-center justify-center group-hover:bg-stone-900 group-hover:border-stone-900 transition-all duration-500 bg-white/50 backdrop-blur-sm">
+                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none stroke-stone-900 group-hover:stroke-white transition-colors" stroke-width="2.5">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </div>
+            <span class="sans-label text-stone-900 hidden md:inline-block">Regresar al Portal</span>
         </a>
-        
-        <!-- El contenedor de enlaces se oculta en mobile vía CSS -->
-        <div class="nav-links-container gap-4 md:gap-12 sans-label text-[8px] md:text-[9px]">
-            <a href="#origenes" class="hover:text-amber-700 transition-colors">Orígenes</a>
-            <a href="#cronica" class="hover:text-amber-700 transition-colors">Crónica</a>
-            <a href="#hemeroteca" class="hover:text-amber-700 transition-colors">Hemeroteca</a>
-            <a href="#legado" class="hover:text-amber-700 transition-colors hidden sm:inline">Legado</a>
+
+        <!-- Botón Hamburguesa (Solo Mobile) -->
+        <button id="menuTrigger" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 bg-white/50 backdrop-blur-sm border border-stone-200 rounded-full focus:outline-none">
+            <div class="burger-line line-1 w-5 h-0.5 bg-stone-900"></div>
+            <div class="burger-line line-2 w-5 h-0.5 bg-stone-900"></div>
+            <div class="burger-line line-3 w-5 h-0.5 bg-stone-900"></div>
+        </button>
+
+        <!-- Contenedor de Enlaces (Hamburguesa Expandible en Mobile) -->
+        <div id="navContainer" class="hidden-mobile absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-stone-100 p-8 flex flex-col gap-6 items-center md:static md:w-auto md:bg-transparent md:border-none md:p-0 md:flex-row md:gap-12 md:opacity-100 md:pointer-events-auto md:translate-y-0">
+            <a href="#origenes" class="sans-label text-[10px] md:text-[9px] hover:text-amber-700 transition-colors">Orígenes</a>
+            <a href="#cronica" class="sans-label text-[10px] md:text-[9px] hover:text-amber-700 transition-colors">Crónica</a>
+            <a href="#hemeroteca" class="sans-label text-[10px] md:text-[9px] hover:text-amber-700 transition-colors">Hemeroteca</a>
+            <a href="#legado" class="sans-label text-[10px] md:text-[9px] hover:text-amber-700 transition-colors">Legado</a>
         </div>
     </nav>
 
@@ -281,7 +303,6 @@
             <div class="relative">
                 <div class="timeline-line"></div>
                 
-                <!-- 1552 -->
                 <div class="timeline-item flex flex-col md:flex-row items-start md:items-center reveal">
                     <div class="w-full md:w-1/2 md:pr-20 md:text-right mb-4 md:mb-0">
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">1552</span>
@@ -292,7 +313,6 @@
                     <div class="md:w-1/2 md:pl-20"></div>
                 </div>
 
-                <!-- 1881 -->
                 <div class="timeline-item flex flex-col md:flex-row items-start md:items-center reveal">
                     <div class="w-full md:w-1/2 md:pr-20 hidden md:block"></div>
                     <div class="timeline-dot"></div>
@@ -303,7 +323,6 @@
                     </div>
                 </div>
 
-                <!-- 1940 -->
                 <div class="timeline-item flex flex-col md:flex-row items-start md:items-center reveal">
                     <div class="w-full md:w-1/2 md:pr-20 md:text-right mb-4 md:mb-0">
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">1940</span>
@@ -314,14 +333,12 @@
                     <div class="md:w-1/2 md:pl-20"></div>
                 </div>
 
-                <!-- 2023 -->
                 <div class="timeline-item flex flex-col md:flex-row items-start md:items-center reveal">
                     <div class="w-full md:w-1/2 md:pr-20 hidden md:block"></div>
                     <div class="timeline-dot"></div>
                     <div class="w-full md:w-1/2 md:pl-20">
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">2023</span>
                         <h4 class="serif-title text-lg md:text-xl mb-2">Pueblo Mágico</h4>
-                        <h5 class="sans-label text-[7px] md:text-[8px] text-amber-600 mb-2">Hito Contemporáneo</h5>
                         <p class="text-stone-500 font-light italic text-sm md:text-base">El reconocimiento oficial de Teziutlán como Pueblo Mágico, consolidando su legado para el mundo.</p>
                     </div>
                 </div>
@@ -353,7 +370,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: HEMEROTECA VISUAL (GALERÍA) -->
+   !-- SECCIÓN: HEMEROTECA VISUAL (GALERÍA) -->
     <section id="hemeroteca" class="py-24 md:py-40 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
             <div class="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-16 md:mb-24 reveal text-center lg:text-left">
