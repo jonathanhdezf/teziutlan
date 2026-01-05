@@ -67,7 +67,36 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.02);
             cursor: pointer;
         }
+                /* TARJETAS Y RETRATOS (CORRECCIÓN DE CLASES) */
+        .archive-card {
+            background: white;
+            border: 1px solid rgba(212, 163, 115, 0.15);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
 
+        .portrait-container {
+            position: relative;
+            overflow: hidden;
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .portrait-img {
+            filter: sepia(0.6) grayscale(0.4) contrast(1.1);
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: scale(1.05);
+        }
+
+        .portrait-wrapper:hover .portrait-img {
+            filter: sepia(0) grayscale(0) contrast(1);
+            transform: scale(1);
+        }
+
+        .portrait-wrapper:hover .portrait-container {
+            clip-path: inset(15px 15px 15px 15px);
+        }
         @media (hover: hover) {
             .archive-card:hover {
                 transform: translateY(-12px) scale(1.02);
@@ -241,7 +270,7 @@
         </div>
     </div>
 
-    <!-- CONTENIDO: HERO -->
+    <!-- CONTENIDO: ARCHIVO DIGITAL -->
     <header class="min-h-screen flex items-center relative overflow-hidden px-6 md:px-16 pt-20">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div class="lg:col-span-8 z-10 text-center lg:text-left">
@@ -357,30 +386,77 @@
         </div>
     </section>
     
-    <!-- PERSONAJES -->
-    <section class="py-24 bg-stone-900 text-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-24 reveal">
-                <span class="sans-label text-stone-500 block mb-4 italic">Hombres y Mujeres de Gloria</span>
-                <h2 class="serif-title text-4xl md:text-6xl">Personajes Ilustres</h2>
+        <!-- SECCIÓN PERSONAJES (REDISEÑADA) -->
+    <section id="personajes" class="py-32 md:py-60 bg-stone-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-16">
+            <div class="text-center mb-32 reveal">
+                <span class="sans-label text-amber-700 block mb-6">Galería de Ilustres</span>
+                <h2 class="serif-title text-5xl md:text-8xl">Hijos de la <span class="italic text-stone-300">Sierra</span></h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="archive-card !bg-stone-800/30 !border-stone-700 p-10 group reveal">
-                    <h4 class="serif-title text-2xl mb-2 group-hover:text-amber-500 transition-colors">Manuel Ávila Camacho</h4>
-                    <p class="text-stone-400 font-light italic">"El Presidente Caballero".</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-24 lg:gap-x-12">
+                <!-- Personaje 1: Manuel Ávila Camacho (Grande Izquierda) -->
+                <div class="lg:col-span-7 reveal">
+                    <div class="portrait-wrapper group cursor-pointer">
+                        <div class="portrait-container aspect-[16/10] md:aspect-[16/8] bg-stone-200 shadow-2xl mb-10">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80" alt="Manuel Ávila Camacho" class="portrait-img w-full h-full object-cover">
+                        </div>
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 border-l-2 border-amber-600 pl-8">
+                            <div>
+                                <span class="sans-label text-amber-700 text-[9px] mb-2 block">1897 — 1955</span>
+                                <h3 class="serif-title text-3xl md:text-5xl mb-2">Manuel Ávila Camacho</h3>
+                                <p class="sans-label text-stone-400 text-[10px]">Presidente de la República</p>
+                            </div>
+                            <p class="text-stone-500 font-light italic max-w-sm text-lg leading-relaxed">
+                                "El Presidente Caballero". Su liderazgo conciliador durante la Segunda Guerra Mundial posicionó a México en el escenario global desde sus raíces teziutecas.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="archive-card !bg-stone-800/30 !border-stone-700 p-10 group reveal" style="transition-delay: 100ms;">
-                    <h4 class="serif-title text-2xl mb-2 group-hover:text-amber-500 transition-colors">Maximino Ávila Camacho</h4>
-                    <p class="text-stone-400 font-light italic">Figura clave de la política poblana.</p>
+
+                <!-- Personaje 2: Vicente Lombardo Toledano (Derecha Arriba) -->
+                <div class="lg:col-span-4 lg:col-start-9 lg:-mt-20 reveal">
+                    <div class="portrait-wrapper group cursor-pointer">
+                        <div class="portrait-container aspect-[4/5] bg-stone-200 shadow-xl mb-8">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Vicente Lombardo Toledano" class="portrait-img w-full h-full object-cover">
+                        </div>
+                        <div class="pl-2">
+                            <span class="sans-label text-amber-700 text-[9px] mb-2 block">1894 — 1968</span>
+                            <h3 class="serif-title text-2xl mb-2">V. Lombardo Toledano</h3>
+                            <p class="text-stone-500 font-light italic text-base leading-relaxed mb-4">
+                                Filósofo y humanista. Uno de los intelectuales más influyentes del siglo XX en Latinoamérica, forjado en la disciplina serrana.
+                            </p>
+                            <div class="h-px w-10 bg-stone-200 group-hover:w-full transition-all duration-700"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="archive-card !bg-stone-800/30 !border-stone-700 p-10 group reveal" style="transition-delay: 200ms;">
-                    <h4 class="serif-title text-2xl mb-2 group-hover:text-amber-500 transition-colors">Clotilde Camarena</h4>
-                    <p class="text-stone-400 font-light italic">Gran benefactora de la educación.</p>
+
+                <!-- Personaje 3: María de la Luz (Centro Derecha) -->
+                <div class="lg:col-span-5 lg:col-start-2 lg:mt-12 reveal">
+                    <div class="portrait-wrapper group cursor-pointer">
+                        <div class="portrait-container aspect-square bg-stone-200 shadow-xl mb-8">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="María de la Luz" class="portrait-img w-full h-full object-cover">
+                        </div>
+                        <div class="text-right pr-8 border-r-2 border-stone-200">
+                            <span class="sans-label text-amber-700 text-[9px] mb-2 block">Musa de la Niebla</span>
+                            <h3 class="serif-title text-3xl mb-2">Luz María</h3>
+                            <p class="text-stone-500 font-light italic text-base">La voz poética que capturó el aroma a tierra húmeda y la melancolía del Teziutlán antiguo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cita Editorial -->
+                <div class="lg:col-span-4 lg:col-start-8 lg:mt-32 flex items-center reveal">
+                    <div class="relative">
+                        <span class="serif-title text-8xl text-stone-200 absolute -top-12 -left-8 pointer-events-none">“</span>
+                        <p class="serif-title text-2xl md:text-3xl italic text-stone-400 leading-snug">
+                            La grandeza de un pueblo no se mide por sus fronteras, sino por la estatura moral de sus <span class="text-amber-800">arquitectos de historia</span>.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- SECCIÓN: HEMEROTECA VISUAL (GALERÍA) -->
     <section id="hemeroteca" class="py-24 md:py-40 bg-white">
