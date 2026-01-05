@@ -154,6 +154,61 @@
             box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.2);
         }
 
+         /* =============================================
+           INICIO: CLASES DE LA SECCIÓN LEGADO MÁGICO
+           ============================================= */
+        
+        /* Textura de puntos sutiles para el fondo oscuro */
+        .magic-pattern {
+            background-image: radial-gradient(var(--cantera) 0.6px, transparent 0.6px);
+            background-size: 30px 30px;
+            opacity: 0.15;
+        }
+
+        /* Efecto de brillo metálico animado para el texto principal */
+        .glimmer-text {
+            background: linear-gradient(to right, #b8860b, #fcfaf2, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Badge/Etiqueta con borde dorado y sombra para el distintivo */
+        .magic-badge {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            border: 1px solid var(--oro);
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.2);
+        }
+
+        /* Borde degradado para el manifiesto de cierre */
+        .gold-border {
+            border: 1px solid transparent;
+            border-image: linear-gradient(to bottom, var(--oro), transparent) 1;
+        }
+
+        /* Tarjetas con efecto de desenfoque y profundidad (Glassmorphism) */
+        .archive-card-dark {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 163, 115, 0.1);
+            backdrop-filter: blur(8px);
+            transition: all 0.5s ease;
+        }
+
+        .archive-card-dark:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--oro);
+            transform: translateY(-8px);
+        }
+
+        /* =============================================
+           FIN: CLASES DE LA SECCIÓN LEGADO MÁGICO
+           ============================================= */
+
         @media (min-width: 768px) {
             .timeline-dot { left: 50%; }
         }
@@ -279,12 +334,12 @@
                     <span class="sans-label text-amber-700">Volumen I: La Perla de la Sierra</span>
                 </div>
                 <h1 class="serif-title hero-title leading-[0.9] text-stone-900 mb-10 reveal">
-                    Crónicas de <br><span class="text-stone-300 italic">Niebla y Oro</span>
+                    Crónicas de <br><span class="text-stone-300 italic">Niebla y Piedra</span>
                 </h1>
                 <p class="text-stone-500 text-xl md:text-3xl font-light italic max-w-2xl mx-auto lg:mx-0 reveal leading-relaxed">
-                    "En cada sillar de cantera rosa duerme un siglo de historia. Bienvenidos al registro oficial del alma teziuteca."
+                    "Bienvenido al registro oficial de la memoria teziuteca. Aquí, la historia se conserva con galardía y se comparte con calidez. Cada documento, cada imagen y cada relato son ventanas que te invitan a conocer un Teziutlán que no solo se visita, sino que se siente en la piedra, en la niebla y en el corazón de su gente. Este archivo es tu entrada a un patrimonio vivo que espera ser descubierto."
                 </p>
-                <div class="mt-16 flex justify-center lg:justify-start reveal">
+                <div class="mt-16 py-10 flex justify-center lg:justify-start reveal">
                     <a href="#cronica" class="btn-premium sans-label">
                         Abrir Cronología <span>→</span>
                     </a>
@@ -294,11 +349,11 @@
             <div class="lg:col-span-4 relative hidden lg:block reveal">
                 <div class="archive-card p-4 rotate-2 shadow-2xl scale-110">
                     <div class="image-wrapper aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1518107616385-ad30833dd6cd?auto=format&fit=crop&w=800&q=80" alt="Archivo" class="w-full h-full object-cover sepia-archive">
+                        <img src="https://www.eluniversalpuebla.com.mx/resizer/v2/OXJACAQMY5AO7IED4KOJIRVZCY.png?auth=4cc32298fd5cc44db3bf9887f39db3595971521bf176b21333311602f6d463b4&smart=true&height=620" alt="Archivo" class="w-full h-full object-cover sepia-archive">
                     </div>
                     <div class="mt-6 flex justify-between items-end border-t border-stone-100 pt-4">
-                        <span class="sans-label text-[7px] text-stone-400">Archivo 024-B</span>
-                        <span class="serif-title text-sm italic">Circa 1940</span>
+                        <span class="sans-label text-[7px] text-stone-400">Foto: Facebook Teziutlán Desconocido</span>
+                        <span class="serif-title text-sm italic">Teziutlán</span>
                     </div>
                 </div>
             </div>
@@ -312,16 +367,21 @@
                 <div class="reveal">
                     <div class="archive-card p-2 -rotate-3">
                         <div class="image-wrapper aspect-video">
-                            <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=1200&q=80" alt="Historia" class="w-full h-full object-cover">
+                            <img src="https://scontent.fpbc2-2.fna.fbcdn.net/v/t39.30808-6/492144929_1775122059869626_3873508045593805272_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VZVQHDgOXlMQ7kNvwGkwyX8&_nc_oc=AdmLeELYYNIlADktllcP2crw0te95PB9WAo7a_SPT_qzilbDrFcbktqBt664pz27eQo&_nc_zt=23&_nc_ht=scontent.fpbc2-2.fna&_nc_gid=KTAGOODs7aHTa7ubz8GDnA&oh=00_Afom57kW8ppxVoHmTH4r6yKyODmaCG5n2bsKLIrSIM3HDQ&oe=696190E1" alt="Historia" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
                 <div class="reveal">
                     <span class="sans-label text-amber-800 mb-6 block">Prehispanidad</span>
-                    <h2 class="serif-title text-4xl md:text-6xl mb-10 leading-tight">El Cerro del <br><span class="text-amber-600 italic">Granizo Sagrado</span></h2>
+                    <h2 class="serif-title text-4xl md:text-6xl mb-10 leading-tight">Raices <br><span class="text-amber-600 italic">Prehispánicas</span></h2>
                     <p class="text-stone-600 text-xl leading-relaxed font-light">
-                        Teziutlán nace de la voz Náhuatl <strong>"Teziuh-tlán"</strong>. Un punto de encuentro místico entre la cultura Totonaca y la Nahua.
+                       En Teziutlán, cada piedra guarda un secreto y cada neblina acaricia la memoria de los siglos. Antes que la arquitectura colonial se levantara, estas montañas fueron hogar de pueblos totonacos, nahuas y otomíes, que hicieron de la Sierra Norte un puente entre el altiplano y el mar. Este archivo digital abre sus puertas para que descubras esa herencia viva: un pasado que no se visita, se siente.
                     </p>
+					<div class="mt-10 py-10 flex justify-center start reveal">
+                    <a href="#cronica" class="btn-premium sans-label">
+                        Saber más <span>→</span>
+                    </a>
+                </div>
                 </div>
             </div>
         </div>
@@ -399,7 +459,7 @@
                 <div class="lg:col-span-7 reveal">
                     <div class="portrait-wrapper group cursor-pointer">
                         <div class="portrait-container aspect-[16/10] md:aspect-[16/8] bg-stone-200 shadow-2xl mb-10">
-                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80" alt="Manuel Ávila Camacho" class="portrait-img w-full h-full object-cover">
+                            <img src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2021/04/avila01-900x675.jpg" alt="Manuel Ávila Camacho" class="portrait-img w-full h-full object-cover">
                         </div>
                         <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 border-l-2 border-amber-600 pl-8">
                             <div>
@@ -418,7 +478,7 @@
                 <div class="lg:col-span-4 lg:col-start-9 lg:-mt-20 reveal">
                     <div class="portrait-wrapper group cursor-pointer">
                         <div class="portrait-container aspect-[4/5] bg-stone-200 shadow-xl mb-8">
-                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Vicente Lombardo Toledano" class="portrait-img w-full h-full object-cover">
+                            <img src="https://relatosehistorias.mx/sites/default/files/styles/relato750x650/public/vicente_lombardo_toledano.jpg?itok=B16KrJeg" alt="Vicente Lombardo Toledano" class="portrait-img w-full h-full object-cover">
                         </div>
                         <div class="pl-2">
                             <span class="sans-label text-amber-700 text-[9px] mb-2 block">1894 — 1968</span>
@@ -435,11 +495,11 @@
                 <div class="lg:col-span-5 lg:col-start-2 lg:mt-12 reveal">
                     <div class="portrait-wrapper group cursor-pointer">
                         <div class="portrait-container aspect-square bg-stone-200 shadow-xl mb-8">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="María de la Luz" class="portrait-img w-full h-full object-cover">
+                            <img src="https://tse3.mm.bing.net/th/id/OIP.4kZKH9RJ0PJEDiZ5WlnPKgHaD0?pid=Api&P=0&h=180" alt="María del Carmen Millán Acevedo" class="portrait-img w-full h-full object-cover">
                         </div>
                         <div class="text-right pr-8 border-r-2 border-stone-200">
                             <span class="sans-label text-amber-700 text-[9px] mb-2 block">Musa de la Niebla</span>
-                            <h3 class="serif-title text-3xl mb-2">Luz María</h3>
+                            <h3 class="serif-title text-3xl mb-2">María del Carmen Millán Acevedo</h3>
                             <p class="text-stone-500 font-light italic text-base">La voz poética que capturó el aroma a tierra húmeda y la melancolía del Teziutlán antiguo.</p>
                         </div>
                     </div>
@@ -533,30 +593,70 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: LEGADO MÁGICO -->
-    <section id="legado" class="py-24 md:py-40 bg-white relative">
-        <div class="absolute inset-0 magic-pattern"></div>
-        <div class="max-w-7xl mx-auto px-6 md:px-16 relative z-10 text-center">
-            <h2 class="serif-title text-3xl md:text-7xl mb-8 md:mb-12 leading-tight">Pueblo Mágico</h2>
-            <div class="max-w-3xl mx-auto mb-12 md:mb-20">
-                <p class="text-stone-600 text-lg md:text-2xl font-light italic leading-relaxed">
-                    "Hoy, Teziutlán no solo guarda su historia en libros, la vive en sus calles, su neblina y su gente. Somos guardianes de una joya que brilla entre la sierra."
-                </p>
+    <!-- Hero / Legado Mágico -->
+    <section id="legado" class="relative min-h-screen flex flex-col justify-center py-20 md:py-32 lg:py-48 bg-[#0a0a0a] text-white overflow-hidden">
+        <div class="magic-pattern"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="reveal mb-8">
+                <span class="inline-block px-4 py-1 border border-amber-600/50 rounded-full text-[10px] tracking-[0.3em] uppercase text-amber-500 mb-4">
+                    Nombramiento Oficial 2023
+                </span>
+                <h2 class="serif-title text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none">
+                    Legado <br><span class="glimmer-text italic">Mágico</span>
+                </h2>
             </div>
-            <div class="inline-block p-8 md:p-12 bg-stone-900 text-white reveal">
-                <span class="sans-label text-amber-500 mb-4 block">Orgullo Poblano</span>
-                <p class="serif-title text-lg md:text-2xl italic mb-0">Donde la piedra florece y la historia se respira.</p>
+
+            <!-- Grid de Contenido -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-20">
+                <!-- Columna de Texto Principal -->
+                <div class="lg:col-span-5 reveal" style="transition-delay: 0.2s">
+                    <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed mb-8">
+                        Entre la niebla de la Sierra Nororiental emerge una joya de cantera rosa. Teziutlán no solo guarda documentos; custodia la memoria de los siglos en cada rincón de su geografía mística.
+                    </p>
+                    <div class="w-20 h-px bg-amber-600 mb-8"></div>
+                    <blockquote class="serif-title italic text-2xl text-stone-200">
+                        "Un encuentro entre el pasado colonial y la exuberancia de la montaña."
+                    </blockquote>
+                </div>
+
+                <!-- Columna de Tarjetas -->
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4 reveal" style="transition-delay: 0.4s">
+                    <div class="archive-card-dark p-8 rounded-xl group">
+                        <div class="w-8 h-[1px] bg-amber-600 group-hover:w-full transition-all duration-500 mb-6"></div>
+                        <h4 class="serif-title text-2xl mb-4">Patrimonio Vivo</h4>
+                        <p class="text-stone-500 text-sm leading-relaxed">Arquitectura que narra la opulencia de una ciudad que fue puerto de montaña y nexo cultural.</p>
+                    </div>
+
+                    <div class="archive-card-dark p-8 rounded-xl group">
+                        <div class="w-8 h-[1px] bg-amber-600 group-hover:w-full transition-all duration-500 mb-6"></div>
+                        <h4 class="serif-title text-2xl mb-4">Clima de Niebla</h4>
+                        <p class="text-stone-500 text-sm leading-relaxed">El misticismo de sus calles se acentúa con el descenso de las nubes, creando una atmósfera de archivo eterno.</p>
+                    </div>
+
+                    <div class="archive-card-dark p-8 rounded-xl group">
+                        <div class="w-8 h-[1px] bg-amber-600 group-hover:w-full transition-all duration-500 mb-6"></div>
+                        <h4 class="serif-title text-2xl mb-4">Tradición</h4>
+                        <p class="text-stone-500 text-sm leading-relaxed">Desde el Teatro Victoria hasta la Santa Iglesia Catedral, cada piedra tiene un eco de ayer.</p>
+                    </div>
+
+                    <div class="archive-card-dark p-8 rounded-xl group flex items-center justify-center border-dashed">
+                        <span class="text-amber-600 text-xs tracking-[0.2em] uppercase">Explorar Más</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+
+
     <!-- FOOTER: EL COLofÓN -->
-    <footer class="pt-24 md:pt-32 pb-12 md:pb-16 bg-stone-50 border-t border-stone-200">
+    <footer class="pt-1 md:pt-32 pb-12 md:pb-16 bg-stone-50">
         <div class="max-w-7xl mx-auto px-6 md:px-16 text-center">
             <div class="serif-title text-3xl md:text-5xl mb-4 text-stone-900 tracking-tighter">TEZIUTLÁN</div>
             <div class="sans-label text-[8px] md:text-[9px] text-amber-700 tracking-[0.5em] md:tracking-[0.8em] mb-12">Pueblo Mágico | La Perla de la Sierra</div>
             
-            <div class="w-16 md:w-24 h-px bg-stone-200 mx-auto mb-16"></div>
+            <div class="w-16 md:w-24 h-px bg-stone-200 mx-auto mb-3"></div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-20 md:mb-24">
                 <div class="space-y-4">
@@ -577,13 +677,13 @@
                 </div>
                 <div class="sm:col-span-2 space-y-4 md:space-y-6">
                     <h6 class="sans-label text-[10px] text-stone-900 text-left md:text-right">Crónica del Archivo</h6>
-                    <p class="text-xs md:text-sm font-light text-stone-400 italic text-left md:text-right leading-relaxed">
+                    <p class="text-xs md:text-sm font-light text-stone-700 italic text-left md:text-right leading-relaxed">
                         Este archivo digital es un esfuerzo colaborativo por preservar la memoria histórica de nuestra ciudad. Cada dato ha sido verificado en las crónicas municipales y relatos de cronistas locales.
                     </p>
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-stone-100 pt-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-2 border-t border-stone-100 pt-1">
                 <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Archivo Histórico de Teziutlán</span>
                 <div class="flex gap-8 sans-label text-[9px] text-stone-400">
                     <a href="#" class="hover:text-stone-900 transition-colors">Instagram</a>
@@ -657,4 +757,4 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
-</html>
+</html>/* 
