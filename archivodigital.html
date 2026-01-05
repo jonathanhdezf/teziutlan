@@ -306,8 +306,10 @@
 
         <!-- Menú Desktop -->
         <div class="hidden md:flex gap-10 items-center">
+			<a href="#inicio" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Inicio</a>
             <a href="#origenes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Orígenes</a>
-            <a href="#cronica" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Crónica</a>
+            <a href="#cronologia" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Cronología</a>
+			<a href="#personajes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Biografías</a>
             <a href="#hemeroteca" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Hemeroteca</a>
             <a href="#legado" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Legado</a>
         </div>
@@ -316,22 +318,24 @@
     <!-- OVERLAY MENÚ MÓVIL -->
     <div id="mobileOverlay">
         <div class="flex flex-col items-center gap-8">
-            <a href="#origenes" class="mobile-nav-link serif-title text-3xl text-stone-900">Orígenes</a>
-            <a href="#cronica" class="mobile-nav-link serif-title text-3xl text-stone-900">Crónica</a>
-            <a href="#hemeroteca" class="mobile-nav-link serif-title text-3xl text-stone-900">Hemeroteca</a>
-            <a href="#legado" class="mobile-nav-link serif-title text-3xl text-stone-900">Legado</a>
+           	<a href="#inicio" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Inicio</a>
+            <a href="#origenes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Orígenes</a>
+            <a href="#cronologia" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Cronología</a>
+			<a href="#personajes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Biografías</a>
+            <a href="#hemeroteca" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Hemeroteca</a>
+            <a href="#legado" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Legado</a>
             <div class="h-px w-20 bg-amber-400 mt-4"></div>
-            <span class="sans-label text-stone-400">Archivo Histórico</span>
+            <span class="sans-label text-stone-400">Estas en la sección<br>- Archivo Histórico</span>
         </div>
     </div>
 
     <!-- CONTENIDO: ARCHIVO DIGITAL -->
-    <header class="min-h-screen flex items-center relative overflow-hidden px-6 md:px-16 pt-20">
+    <header id="inicio" class="min-h-screen flex items-center relative overflow-hidden px-6 md:px-16 pt-20">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div class="lg:col-span-8 z-10 text-center lg:text-left">
                 <div class="flex items-center justify-center lg:justify-start gap-4 mb-8 reveal">
                     <div class="h-px w-12 bg-amber-700"></div>
-                    <span class="sans-label text-amber-700">Volumen I: La Perla de la Sierra</span>
+                    <span class="sans-label text-amber-700">Archivo histórico</span>
                 </div>
                 <h1 class="serif-title hero-title leading-[0.9] text-stone-900 mb-10 reveal">
                     Crónicas de <br><span class="text-stone-300 italic">Niebla y Piedra</span>
@@ -340,8 +344,8 @@
                     "Bienvenido al registro oficial de la memoria teziuteca. Aquí, la historia se conserva con galardía y se comparte con calidez. Cada documento, cada imagen y cada relato son ventanas que te invitan a conocer un Teziutlán que no solo se visita, sino que se siente en la piedra, en la niebla y en el corazón de su gente. Este archivo es tu entrada a un patrimonio vivo que espera ser descubierto."
                 </p>
                 <div class="mt-16 py-10 flex justify-center lg:justify-start reveal">
-                    <a href="#cronica" class="btn-premium sans-label">
-                        Abrir Cronología <span>→</span>
+                    <a href="#origenes" class="btn-premium sans-label">
+                       Orígenes <span>→</span>
                     </a>
                 </div>
             </div>
@@ -388,7 +392,7 @@
     </section>
 
 <!-- SECCIÓN: LÍNEA DEL TIEMPO (CRÓNICA) -->
-    <section id="cronica" class="py-24 md:py-10 bg-stone-50 relative overflow-hidden">
+    <section id="cronologia" class="py-24 md:py-10 bg-stone-50 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-6 relative">
             <div class="text-center mb-16 md:mb-32 reveal">
                 <span class="sans-label text-amber-700 block mb-3 md:mb-4">El Hilo de la Historia</span>
@@ -599,7 +603,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="reveal mb-8">
                 <span class="inline-block px-4 py-1 border border-amber-600/50 rounded-full text-[10px] tracking-[0.3em] uppercase text-amber-500 mb-4">
-                    Nombramiento Oficial: Pueblo Mágico
+                    Nombramiento Oficial
                 </span>
                 <h2 class="serif-title text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none">
                     Legado <br><span class="glimmer-text italic">Mágico</span>
@@ -611,11 +615,11 @@
                 <!-- Columna de Texto Principal -->
                 <div class="lg:col-span-5 reveal" style="transition-delay: 0.2s">
                     <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed mb-8">
-                        Entre la niebla de la Sierra Nororiental emerge una joya de cantera rosa. Teziutlán no solo guarda documentos; custodia la memoria de los siglos en cada rincón de su geografía mística.
+                        Teziutlán es más que un destino: es un legado vivo. Como Pueblo Mágico, nuestra ciudad guarda en cada cantera rosa y en cada neblina la memoria de siglos de historia.
                     </p>
                     <div class="w-20 h-px bg-amber-600 mb-8"></div>
                     <blockquote class="serif-title italic text-2xl text-stone-200">
-                        "Un encuentro entre el pasado colonial y la exuberancia de la montaña."
+                        "Hoy, Teziutlán se abre al visitante con orgullo y cercanía, invitando a recorrer sus calles, escuchar sus relatos y sentir el alma que nos distingue."
                     </blockquote>
                 </div>
 
