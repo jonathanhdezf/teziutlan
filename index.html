@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">         <!-- HTML5 -->   
+    <link rel="icon" href="favicon.ico" type="image/x-icon">         
     <title>Teziutlán | La Perla de la Sierra</title>
     
     <!-- Framework & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* CONFIGURACIÓN DE VARIABLES COSMÉTICAS */
@@ -19,6 +19,7 @@
             --iron-black: #1a1a1a;
             --teja-red: #a54228;
             --cream: #f4f1de;
+            --oro: #b8860b;
         }
 
         body {
@@ -28,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. CARGADOR (LOADER) - PUERTAS DE PALACIO */
+        /* 1. CARGADOR (LOADER) */
         #loader {
             position: fixed;
             inset: 0;
@@ -41,7 +42,7 @@
         .loader-panel {
             position: absolute;
             top: 0;
-            width: 51%; /* Traslape para evitar líneas blancas en el centro */
+            width: 51%;
             height: 100vh;
             background: var(--deep-blue);
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
@@ -65,12 +66,70 @@
             width: 90%;
         }
 
-        /* Animación de Apertura */
         .loaded #loader .panel-left { transform: translateX(-100%); }
         .loaded #loader .panel-right { transform: translateX(100%); }
         .loaded .loader-logo { opacity: 0; pointer-events: none; }
 
-        /* 2. FILTROS DE IMÁGENES HISTÓRICAS */
+        /* 2. NAVEGACIÓN REPARADA Y ESTILIZADA CON GLASSMORPHISM */
+        #mainNav {
+            transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* Clase aplicada al hacer scroll */
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(12px) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .nav-link-hover {
+            position: relative;
+        }
+
+        .nav-link-hover::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--cantera-rose);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link-hover:hover::after {
+            width: 100%;
+        }
+
+        /* Menú Móvil con efecto Glassmorphism Profundo */
+        #mobile-menu {
+            transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            background-color: rgba(0, 40, 85, 0.85); /* deep-blue con transparencia */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); /* Soporte Safari */
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        .menu-pattern {
+            background-image: radial-gradient(var(--cantera-rose) 0.6px, transparent 0.6px);
+            background-size: 30px 30px;
+            opacity: 0.08;
+        }
+
+        /* 3. FILTROS E IMÁGENES */
         .historic-img-container {
             overflow: hidden;
             position: relative;
@@ -92,17 +151,7 @@
             transform: scale(1);
         }
 
-        .historic-img-container::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/p6-mini.png');
-            opacity: 0.15;
-            pointer-events: none;
-            mix-blend-mode: multiply;
-        }
-
-        /* 3. SISTEMA DE REVELACIÓN (SCROLL REVEAL) */
+        /* 4. REVELACIÓN */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -114,9 +163,8 @@
             transform: translateY(0);
         }
 
-        /* 4. ESTILOS GENERALES */
         .serif-title { font-family: 'Cinzel', serif; font-weight: 700; }
-        .accent-text { color: var(--teja-red); font-family: 'Cinzel', serif; }
+        .sans-label { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.65rem; }
 
         .parallax-bg-text {
             font-size: 15vw;
@@ -129,7 +177,6 @@
             top: 20%;
         }
 
-        /* Botones Personalizados */
         .btn-colonial {
             padding: 1rem 2.5rem;
             border: 1px solid var(--iron-black);
@@ -149,7 +196,6 @@
             padding-right: 2rem;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: var(--cantera-rose); }
     </style>
@@ -158,34 +204,48 @@
 
     <!-- CARGADOR -->
     <div id="loader">
-        <div class="loader-logo">TEZIUTLÁN</div>
+        <div class="loader-logo">TEZIUTLÁN <br>CDLXXIV <br>AÑOS DE HISTORIA</div>
         <div class="loader-panel panel-left"></div>
         <div class="loader-panel panel-right"></div>
     </div>
 
-    <!-- NAVEGACIÓN RESPONSIVA -->
-    <nav class="fixed w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center mix-blend-difference text-white">
-        <div class="serif-title text-lg md:text-xl tracking-[0.4em]">CDLXXIII</div>
-        <!-- Menú Escritorio -->
-        <div class="hidden lg:flex gap-10 text-[10px] uppercase tracking-[0.3em] font-bold">
-            <a href="#historia" class="hover:text-amber-400 transition">Historia</a>
-            <a href="#curiosidades" class="hover:text-amber-400 transition">Hechos</a>
-            <a href="#naturaleza" class="hover:text-amber-400 transition">Lugares</a>
-            <a href="#arquitectura" class="hover:text-amber-400 transition">Gastronomía</a>
+    <!-- NAVEGACIÓN REPARADA -->
+    <nav id="mainNav" class="fixed top-0 w-full z-[1000] px-6 md:px-16 py-6 flex justify-between items-center bg-transparent border-b border-transparent">
+        <div class="serif-title text-xl md:text-2xl tracking-tighter text-white z-[1100] transition-colors duration-300" id="navLogo"><img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" width="40em"></div>
+        
+        <!-- Menú Desktop -->
+        <div class="hidden lg:flex gap-10 items-center">
+            <a href="#historia" class="sans-label text-[10px] text-white nav-link-hover">Historia</a>
+            <a href="#curiosidades" class="sans-label text-[10px] text-white nav-link-hover">Hechos</a>
+            <a href="#naturaleza" class="sans-label text-[10px] text-white nav-link-hover">Lugares</a>
+            <a href="#arquitectura" class="sans-label text-[10px] text-white nav-link-hover">Arquitectura</a>
         </div>
-        <!-- Indicador Móvil -->
-        <div class="lg:hidden text-[10px] uppercase tracking-widest border border-white/30 px-3 py-1">Menú</div>
+
+        <!-- Botón Hamburguesa -->
+        <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[1100] relative p-2 focus:outline-none" aria-label="Menú">
+            <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+            <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+        </button>
     </nav>
 
-    <!-- SECCIÓN HERO (PORTADA) -->
+    <!-- Menú Móvil con Glassmorphism -->
+    <div id="mobile-menu" class="fixed inset-0 z-[900] lg:hidden flex flex-col justify-center items-center gap-8 px-6">
+        <div class="absolute inset-0 menu-pattern pointer-events-none"></div>
+        <a href="#historia" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Historia</a>
+        <a href="#curiosidades" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors italic">Hechos</a>
+        <a href="#naturaleza" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Lugares</a>
+        <a href="#arquitectura" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Arquitectura</a>
+        <div class="mt-12 h-[1px] w-24 bg-white/20"></div>
+        <p class="sans-label text-white/40 text-[8px] tracking-[0.5em] text-center">La Perla de la Sierra</p>
+    </div>
+
+    <!-- SECCIÓN HERO -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden bg-zinc-900">
-        <!-- Imagen de Fondo con Zoom suave -->
         <div id="hero-bg" class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-[10s] ease-out scale-110" 
              style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://www.mexicodesconocido.com.mx/wp-content/uploads/2025/07/catedral-de-teziutlan-facebook.jpg');">
         </div>
-        
-        <div class="inner-border absolute inset-6 md:inset-12 border border-amber-200/30 z-10 pointer-events-none"></div>
-        
+        <div class="inner-border absolute inset-6 md:inset-6  border-amber-200/30 z-10 pointer-events-none"></div>
         <div class="relative z-20 text-center text-white px-4 max-w-5xl">
             <h2 class="serif-title text-[10px] md:text-xs tracking-[0.6em] mb-6 opacity-80 uppercase reveal">La Perla de la Sierra</h2>
             <h1 class="serif-title text-4xl md:text-7xl lg:text-8xl mb-8 leading-tight reveal">Tierra de <br class="hidden md:block"> Niebla y Piedra</h1>
@@ -200,14 +260,13 @@
     <main class="relative bg-white pt-24 md:pt-40">
         <div class="parallax-bg-text" id="pText">HISTORIA</div>
 
-        <!-- 1. SECCIÓN HISTORIA -->
         <section id="historia" class="max-w-7xl mx-auto px-6 md:px-12 mb-32 md:mb-56">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
                 <div class="reveal">
                     <span class="accent-text text-[10px] tracking-[0.3em] uppercase block mb-4">Crónicas de la Perla</span>
                     <h2 class="text-4xl md:text-6xl serif-title mb-8 text-stone-900 leading-tight">Nobleza Tallada <br>en Roca Rosa</h2>
                     <p class="text-lg md:text-xl text-stone-600 leading-relaxed font-light mb-8">
-                        Cada piedra de cantera rosa es más que arquitectura: es símbolo de identidad, prestigio y tradición. Este portal abre sus puertas para que visitantes y habitantes descubran el legado que nos define como Pueblo Mágico y como comunidad con siglos de historia.
+                        Cada piedra de cantera rosa es más que arquitectura: es símbolo de identidad, prestigio y tradición. Este portal abre sus puertas para que visitantes y habitantes descubran el legado que nos define como Pueblo Mágico.
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
                         <div class="border-l-2 border-amber-600 pl-4">
@@ -219,183 +278,142 @@
                             <p class="text-stone-500 text-sm italic">Lugar junto al cerro donde graniza</p>
                         </div>
                     </div>
-                      <a href="archivodigital.html">
-                        <button class="btn-colonial">Archivo Histórico</button>
-                      </a>
+                    <a href="archivo.html"><button class="btn-colonial">Archivo Histórico</button></a>
                 </div>
                 <div class="relative reveal">
                     <div class="historic-img-container shadow-2xl">
-                        <img src="https://i.pinimg.com/1200x/90/23/3d/90233d94a9bfc55473e7e6daf07d25a7.jpg" alt="Palacio Municipal">
-                    </div>
-                    <div class="absolute -bottom-4 -left-4 bg-white p-4 shadow-lg hidden sm:block">
-                        <p class="serif-title text-[9px] tracking-widest text-stone-400">Catedral y Plaza de Teziutlan Puebla Mexico. Fuente: Jose Carlos Angel Flores</p>
+                        <img src="https://i.pinimg.com/1200x/90/23/3d/90233d94a9bfc55473e7e6daf07d25a7.jpg" alt="Catedral de Teziutlán">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2. SECCIÓN CURIOSIDADES (DARK MODE) -->
         <section id="curiosidades" class="bg-zinc-950 py-24 md:py-40 overflow-hidden text-white">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="max-w-3xl mb-24 reveal">
                     <h2 class="serif-title text-4xl md:text-6xl mb-6">Hechos Extraordinarios</h2>
                     <div class="w-20 h-1 bg-amber-600 mb-8"></div>
-                    <p class="text-zinc-400 text-lg md:text-xl font-light">Pequeños relatos que hacen de este municipio un lugar único en el mundo.</p>
                 </div>
-                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
-                    <div class="reveal" style="transition-delay: 0.1s;">
+                    <div class="reveal">
                         <span class="text-amber-500 serif-title text-3xl mb-6 block">01.</span>
                         <h3 class="serif-title text-xl mb-4 tracking-wide">Plaza Techada</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">"El Pinal" ostenta el orgullo de ser la primera plaza de toros techada del mundo, una proeza técnica para vencer a la lluvia serrana.</p>
+                        <p class="text-zinc-500 font-light leading-relaxed">"El Pinal" fue la primera plaza de toros techada del mundo.</p>
                     </div>
-                    <div class="reveal" style="transition-delay: 0.2s;">
+                    <div class="reveal" style="transition-delay: 0.1s;">
                         <span class="text-amber-500 serif-title text-3xl mb-6 block">02.</span>
                         <h3 class="serif-title text-xl mb-4 tracking-wide">Cuna de Poder</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">Pocos municipios pueden presumir ser la cuna de una dinastía política que definió el México moderno: los Ávila Camacho.</p>
+                        <p class="text-zinc-500 font-light leading-relaxed">Cuna de los Ávila Camacho.</p>
                     </div>
-                    <div class="reveal" style="transition-delay: 0.3s;">
+                    <div class="reveal" style="transition-delay: 0.2s;">
                         <span class="text-amber-500 serif-title text-3xl mb-6 block">03.</span>
                         <h3 class="serif-title text-xl mb-4 tracking-wide">La Estación</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">El ferrocarril no solo trajo progreso, trajo la influencia europea que hoy vemos en los balcones y portales del centro.</p>
+                        <p class="text-zinc-500 font-light leading-relaxed">Eje del progreso y la influencia europea.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. SECCIÓN NATURALEZA -->
-        <section id="naturaleza" class="py-24 md:py-48 px-6 overflow-hidden">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row items-center gap-16 md:gap-32">
-                    <div class="w-full lg:w-1/2 reveal">
-                        <div class="historic-img-container shadow-2xl rounded-sm">
-                            <img src="https://blob.tusbuenasnoticias.com/images/2025/01/26/recorre-bosques-y-cascadas-de-teziutlan-focus-0-0-825-610.webp" alt="Niebla Teziuteca">
-                        </div>
-                    </div>
-                    <div class="w-full lg:w-1/2 reveal">
-                        <span class="accent-text text-[10px] tracking-[0.4em] uppercase mb-4 block">Misticismo Natural</span>
-                        <h2 class="text-4xl md:text-6xl serif-title mb-8 text-stone-900 leading-tight">El Bosque que <br>Respira Agua</h2>
-                        <p class="text-lg md:text-xl text-stone-600 leading-relaxed font-light mb-8">
-                            Nuestra niebla es vida. En los alrededores de la ciudad se conserva el bosque mesófilo de montaña, un ecosistema que parece sacado de un cuento antiguo, donde el musgo y los helechos guardan secretos milenarios.
-                        </p>
-                        <blockquote class="border-l-4 border-amber-600 pl-8 py-4 mb-8">
-                            <p class="text-stone-800 italic text-xl italic font-serif">"En Teziutlán, la niebla no es clima, es el alma de la ciudad caminando por sus calles."</p>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. GALERÍA / ARQUITECTURA -->
         <section id="arquitectura" class="py-24 md:py-40 bg-stone-100">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-24 reveal">
-                    <h2 class="serif-title text-4xl md:text-6xl mb-4">Catálogo Colonial</h2>
-                    <p class="text-stone-500 uppercase tracking-widest text-[10px]">Patrimonio de la Perla Serrana</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                    <!-- Item 1 -->
-                    <div class="reveal">
-                        <div class="historic-img-container mb-6 shadow-xl">
-                            <img src="https://blob.tusbuenasnoticias.com/images/2025/05/30/teatro-victoria-0902b933-focus-0-0-825-568.webp" alt="Teatro Victoria">
-                        </div>
-                        <h3 class="serif-title text-xl mb-3">Teatro Victoria</h3>
-                        <p class="text-stone-500 text-sm font-light">Inaugurado en 1881, es el centro de las artes más importante de la Sierra.</p>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="reveal" style="transition-delay: 0.1s;">
-                        <div class="historic-img-container mb-6 shadow-xl">
-                            <img src="https://i.pinimg.com/originals/71/96/0b/71960b72598ad9dfde98ee9d3ee1d786.jpg" alt="Catedral Asuncion">
-                        </div>
-                        <h3 class="serif-title text-xl mb-3">Catedral</h3>
-                        <p class="text-stone-500 text-sm font-light">Majestuosa edificación de cantera rosa con un altar que deslumbra al peregrino.</p>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="reveal" style="transition-delay: 0.2s;">
-                        <div class="historic-img-container mb-6 shadow-xl">
-                            <img src="https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2023/08/@turisteandomexi_1920.jpg" alt="El carmen">
-                        </div>
-                        <h3 class="serif-title text-xl mb-3">Iglesia del Carmen</h3>
-                        <p class="text-stone-500 text-sm font-light">Conoce una de las joyas arquitectónicas del siglo XVIII.</p>
-                    </div>
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h2 class="serif-title text-4xl md:text-6xl mb-12">Catálogo Colonial</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="reveal"><div class="historic-img-container mb-6 shadow-xl"><img src="https://blob.tusbuenasnoticias.com/images/2025/05/30/teatro-victoria-0902b933-focus-0-0-825-568.webp" alt="Teatro Victoria"></div><h3 class="serif-title text-xl mb-3">Teatro Victoria</h3></div>
+                    <div class="reveal" style="transition-delay: 0.1s;"><div class="historic-img-container mb-6 shadow-xl"><img src="https://i.pinimg.com/originals/71/96/0b/71960b72598ad9dfde98ee9d3ee1d786.jpg" alt="Catedral"></div><h3 class="serif-title text-xl mb-3">Catedral</h3></div>
+                    <div class="reveal" style="transition-delay: 0.2s;"><div class="historic-img-container mb-6 shadow-xl"><img src="https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2023/08/@turisteandomexi_1920.jpg" alt="Iglesia del Carmen"></div><h3 class="serif-title text-xl mb-3">El Carmen</h3></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-stone-50 border-t border-stone-200 py-24 text-center px-6">
         <div class="serif-title text-2xl md:text-4xl mb-4 tracking-tighter">TEZIUTLÁN</div>
-        <p class="text-stone-400 text-sm md:text-lg font-light mb-12 italic max-w-lg mx-auto">
-            Un tributo digital a la elegancia serrana y al legado de quienes tallaron nuestra historia en piedra.
-        </p>
-        <div class="flex justify-center gap-8 mb-12 text-stone-400 text-[10px] font-bold uppercase tracking-widest">
-            <a href="#" class="hover:text-amber-700 transition">Instagram</a>
-            <a href="#" class="hover:text-amber-700 transition">Archivo</a>
-            <a href="#" class="hover:text-amber-700 transition">Contacto</a>
-        </div>
-        <div class="text-[9px] uppercase tracking-[0.6em] text-black-300">
-            © CDLXXIII Portal Oficial de Teziutlán | La Perla de la Sierra
-        </div>
+        <div class="text-[9px] uppercase tracking-[0.6em] text-stone-500">© MMXXVI Portal Oficial de Teziutlán</div>
     </footer>
 
-    <!-- LÓGICA DE INTERACCIÓN -->
     <script>
-        // CONTROL DE CARGA Y ENTRADA
+        // Lógica del Cargador
         window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
             const heroBg = document.getElementById('hero-bg');
-            
             setTimeout(() => {
                 document.body.classList.add('loaded');
-                heroBg.classList.remove('scale-110'); // Inicia zoom out del hero
-                
-                // Activar animaciones del Hero secuencialmente
-                document.querySelectorAll('.hero-frame .reveal').forEach((el, i) => {
-                    setTimeout(() => el.classList.add('animate-in'), 400 + (i * 150));
-                });
+                if(heroBg) heroBg.classList.remove('scale-110');
             }, 800);
-
-            // Eliminar loader del DOM para optimizar
-            loader.addEventListener('transitionend', (e) => {
-                if(e.propertyName === 'transform') {
-                    loader.style.display = 'none';
-                }
-            });
         });
 
-        // PARALLAX EFECTO EN TEXTO DE FONDO
-        window.addEventListener('scroll', () => {
-            const pText = document.getElementById('pText');
-            let scroll = window.pageYOffset;
-            if (pText) {
-                pText.style.transform = `translateX(${scroll * 0.12}px)`;
+        // Lógica de Navegación Responsiva
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainNav = document.getElementById('mainNav');
+        const navLogo = document.getElementById('navLogo');
+        const spans = menuBtn.querySelectorAll('span');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const navLinks = document.querySelectorAll('.nav-link-hover');
+
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+            
+            if (isMenuOpen) {
+                // Estado Abierto: Convertir a X y forzar color blanco para contraste con desenfoque azul
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                spans.forEach(s => s.style.backgroundColor = '#ffffff');
+                navLogo.style.color = '#ffffff';
+            } else {
+                // Estado Cerrado: Volver a líneas y color según scroll
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                updateNavStyles(window.scrollY);
             }
-        });
+        }
 
-        // OBSERVADOR DE REVELACIÓN (SCROLL REVEAL)
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+        function updateNavStyles(scroll) {
+            if (!isMenuOpen) {
+                if (scroll > 50) {
+                    mainNav.classList.add('nav-scrolled');
+                    mainNav.style.paddingTop = '1rem';
+                    mainNav.style.paddingBottom = '1rem';
+                    navLogo.style.color = '#1a1a1a';
+                    navLinks.forEach(l => l.style.color = '#4b5563');
+                    spans.forEach(s => s.style.backgroundColor = '#1a1a1a');
+                } else {
+                    mainNav.classList.remove('nav-scrolled');
+                    mainNav.style.paddingTop = '1.5rem';
+                    mainNav.style.paddingBottom = '1.5rem';
+                    mainNav.style.backgroundColor = 'transparent';
+                    mainNav.style.borderBottomColor = 'transparent';
+                    navLogo.style.color = '#ffffff';
+                    navLinks.forEach(l => l.style.color = '#ffffff');
+                    spans.forEach(s => s.style.backgroundColor = '#ffffff');
                 }
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        
+        mobileLinks.forEach(l => {
+            l.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
             });
-        }, { 
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px' 
         });
 
+        window.addEventListener('scroll', () => {
+            updateNavStyles(window.scrollY);
+            const pText = document.getElementById('pText');
+            if (pText) pText.style.transform = `translateX(${window.pageYOffset * 0.08}px)`;
+        });
+
+        // Revelado al Scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animate-in'); });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // NAVEGACIÓN SUAVE (SMOOTH SCROLL)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
