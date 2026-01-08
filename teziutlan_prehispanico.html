@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo Histórico: Línea del Tiempo Teziutlán</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4e9d9;
+            --parchment-dark: #e5d1b8;
+            --ink: #12100f;
+            --gold: #b38b45;
+            --gold-bright: #f0cc85;
+            --oxblood: #5e1212;
+            --gold-gradient: linear-gradient(135deg, #b38b45 0%, #f0cc85 50%, #b38b45 100%);
+        }
+
+        body {
+            background-color: var(--ink);
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Texturas y Fondos de Alta Fidelidad */
+        .parchment-bg {
+            background-color: var(--parchment);
+            background-image: 
+                url("https://www.transparenttextures.com/patterns/natural-paper.png"),
+                radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.12) 100%);
+            box-shadow: inset 0 0 200px rgba(0,0,0,0.3);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .parchment-bg::before, .intro-parchment::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .intro-parchment {
+            background-color: var(--parchment);
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            box-shadow: 0 0 120px rgba(0,0,0,0.9), inset 0 0 80px rgba(0,0,0,0.1);
+            border: 1px solid var(--gold);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .cinzel { font-family: 'Cinzel', serif; }
+        .playfair { font-family: 'Playfair Display', serif; }
+
+        /* Botón de Entrada Premium */
+        .btn-gold-ornament {
+            position: relative;
+            background: var(--ink);
+            color: var(--gold-bright);
+            border: 1px solid var(--gold);
+            padding: 1.4rem 3.5rem;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+            letter-spacing: 0.2em;
+        }
+
+        .btn-gold-ornament::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-gold-ornament:hover {
+            color: var(--ink);
+            background: var(--gold-gradient);
+            box-shadow: 0 0 40px rgba(179, 139, 69, 0.6);
+            letter-spacing: 0.35em;
+            transform: translateY(-2px);
+        }
+
+        .btn-gold-ornament:hover::before {
+            left: 100%;
+        }
+
+        .ornament-corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1.5px solid var(--gold);
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Botón Flotante Navegación */
+        .back-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 200;
+            width: 64px;
+            height: 64px;
+            background: var(--ink);
+            border: 1.5px solid var(--gold);
+            color: var(--gold-bright);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .back-btn:hover {
+            transform: scale(1.15) rotate(-15deg);
+            background: var(--gold-gradient);
+            color: var(--ink);
+            box-shadow: 0 0 30px var(--gold-bright);
+        }
+
+        /* Timeline de Museo */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                var(--gold) 10%, 
+                var(--gold) 90%, 
+                transparent);
+            height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .event-card {
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(100px) scale(0.96);
+        }
+
+        .event-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Marcadores Brújula */
+        .event-marker {
+            width: 20px;
+            height: 20px;
+            background: var(--ink);
+            border: 2px solid var(--gold);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            z-index: 20;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 0 8px var(--parchment);
+        }
+
+        .event-card:hover .event-marker {
+            transform: translateX(-50%) rotate(225deg);
+            background: var(--gold-gradient);
+            box-shadow: 0 0 25px var(--gold-bright), 0 0 0 10px var(--parchment);
+            border-color: var(--ink);
+        }
+
+        /* Panel Glassmorphism Pergamino */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(179, 139, 69, 0.15);
+            backdrop-filter: blur(12px);
+            box-shadow: 15px 15px 40px rgba(0,0,0,0.04);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel::after {
+            content: "";
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.8s ease, left 1.2s ease;
+            pointer-events: none;
+        }
+
+        .event-card:hover .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--gold);
+            transform: translateY(-12px);
+            box-shadow: 25px 30px 60px rgba(0,0,0,0.12);
+        }
+
+        .event-card:hover .glass-panel::after {
+            opacity: 1;
+            left: -30%;
+        }
+
+        @keyframes gold-float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+
+        .gold-float { animation: gold-float 6s infinite ease-in-out; }
+
+        @media (max-width: 768px) {
+            .timeline-line { left: 30px; transform: none; }
+            .event-marker { left: 30px; transform: rotate(45deg); }
+            .event-card:hover .event-marker { transform: rotate(225deg); }
+            .event-content { margin-left: 65px !important; width: calc(100% - 85px) !important; text-align: left !important; }
+            .back-btn { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+            .intro-parchment { padding: 3rem 1.5rem !important; }
+        }
+    </style>
+</head>
+<body class="selection:bg-gold/30">
+
+    <!-- Botón Flotante Global -->
+    <button onclick="resetView()" class="back-btn group" title="Regresar al inicio" id="back-button">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+    </button>
+
+    <!-- Entrada Inmersiva -->
+    <div id="intro" class="fixed inset-0 z-[100] flex items-center justify-center bg-black transition-all duration-[1500ms] overflow-hidden">
+        
+        <!-- Elementos Etéreos de Fondo -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-[10%] left-[10%] w-[30vw] h-[30vw] border border-gold rounded-full opacity-10 animate-pulse"></div>
+            <div class="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] border border-gold rounded-full opacity-5" style="animation-delay: 1s"></div>
+        </div>
+
+        <div class="intro-parchment max-w-4xl w-[92%] p-12 md:p-24 text-center relative z-10 scale-95 transition-transform duration-1000">
+            <div class="ornament-corner top-0 left-0 border-r-0 border-b-0 m-6"></div>
+            <div class="ornament-corner top-0 right-0 border-l-0 border-b-0 m-6"></div>
+            <div class="ornament-corner bottom-0 left-0 border-r-0 border-t-0 m-6"></div>
+            <div class="ornament-corner bottom-0 right-0 border-l-0 border-t-0 m-6"></div>
+
+            <header class="mb-10">
+                <span class="cinzel text-oxblood text-xs md:text-sm tracking-[0.7em] font-bold uppercase block mb-6 opacity-80">Patrimonio Histórico de Puebla</span>
+                <h1 class="cinzel text-5xl md:text-8xl text-ink mb-6 tracking-[0.05em] font-black leading-none drop-shadow-sm">TEZIUTLÁN</h1>
+                <div class="h-1 w-24 md:w-32 bg-gold mx-auto opacity-60"></div>
+            </header>
+
+            <p class="playfair text-xl md:text-3xl text-gray-800 italic mb-14 font-medium leading-relaxed max-w-2xl mx-auto">
+                "Donde los siglos se superponen como <br class="hidden md:block"> capas de seda en un palimpsesto sagrado."
+            </p>
+
+            <button onclick="startExperience()" class="btn-gold-ornament cinzel text-xs md:text-sm font-black uppercase">
+                Descifrar el Archivo
+            </button>
+        </div>
+    </div>
+
+    <!-- Galería Principal -->
+    <main class="min-h-screen parchment-bg py-20 md:py-32 px-4 hidden" id="main-content">
+        
+        <header class="relative max-w-5xl mx-auto text-center mb-28 z-10">
+            <div class="flex items-center justify-center space-x-6 mb-8">
+                <div class="h-px w-16 bg-gold opacity-40"></div>
+                <span class="cinzel text-xs md:text-sm tracking-[0.6em] uppercase text-oxblood font-bold">Anales del Totonacapan</span>
+                <div class="h-px w-16 bg-gold opacity-40"></div>
+            </div>
+            <h2 class="cinzel text-4xl md:text-8xl mb-10 font-black tracking-tighter text-ink uppercase">Crónica de Piedra</h2>
+            <div class="max-w-2xl mx-auto">
+                <p class="playfair italic text-lg md:text-2xl text-gray-800 leading-relaxed font-semibold opacity-90">
+                    Una reconstrucción documental de la identidad serrana, <br class="hidden md:block"> grabada en la memoria del tiempo.
+                </p>
+            </div>
+        </header>
+
+        <section class="relative max-w-7xl mx-auto pb-48">
+            <div class="timeline-line"></div>
+            <div id="timeline-container" class="space-y-28 md:space-y-40">
+                <!-- Inyectado dinámicamente -->
+            </div>
+        </section>
+
+        <footer class="max-w-4xl mx-auto text-center py-20 border-t border-gold/30">
+            <div class="flex justify-center space-x-8 mb-8 opacity-40">
+                <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+            </div>
+            <p class="cinzel text-[10px] text-gray-500 tracking-[0.9em] uppercase">MUSEO DIGITAL • TEZIUTLÁN PUEBLA</p>
+        </footer>
+    </main>
+
+    <script>
+        const events = [
+            { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Hallazgos monumentales en Chignautla revelan una civilización preclásica con astronomía avanzada.", culture: "Formativo / Base" },
+            { date: "c. 481 d.C.", title: "Teziuyotepetzintlan", desc: "Fundación mítica y política. La 'Perla de la Sierra' comienza su historia como bastión totonaca.", culture: "Totonaca" },
+            { date: "752 - 804 d.C.", title: "Hegemonía Náhuatl", desc: "La expansión tolteca transforma la lengua regional, creando un sincretismo lingüístico único.", culture: "Tolteca / Náhuatl" },
+            { date: "818 d.C.", title: "El Gran Repliegue", desc: "Registros de la 'Relación de Tetela' documentan la migración masiva totonaca hacia el oriente.", culture: "Totonaca" },
+            { date: "c. 1180 d.C.", title: "Incursión Chichimeca", desc: "Guerreros nómadas ocupan las tierras altas, desplazando a las antiguas castas olmecas-xicalancas.", culture: "Chichimeca" },
+            { date: "Siglo XV", title: "Vasallaje Mexica", desc: "Teziutlán se consolida como cabecera tributaria clave para el suministro de la Triple Alianza.", culture: "Mexica" },
+            { date: "1450", title: "El Granero Imperial", desc: "Durante las crisis del Altiplano, la Sierra se convierte en la única fuente de vida para Tenochtitlán.", culture: "Mexica" },
+            { date: "19 Ago, 1519", title: "Ocaso y Amanecer", desc: "Las vanguardias de Cortés atraviesan la Sierra. El mundo indígena y el europeo colisionan para siempre.", culture: "Hispano-Mexica" }
+        ];
+
+        function startExperience() {
+            const intro = document.getElementById('intro');
+            const main = document.getElementById('main-content');
+            
+            intro.style.transform = "scale(1.1)";
+            intro.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                main.classList.remove('hidden');
+                initTimeline();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }, 1200);
+        }
+
+        function resetView() {
+            const intro = document.getElementById('intro');
+            const main = document.getElementById('main-content');
+            
+            main.classList.add('hidden');
+            intro.style.display = 'flex';
+            setTimeout(() => {
+                intro.classList.remove('opacity-0');
+                intro.style.transform = "scale(0.95)";
+            }, 50);
+        }
+
+        function initTimeline() {
+            const container = document.getElementById('timeline-container');
+            if (container.children.length > 0) return;
+
+            events.forEach((event, index) => {
+                const isEven = index % 2 === 0;
+                const eventHtml = `
+                    <div class="event-card relative flex items-center justify-center w-full">
+                        <div class="event-marker"></div>
+                        <div class="event-content w-full md:w-5/12 ${isEven ? 'md:mr-auto md:text-right md:pr-16' : 'md:ml-auto md:text-left md:pl-16'}">
+                            <div class="glass-panel p-10 rounded-sm group">
+                                <span class="cinzel text-oxblood font-black text-2xl block mb-3">${event.date}</span>
+                                <h3 class="playfair text-3xl md:text-4xl font-black text-ink mb-6 tracking-tight">${event.title}</h3>
+                                <div class="h-0.5 w-16 bg-gold mb-8 ${isEven ? 'md:ml-auto' : ''} opacity-40"></div>
+                                <p class="text-gray-900 italic leading-relaxed text-xl md:text-2xl font-medium mb-8 opacity-90">${event.desc}</p>
+                                <div class="pt-6 border-t border-gold/10">
+                                    <span class="cinzel text-[11px] tracking-[0.25em] text-oxblood/70 uppercase font-black">Registro: ${event.culture}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += eventHtml;
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.event-card').forEach(card => observer.observe(card));
+        }
+    </script>
+</body>
+</html>
