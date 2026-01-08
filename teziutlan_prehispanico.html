@@ -61,6 +61,7 @@
 
         /* Botón de Entrada Premium */
         .btn-gold-ornament {
+            display: inline-block;
             position: relative;
             background: var(--ink);
             color: var(--gold-bright);
@@ -70,6 +71,8 @@
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 10;
             letter-spacing: 0.2em;
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .btn-gold-ornament::before {
@@ -102,7 +105,7 @@
             opacity: 0.7;
         }
 
-        /* Botón Flotante Navegación */
+        /* Botón Flotante Dinámico */
         .back-btn {
             position: fixed;
             bottom: 40px;
@@ -120,6 +123,7 @@
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            text-decoration: none;
         }
 
         .back-btn:hover {
@@ -230,12 +234,17 @@
 </head>
 <body class="selection:bg-gold/30">
 
-    <!-- Botón Flotante Global -->
-    <button onclick="resetView()" class="back-btn group" title="Regresar al inicio" id="back-button">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <!-- Botón Flotante Global (Contextual) -->
+    <a id="floating-btn" href="https://www.noticonquista.unam.mx/" target="_blank" class="back-btn group" title="Ir a Noticonquista">
+        <!-- Icono Casa (Default para Intro) -->
+        <svg id="icon-home" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
         </svg>
-    </button>
+        <!-- Icono Volver (Oculto por defecto) -->
+        <svg id="icon-back" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+    </a>
 
     <!-- Entrada Inmersiva -->
     <div id="intro" class="fixed inset-0 z-[100] flex items-center justify-center bg-black transition-all duration-[1500ms] overflow-hidden">
@@ -262,9 +271,10 @@
                 "Donde los siglos se superponen como <br class="hidden md:block"> capas de seda en un palimpsesto sagrado."
             </p>
 
-            <button onclick="startExperience()" class="btn-gold-ornament cinzel text-xs md:text-sm font-black uppercase">
+            <!-- Botón con vínculo personalizable -->
+            <a id="main-action-button" href="javascript:handleMainAction()" class="btn-gold-ornament cinzel text-xs md:text-sm font-black uppercase">
                 Descifrar el Archivo
-            </button>
+            </a>
         </div>
     </div>
 
@@ -304,6 +314,12 @@
     </main>
 
     <script>
+        /**
+         * CONFIGURACIÓN DEL VÍNCULO PRINCIPAL
+         * 'internal' abre la cronología. Cualquier URL externa navega hacia ella.
+         */
+        const MAIN_BUTTON_LINK = 'internal'; 
+
         const events = [
             { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Hallazgos monumentales en Chignautla revelan una civilización preclásica con astronomía avanzada.", culture: "Formativo / Base" },
             { date: "c. 481 d.C.", title: "Teziuyotepetzintlan", desc: "Fundación mítica y política. La 'Perla de la Sierra' comienza su historia como bastión totonaca.", culture: "Totonaca" },
@@ -315,6 +331,36 @@
             { date: "19 Ago, 1519", title: "Ocaso y Amanecer", desc: "Las vanguardias de Cortés atraviesan la Sierra. El mundo indígena y el europeo colisionan para siempre.", culture: "Hispano-Mexica" }
         ];
 
+        // Manejador del botón principal
+        function handleMainAction() {
+            if (MAIN_BUTTON_LINK === 'internal') {
+                startExperience();
+            } else {
+                window.location.href = MAIN_BUTTON_LINK;
+            }
+        }
+
+        // Lógica de actualización del botón flotante
+        function updateFloatingButton(view) {
+            const btn = document.getElementById('floating-btn');
+            const iconHome = document.getElementById('icon-home');
+            const iconBack = document.getElementById('icon-back');
+
+            if (view === 'main') {
+                btn.href = "javascript:resetView()";
+                btn.target = "_self";
+                btn.title = "Volver al inicio";
+                iconHome.classList.add('hidden');
+                iconBack.classList.remove('hidden');
+            } else {
+                btn.href = "https://www.noticonquista.unam.mx/";
+                btn.target = "_blank";
+                btn.title = "Ir a Noticonquista";
+                iconHome.classList.remove('hidden');
+                iconBack.classList.add('hidden');
+            }
+        }
+
         function startExperience() {
             const intro = document.getElementById('intro');
             const main = document.getElementById('main-content');
@@ -325,6 +371,7 @@
             setTimeout(() => {
                 intro.style.display = 'none';
                 main.classList.remove('hidden');
+                updateFloatingButton('main');
                 initTimeline();
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }, 1200);
@@ -339,6 +386,7 @@
             setTimeout(() => {
                 intro.classList.remove('opacity-0');
                 intro.style.transform = "scale(0.95)";
+                updateFloatingButton('intro');
             }, 50);
         }
 
