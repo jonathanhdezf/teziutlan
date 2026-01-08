@@ -20,6 +20,7 @@
             --teja-red: #a54228;
             --cream: #f4f1de;
             --oro: #b8860b;
+            --obsidian: #0a0a0a;
         }
 
         body {
@@ -58,24 +59,24 @@
             transform: translate(-50%, -50%);
             color: var(--cantera-rose);
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: clamp(1.2rem, 4vw, 2rem);
             letter-spacing: 0.5em;
             z-index: 10000;
             transition: opacity 0.6s ease;
             text-align: center;
             width: 90%;
+            line-height: 1.8;
         }
 
         .loaded #loader .panel-left { transform: translateX(-100%); }
         .loaded #loader .panel-right { transform: translateX(100%); }
         .loaded .loader-logo { opacity: 0; pointer-events: none; }
 
-        /* 2. NAVEGACIÓN REPARADA Y ESTILIZADA CON GLASSMORPHISM */
+        /* 2. NAVEGACIÓN REPARADA */
         #mainNav {
             transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Clase aplicada al hacer scroll */
         .nav-scrolled {
             background-color: rgba(255, 255, 255, 0.7) !important;
             backdrop-filter: blur(12px) !important;
@@ -102,15 +103,14 @@
             width: 100%;
         }
 
-        /* Menú Móvil con efecto Glassmorphism Profundo */
+        /* Menú Móvil */
         #mobile-menu {
             transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
             transform: translateY(-20px);
             opacity: 0;
             visibility: hidden;
-            background-color: rgba(0, 40, 85, 0.85); /* deep-blue con transparencia */
+            background-color: rgba(0, 40, 85, 0.85);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); /* Soporte Safari */
         }
 
         #mobile-menu.active {
@@ -129,7 +129,44 @@
             opacity: 0.08;
         }
 
-        /* 3. FILTROS E IMÁGENES */
+        /* 3. SECCIÓN PREHISPÁNICA ANIMADA */
+        .prehispanic-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/az-subtle.png');
+            opacity: 0.4;
+        }
+
+        @keyframes moveGrecas {
+            from { background-position: 0 0; }
+            to { background-position: 100px 0; }
+        }
+
+        .greca-border {
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L10 20 L10 10 L30 10 L30 30 L10 30 L10 25' fill='none' stroke='%23d4a373' stroke-width='1'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            animation: moveGrecas 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border: 1px solid var(--cantera-rose);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: sepia(0.2) contrast(1.1);
+        }
+
+        /* 4. FILTROS E IMÁGENES */
         .historic-img-container {
             overflow: hidden;
             position: relative;
@@ -151,7 +188,7 @@
             transform: scale(1);
         }
 
-        /* 4. REVELACIÓN */
+        /* 5. REVELACIÓN */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -209,11 +246,12 @@
         <div class="loader-panel panel-right"></div>
     </div>
 
-    <!-- NAVEGACIÓN REPARADA -->
+    <!-- NAVEGACIÓN -->
     <nav id="mainNav" class="fixed top-0 w-full z-[1000] px-6 md:px-16 py-6 flex justify-between items-center bg-transparent border-b border-transparent">
-        <div class="serif-title text-xl md:text-2xl tracking-tighter text-white z-[1100] transition-colors duration-300" id="navLogo"><img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" width="40em"></div>
+        <div class="serif-title text-xl md:text-2xl tracking-tighter text-white z-[1100] transition-colors duration-300" id="navLogo">
+            <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" width="40" alt="Logo Teziutlán">
+        </div>
         
-        <!-- Menú Desktop -->
         <div class="hidden lg:flex gap-10 items-center">
             <a href="#historia" class="sans-label text-[10px] text-white nav-link-hover">Historia</a>
             <a href="#curiosidades" class="sans-label text-[10px] text-white nav-link-hover">Hechos</a>
@@ -221,7 +259,6 @@
             <a href="#arquitectura" class="sans-label text-[10px] text-white nav-link-hover">Arquitectura</a>
         </div>
 
-        <!-- Botón Hamburguesa -->
         <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[1100] relative p-2 focus:outline-none" aria-label="Menú">
             <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
             <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
@@ -229,7 +266,7 @@
         </button>
     </nav>
 
-    <!-- Menú Móvil con Glassmorphism -->
+    <!-- Menú Móvil -->
     <div id="mobile-menu" class="fixed inset-0 z-[900] lg:hidden flex flex-col justify-center items-center gap-8 px-6">
         <div class="absolute inset-0 menu-pattern pointer-events-none"></div>
         <a href="#historia" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Historia</a>
@@ -245,7 +282,7 @@
         <div id="hero-bg" class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-[10s] ease-out scale-110" 
              style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://www.mexicodesconocido.com.mx/wp-content/uploads/2025/07/catedral-de-teziutlan-facebook.jpg');">
         </div>
-        <div class="inner-border absolute inset-6 md:inset-6  border-amber-200/30 z-10 pointer-events-none"></div>
+        <div class="inner-border absolute inset-6 md:inset-6 border border-amber-200/30 z-10 pointer-events-none"></div>
         <div class="relative z-20 text-center text-white px-4 max-w-5xl">
             <h2 class="serif-title text-[10px] md:text-xs tracking-[0.6em] mb-6 opacity-80 uppercase reveal">La Perla de la Sierra</h2>
             <h1 class="serif-title text-4xl md:text-7xl lg:text-8xl mb-8 leading-tight reveal">Tierra de <br class="hidden md:block"> Niebla y Piedra</h1>
@@ -253,6 +290,46 @@
                 En cada sillar de cantera rosa duerme un siglo de historia, y en cada neblina que desciende despierta el alma de un pueblo orgulloso.
             </p>
             <a href="#historia" class="reveal inline-block border border-white px-8 py-3 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-colors">Empezar viaje</a>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: VIDEO PREHISPÁNICO -->
+    <section class="relative bg-zinc-950 py-24 md:py-40 overflow-hidden border-y border-amber-900/30">
+        <div class="absolute inset-0 prehispanic-pattern pointer-events-none"></div>
+        <div class="greca-border absolute top-0 left-0 w-full"></div>
+        <div class="greca-border absolute bottom-0 left-0 w-full rotate-180"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="sans-label text-amber-600 mb-4 block">Misticismo Ancestral</span>
+                <h2 class="serif-title text-3xl md:text-5xl text-white mb-6">El Aliento de los Antiguos</h2>
+                <p class="text-zinc-500 italic max-w-2xl mx-auto">
+                    Antes de la cantera, fue el jade y la obsidiana. Descubre la esencia profunda de nuestra tierra a través de esta ventana al pasado.
+                </p>
+            </div>
+
+            <div class="reveal">
+                <div class="video-container group">
+                    <!-- Video de ejemplo (puedes cambiar el ID de YouTube) -->
+                    <iframe 
+                        src="https://youtu.be/Dw3ZGA5OdbY?si=eEm4Uo_MHp2D2MuO" 
+                        title="Teziutlán: La perla y la niebla" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                    <!-- Overlay decorativo -->
+                    <div class="absolute inset-0 pointer-events-none border-[12px] md:border-[24px] border-zinc-950/80"></div>
+                </div>
+                <div class="mt-8 flex justify-between items-center opacity-40">
+                    <span class="sans-label text-white text-[8px]">In Tonatiuh Yauh</span>
+                    <div class="flex gap-4">
+                        <div class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></div>
+                        <div class="w-2 h-2 rounded-full bg-amber-800"></div>
+                    </div>
+                    <span class="sans-label text-white text-[8px]">Xiuhtecuhtli</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -278,7 +355,7 @@
                             <p class="text-stone-500 text-sm italic">Lugar junto al cerro donde graniza</p>
                         </div>
                     </div>
-                    <a href="archivodigital.html"><button class="btn-colonial">Archivo Histórico</button></a>
+                    <a href="archivo.html"><button class="btn-colonial">Archivo Histórico</button></a>
                 </div>
                 <div class="relative reveal">
                     <div class="historic-img-container shadow-2xl">
@@ -288,6 +365,7 @@
             </div>
         </section>
 
+        <!-- Sección de Curiosidades (Cuna de Poder, etc) -->
         <section id="curiosidades" class="bg-zinc-950 py-24 md:py-40 overflow-hidden text-white">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="max-w-3xl mb-24 reveal">
@@ -314,6 +392,7 @@
             </div>
         </section>
 
+        <!-- Sección de Arquitectura -->
         <section id="arquitectura" class="py-24 md:py-40 bg-stone-100">
             <div class="max-w-7xl mx-auto px-6 text-center">
                 <h2 class="serif-title text-4xl md:text-6xl mb-12">Catálogo Colonial</h2>
@@ -358,14 +437,12 @@
             document.body.classList.toggle('menu-open');
             
             if (isMenuOpen) {
-                // Estado Abierto: Convertir a X y forzar color blanco para contraste con desenfoque azul
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
                 spans.forEach(s => s.style.backgroundColor = '#ffffff');
                 navLogo.style.color = '#ffffff';
             } else {
-                // Estado Cerrado: Volver a líneas y color según scroll
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
@@ -379,7 +456,7 @@
                     mainNav.classList.add('nav-scrolled');
                     mainNav.style.paddingTop = '1rem';
                     mainNav.style.paddingBottom = '1rem';
-                    navLogo.style.color = '#1a1a1a';
+                    navLogo.style.filter = 'invert(1)';
                     navLinks.forEach(l => l.style.color = '#4b5563');
                     spans.forEach(s => s.style.backgroundColor = '#1a1a1a');
                 } else {
@@ -388,7 +465,7 @@
                     mainNav.style.paddingBottom = '1.5rem';
                     mainNav.style.backgroundColor = 'transparent';
                     mainNav.style.borderBottomColor = 'transparent';
-                    navLogo.style.color = '#ffffff';
+                    navLogo.style.filter = 'invert(0)';
                     navLinks.forEach(l => l.style.color = '#ffffff');
                     spans.forEach(s => s.style.backgroundColor = '#ffffff');
                 }
