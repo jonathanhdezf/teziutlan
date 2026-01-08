@@ -65,23 +65,32 @@
             transition: opacity 0.6s ease;
             text-align: center;
             width: 90%;
-            line-height: 1.8;
         }
 
         .loaded #loader .panel-left { transform: translateX(-100%); }
         .loaded #loader .panel-right { transform: translateX(100%); }
         .loaded .loader-logo { opacity: 0; pointer-events: none; }
 
-        /* 2. NAVEGACIÓN REPARADA */
+        /* 2. NAVEGACIÓN ACTUALIZADA */
         #mainNav {
             transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
         }
 
         .nav-scrolled {
-            background-color: rgba(255, 255, 255, 0.7) !important;
+            background-color: rgba(255, 255, 255, 0.85) !important;
             backdrop-filter: blur(12px) !important;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Filtro para el Logo: Inicia blanco (hero), cambia a negro (scroll) */
+        #logoImg {
+            transition: filter 0.4s ease, transform 0.4s ease;
+            filter: brightness(0) invert(1); /* Inicia Blanco */
+        }
+
+        .nav-scrolled #logoImg {
+            filter: brightness(0) invert(0); /* Cambia a Negro */
         }
 
         .nav-link-hover {
@@ -109,7 +118,7 @@
             transform: translateY(-20px);
             opacity: 0;
             visibility: hidden;
-            background-color: rgba(0, 40, 85, 0.85);
+            background-color: rgba(0, 40, 85, 0.95);
             backdrop-filter: blur(20px);
         }
 
@@ -119,76 +128,37 @@
             visibility: visible;
         }
 
-        body.menu-open {
+        /* 3. SECCIÓN VIDEO INCRUSTADO NATIVO */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
             overflow: hidden;
+            border: 1px solid var(--cantera-rose);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            background: #000;
         }
 
-        .menu-pattern {
-            background-image: radial-gradient(var(--cantera-rose) 0.6px, transparent 0.6px);
-            background-size: 30px 30px;
-            opacity: 0.08;
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        /* 3. SECCIÓN PREHISPÁNICA ANIMADA */
         .prehispanic-pattern {
             background-image: url('https://www.transparenttextures.com/patterns/az-subtle.png');
             opacity: 0.4;
-        }
-
-        @keyframes moveGrecas {
-            from { background-position: 0 0; }
-            to { background-position: 100px 0; }
         }
 
         .greca-border {
             height: 40px;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L10 20 L10 10 L30 10 L30 30 L10 30 L10 25' fill='none' stroke='%23d4a373' stroke-width='1'/%3E%3C/svg%3E");
             background-repeat: repeat-x;
-            animation: moveGrecas 20s linear infinite;
             opacity: 0.3;
         }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            border: 1px solid var(--cantera-rose);
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            filter: sepia(0.2) contrast(1.1);
-        }
-
-        /* 4. FILTROS E IMÁGENES */
-        .historic-img-container {
-            overflow: hidden;
-            position: relative;
-            background: var(--iron-black);
-            aspect-ratio: 16/10;
-        }
-
-        .historic-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: sepia(0.6) contrast(1.2) brightness(0.8);
-            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform: scale(1.05);
-        }
-
-        .historic-img-container:hover img {
-            filter: sepia(0) contrast(1) brightness(1);
-            transform: scale(1);
-        }
-
-        /* 5. REVELACIÓN */
+        /* 4. REVELACIÓN */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -203,17 +173,6 @@
         .serif-title { font-family: 'Cinzel', serif; font-weight: 700; }
         .sans-label { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.65rem; }
 
-        .parallax-bg-text {
-            font-size: 15vw;
-            color: rgba(0, 40, 85, 0.03);
-            position: absolute;
-            font-family: 'Cinzel', serif;
-            pointer-events: none;
-            z-index: -1;
-            white-space: nowrap;
-            top: 20%;
-        }
-
         .btn-colonial {
             padding: 1rem 2.5rem;
             border: 1px solid var(--iron-black);
@@ -222,19 +181,30 @@
             letter-spacing: 0.2em;
             font-weight: 700;
             transition: all 0.4s ease;
-            position: relative;
             background: transparent;
         }
 
         .btn-colonial:hover {
             background: var(--iron-black);
             color: white;
-            padding-left: 3rem;
-            padding-right: 2rem;
         }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--cantera-rose); }
+        .historic-img-container {
+            overflow: hidden;
+            aspect-ratio: 16/10;
+        }
+
+        .historic-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.3) brightness(0.9);
+            transition: 1s ease;
+        }
+
+        .historic-img-container:hover img {
+            filter: sepia(0) brightness(1);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -247,114 +217,81 @@
     </div>
 
     <!-- NAVEGACIÓN -->
-    <nav id="mainNav" class="fixed top-0 w-full z-[1000] px-6 md:px-16 py-6 flex justify-between items-center bg-transparent border-b border-transparent">
-        <div class="serif-title text-xl md:text-2xl tracking-tighter text-white z-[1100] transition-colors duration-300" id="navLogo">
-            <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" width="40" alt="Logo Teziutlán">
+    <nav id="mainNav" class="fixed top-0 w-full z-[1000] px-6 md:px-16 py-6 flex justify-between items-center bg-transparent">
+        <div class="z-[1100]" id="navLogo">
+            <img id="logoImg" src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" width="40" alt="Logo Teziutlán">
         </div>
         
         <div class="hidden lg:flex gap-10 items-center">
-            <a href="#historia" class="sans-label text-[10px] text-white nav-link-hover">Historia</a>
-            <a href="#curiosidades" class="sans-label text-[10px] text-white nav-link-hover">Hechos</a>
-            <a href="#naturaleza" class="sans-label text-[10px] text-white nav-link-hover">Lugares</a>
-            <a href="#arquitectura" class="sans-label text-[10px] text-white nav-link-hover">Arquitectura</a>
+            <a href="#historia" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Historia</a>
+            <a href="#curiosidades" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Hechos</a>
+            <a href="#naturaleza" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Lugares</a>
+            <a href="#arquitectura" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Arquitectura</a>
         </div>
 
-        <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[1100] relative p-2 focus:outline-none" aria-label="Menú">
-            <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+        <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[1100] p-2 focus:outline-none">
             <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
-            <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+            <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="w-6 h-0.5 bg-white transition-all duration-300"></span>
         </button>
     </nav>
 
     <!-- Menú Móvil -->
     <div id="mobile-menu" class="fixed inset-0 z-[900] lg:hidden flex flex-col justify-center items-center gap-8 px-6">
-        <div class="absolute inset-0 menu-pattern pointer-events-none"></div>
-        <a href="#historia" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Historia</a>
-        <a href="#curiosidades" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors italic">Hechos</a>
-        <a href="#naturaleza" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Lugares</a>
-        <a href="#arquitectura" class="mobile-link serif-title text-4xl text-white hover:text-amber-300 transition-colors">Arquitectura</a>
-        <div class="mt-12 h-[1px] w-24 bg-white/20"></div>
-        <p class="sans-label text-white/40 text-[8px] tracking-[0.5em] text-center">La Perla de la Sierra</p>
+        <a href="#historia" class="serif-title text-4xl text-white mobile-link">Historia</a>
+        <a href="#curiosidades" class="serif-title text-4xl text-white mobile-link">Hechos</a>
+        <a href="#naturaleza" class="serif-title text-4xl text-white mobile-link">Lugares</a>
+        <a href="#arquitectura" class="serif-title text-4xl text-white mobile-link">Arquitectura</a>
     </div>
 
-    <!-- SECCIÓN HERO -->
+    <!-- HERO -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden bg-zinc-900">
-        <div id="hero-bg" class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-[10s] ease-out scale-110" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://www.mexicodesconocido.com.mx/wp-content/uploads/2025/07/catedral-de-teziutlan-facebook.jpg');">
-        </div>
-        <div class="inner-border absolute inset-6 md:inset-6 border border-amber-200/30 z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://www.mexicodesconocido.com.mx/wp-content/uploads/2025/07/catedral-de-teziutlan-facebook.jpg');"></div>
         <div class="relative z-20 text-center text-white px-4 max-w-5xl">
-            <h2 class="serif-title text-[10px] md:text-xs tracking-[0.6em] mb-6 opacity-80 uppercase reveal">La Perla de la Sierra</h2>
-            <h1 class="serif-title text-4xl md:text-7xl lg:text-8xl mb-8 leading-tight reveal">Tierra de <br class="hidden md:block"> Niebla y Piedra</h1>
-            <p class="text-base md:text-xl lg:text-2xl font-light italic opacity-90 reveal max-w-2xl mx-auto mb-10">
-                En cada sillar de cantera rosa duerme un siglo de historia, y en cada neblina que desciende despierta el alma de un pueblo orgulloso.
-            </p>
-            <a href="#historia" class="reveal inline-block border border-white px-8 py-3 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-colors">Empezar viaje</a>
+            <h2 class="serif-title text-[10px] tracking-[0.6em] mb-6 reveal uppercase">La Perla de la Sierra</h2>
+            <h1 class="serif-title text-5xl md:text-8xl mb-8 leading-tight reveal">Tierra de Niebla</h1>
+            <p class="text-lg md:text-xl font-light italic opacity-90 reveal max-w-2xl mx-auto mb-10">Donde la cantera rosa cuenta historias de siglos.</p>
+            <a href="#historia" class="reveal inline-block border border-white px-8 py-3 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-colors">Descubrir</a>
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: VIDEO PREHISPÁNICO -->
+    <!-- VIDEO INCRUSTADO (NATIVO) -->
     <section class="relative bg-zinc-950 py-24 md:py-40 overflow-hidden border-y border-amber-900/30">
         <div class="absolute inset-0 prehispanic-pattern pointer-events-none"></div>
         <div class="greca-border absolute top-0 left-0 w-full"></div>
         <div class="greca-border absolute bottom-0 left-0 w-full rotate-180"></div>
         
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16 reveal">
-                <span class="sans-label text-amber-600 mb-4 block">Misticismo Ancestral</span>
-                <h2 class="serif-title text-3xl md:text-5xl text-white mb-6">El Aliento de los Antiguos</h2>
-                <p class="text-zinc-500 italic max-w-2xl mx-auto">
-                    Antes de la cantera, fue el jade y la obsidiana. Descubre la esencia profunda de nuestra tierra a través de esta ventana al pasado.
-                </p>
+                <span class="sans-label text-amber-600 mb-4 block">Legado Audiovisual</span>
+                <h2 class="serif-title text-3xl md:text-5xl text-white mb-6">Esencia Teziuteca</h2>
             </div>
 
             <div class="reveal">
                 <div class="video-container group">
-                    <!-- Video de ejemplo (puedes cambiar el ID de YouTube) -->
-                    <iframe 
-                        src="eEm4Uo_MHp2D2MuO" 
-                        title="Teziutlán: La perla y la niebla" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                    <!-- Overlay decorativo -->
-                    <div class="absolute inset-0 pointer-events-none border-[12px] md:border-[24px] border-zinc-950/80"></div>
+                    <!-- VIDEO NATIVO: Reemplaza 'video/teziutlan.mp4' con la ruta de tu archivo real en el servidor -->
+                    <video controls poster="https://i.pinimg.com/originals/71/96/0b/71960b72598ad9dfde98ee9d3ee1d786.jpg" preload="metadata" class="w-full h-full">
+                        <source src="teziutlanpiedrayniebla.mp4" type="video/mp4">
+                        <!-- Video de respaldo externo para visualización inmediata -->
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-foggy-mountains-under-the-sun-4375-large.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
                 </div>
-                <div class="mt-8 flex justify-between items-center opacity-40">
-                    <span class="sans-label text-white text-[8px]">In Tonatiuh Yauh</span>
-                    <div class="flex gap-4">
-                        <div class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></div>
-                        <div class="w-2 h-2 rounded-full bg-amber-800"></div>
-                    </div>
-                    <span class="sans-label text-white text-[8px]">Xiuhtecuhtli</span>
-                </div>
+                <p class="text-center text-zinc-600 text-[10px] mt-8 tracking-widest uppercase">Documento Visual del Acervo Municipal</p>
             </div>
         </div>
     </section>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="relative bg-white pt-24 md:pt-40">
-        <div class="parallax-bg-text" id="pText">HISTORIA</div>
-
-        <section id="historia" class="max-w-7xl mx-auto px-6 md:px-12 mb-32 md:mb-56">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
+    <!-- HISTORIA -->
+    <main id="historia" class="relative bg-white py-32 md:py-56">
+        <section class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                 <div class="reveal">
-                    <span class="accent-text text-[10px] tracking-[0.3em] uppercase block mb-4">Crónicas de la Perla</span>
-                    <h2 class="text-4xl md:text-6xl serif-title mb-8 text-stone-900 leading-tight">Nobleza Tallada <br>en Roca Rosa</h2>
-                    <p class="text-lg md:text-xl text-stone-600 leading-relaxed font-light mb-8">
-                        Cada piedra de cantera rosa es más que arquitectura: es símbolo de identidad, prestigio y tradición. Este portal abre sus puertas para que visitantes y habitantes descubran el legado que nos define como Pueblo Mágico.
+                    <span class="sans-label text-[10px] text-amber-600 block mb-4">Crónicas de la Perla</span>
+                    <h2 class="text-4xl md:text-6xl serif-title mb-8 text-stone-900 leading-tight">Nobleza en <br>Cantera Rosa</h2>
+                    <p class="text-lg text-stone-600 leading-relaxed font-light mb-8">
+                        Fundada el 15 de marzo de 1552, Teziutlán se erige como el corazón cultural y comercial de la Sierra Nororiental de Puebla.
                     </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-                        <div class="border-l-2 border-amber-600 pl-4">
-                            <h4 class="serif-title text-sm mb-2">Fundación</h4>
-                            <p class="text-stone-500 text-sm italic">15 de Marzo, 1552</p>
-                        </div>
-                        <div class="border-l-2 border-amber-600 pl-4">
-                            <h4 class="serif-title text-sm mb-2">Etimología</h4>
-                            <p class="text-stone-500 text-sm italic">Lugar junto al cerro donde graniza</p>
-                        </div>
-                    </div>
                     <a href="archivo.html"><button class="btn-colonial">Archivo Histórico</button></a>
                 </div>
                 <div class="relative reveal">
@@ -364,129 +301,58 @@
                 </div>
             </div>
         </section>
-
-        <!-- Sección de Curiosidades (Cuna de Poder, etc) -->
-        <section id="curiosidades" class="bg-zinc-950 py-24 md:py-40 overflow-hidden text-white">
-            <div class="max-w-7xl mx-auto px-6 md:px-12">
-                <div class="max-w-3xl mb-24 reveal">
-                    <h2 class="serif-title text-4xl md:text-6xl mb-6">Hechos Extraordinarios</h2>
-                    <div class="w-20 h-1 bg-amber-600 mb-8"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
-                    <div class="reveal">
-                        <span class="text-amber-500 serif-title text-3xl mb-6 block">01.</span>
-                        <h3 class="serif-title text-xl mb-4 tracking-wide">Plaza Techada</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">"El Pinal" fue la primera plaza de toros techada del mundo.</p>
-                    </div>
-                    <div class="reveal" style="transition-delay: 0.1s;">
-                        <span class="text-amber-500 serif-title text-3xl mb-6 block">02.</span>
-                        <h3 class="serif-title text-xl mb-4 tracking-wide">Cuna de Poder</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">Cuna de los Ávila Camacho.</p>
-                    </div>
-                    <div class="reveal" style="transition-delay: 0.2s;">
-                        <span class="text-amber-500 serif-title text-3xl mb-6 block">03.</span>
-                        <h3 class="serif-title text-xl mb-4 tracking-wide">La Estación</h3>
-                        <p class="text-zinc-500 font-light leading-relaxed">Eje del progreso y la influencia europea.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección de Arquitectura -->
-        <section id="arquitectura" class="py-24 md:py-40 bg-stone-100">
-            <div class="max-w-7xl mx-auto px-6 text-center">
-                <h2 class="serif-title text-4xl md:text-6xl mb-12">Catálogo Colonial</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="reveal"><div class="historic-img-container mb-6 shadow-xl"><img src="https://blob.tusbuenasnoticias.com/images/2025/05/30/teatro-victoria-0902b933-focus-0-0-825-568.webp" alt="Teatro Victoria"></div><h3 class="serif-title text-xl mb-3">Teatro Victoria</h3></div>
-                    <div class="reveal" style="transition-delay: 0.1s;"><div class="historic-img-container mb-6 shadow-xl"><img src="https://i.pinimg.com/originals/71/96/0b/71960b72598ad9dfde98ee9d3ee1d786.jpg" alt="Catedral"></div><h3 class="serif-title text-xl mb-3">Catedral</h3></div>
-                    <div class="reveal" style="transition-delay: 0.2s;"><div class="historic-img-container mb-6 shadow-xl"><img src="https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2023/08/@turisteandomexi_1920.jpg" alt="Iglesia del Carmen"></div><h3 class="serif-title text-xl mb-3">El Carmen</h3></div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <footer class="bg-stone-50 border-t border-stone-200 py-24 text-center px-6">
-        <div class="serif-title text-2xl md:text-4xl mb-4 tracking-tighter">TEZIUTLÁN</div>
-        <div class="text-[9px] uppercase tracking-[0.6em] text-stone-500">© MMXXVI Portal Oficial de Teziutlán</div>
+    <footer class="bg-stone-900 py-20 text-center text-white/50">
+        <div class="serif-title text-2xl text-white mb-4">TEZIUTLÁN</div>
+        <div class="sans-label text-[8px] tracking-[0.5em]">© MMXXVI Portal Oficial</div>
     </footer>
 
     <script>
-        // Lógica del Cargador
+        // Cargador
         window.addEventListener('load', () => {
-            const heroBg = document.getElementById('hero-bg');
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-                if(heroBg) heroBg.classList.remove('scale-110');
-            }, 800);
+            setTimeout(() => document.body.classList.add('loaded'), 800);
         });
 
-        // Lógica de Navegación Responsiva
+        // Navegación e Icono Dinámico
+        const mainNav = document.getElementById('mainNav');
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mainNav = document.getElementById('mainNav');
-        const navLogo = document.getElementById('navLogo');
-        const spans = menuBtn.querySelectorAll('span');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
         const navLinks = document.querySelectorAll('.nav-link-hover');
+        const menuSpans = menuBtn.querySelectorAll('span');
 
-        let isMenuOpen = false;
-
-        function toggleMenu() {
-            isMenuOpen = !isMenuOpen;
-            mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-            
-            if (isMenuOpen) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-                spans.forEach(s => s.style.backgroundColor = '#ffffff');
-                navLogo.style.color = '#ffffff';
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainNav.classList.add('nav-scrolled');
+                navLinks.forEach(l => {
+                    l.classList.remove('text-white');
+                    l.classList.add('text-stone-800');
+                });
+                menuSpans.forEach(s => s.style.backgroundColor = '#1a1a1a');
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-                updateNavStyles(window.scrollY);
+                mainNav.classList.remove('nav-scrolled');
+                navLinks.forEach(l => {
+                    l.classList.add('text-white');
+                    l.classList.remove('text-stone-800');
+                });
+                menuSpans.forEach(s => s.style.backgroundColor = '#ffffff');
             }
-        }
+        });
 
-        function updateNavStyles(scroll) {
-            if (!isMenuOpen) {
-                if (scroll > 50) {
-                    mainNav.classList.add('nav-scrolled');
-                    mainNav.style.paddingTop = '1rem';
-                    mainNav.style.paddingBottom = '1rem';
-                    navLogo.style.filter = 'invert(1)';
-                    navLinks.forEach(l => l.style.color = '#4b5563');
-                    spans.forEach(s => s.style.backgroundColor = '#1a1a1a');
-                } else {
-                    mainNav.classList.remove('nav-scrolled');
-                    mainNav.style.paddingTop = '1.5rem';
-                    mainNav.style.paddingBottom = '1.5rem';
-                    mainNav.style.backgroundColor = 'transparent';
-                    mainNav.style.borderBottomColor = 'transparent';
-                    navLogo.style.filter = 'invert(0)';
-                    navLinks.forEach(l => l.style.color = '#ffffff');
-                    spans.forEach(s => s.style.backgroundColor = '#ffffff');
-                }
-            }
-        }
+        // Menú Móvil
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        });
 
-        menuBtn.addEventListener('click', toggleMenu);
-        
-        mobileLinks.forEach(l => {
-            l.addEventListener('click', () => {
-                if(isMenuOpen) toggleMenu();
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
             });
         });
 
-        window.addEventListener('scroll', () => {
-            updateNavStyles(window.scrollY);
-            const pText = document.getElementById('pText');
-            if (pText) pText.style.transform = `translateX(${window.pageYOffset * 0.08}px)`;
-        });
-
-        // Revelado al Scroll
+        // Revelado
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animate-in'); });
         }, { threshold: 0.1 });
