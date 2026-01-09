@@ -367,9 +367,23 @@
             from {transform: rotate(0deg);}
             to {transform: rotate(360deg);}
         }
+
+        /* Contenedor oculto para el audio de YouTube */
+        #youtube-audio-container {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="selection:bg-oxblood/20">
+
+    <!-- REPRODUCTOR DE AUDIO OCULTO -->
+    <div id="youtube-audio-container">
+        <div id="player"></div>
+    </div>
 
     <!-- MENÚ DE NAVEGACIÓN -->
     <nav id="mainNav" class="fixed top-0 left-0 w-full z-[110] nav-glass py-4 px-6 md:px-12 flex justify-between items-center opacity-0 pointer-events-none transition-opacity duration-1000">
@@ -583,35 +597,35 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-20 items-center justify-items-center">
                     <!-- Fila 1 -->
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Escudo-UNAM-escalable.svg" alt="UNAM" class="h-24 object-contain">
+                        <img src="https://www.noticonquista.unam.mx/themes/custom/noticonquista/img/logo-unam.svg" alt="UNAM" class="h-24 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Logo_INAH.svg" alt="INAH" class="h-16 object-contain">
+                        <img src="https://www.inah.gob.mx/images/logos/LogoINAH_Dorado.png" alt="INAH" class="h-16 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Secretar%C3%ADa_de_Cultura_Logo.svg" alt="Cultura" class="h-16 object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Secretar%C3%ADa_de_Cultura_logotipo.svg/1280px-Secretar%C3%ADa_de_Cultura_logotipo.svg.png" alt="Cultura" class="h-16 object-contain">
                     </div>
                     
                     <!-- Fila 2 -->
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Logo_SEP.svg" alt="SEP" class="h-12 object-contain">
+                        <img src="https://static.wikia.nocookie.net/mexico/images/8/84/300px-SEP_Logo_2019.svg.png/revision/latest/thumbnail/width/360/height/450?cb=20190711173805&path-prefix=es" alt="SEP" class="h-12 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Escudo_del_Estado_de_Puebla.svg" alt="Estado de Puebla" class="h-20 object-contain">
+                        <img src="https://pbr.puebla.gob.mx/images/2017/logoGEP.png" alt="Estado de Puebla" class="h-20 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" alt="Archivo Teziutlán" class="h-16 object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Logo_del_Gobierno_de_M%C3%A9xico_%282018%29.png" alt="México" class="h-16 object-contain">
                     </div>
 
                     <!-- Fila 3 -->
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Logo_UNESCO.svg" alt="UNESCO" class="h-16 object-contain">
+                        <img src="https://images.seeklogo.com/logo-png/47/2/unesco-logo-png_seeklogo-479744.png" alt="UNESCO" class="h-16 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_de_la_OEA.svg" alt="OEA" class="h-20 object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Seal_of_the_Organization_of_American_States_%28_In_Spanish%29.svg/1200px-Seal_of_the_Organization_of_American_States_%28_In_Spanish%29.svg.png" alt="OEA" class="h-20 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Logo_de_la_BUAP.svg" alt="BUAP" class="h-20 object-contain">
+                        <img src="https://1000marcas.net/wp-content/uploads/2022/01/BUAP-Logo.png" alt="BUAP" class="h-20 object-contain">
                     </div>
                 </div>
             </section>
@@ -717,7 +731,7 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row justify-between items-center gap-2 border-t border-stone-200 pt-8">
-                    <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Archivo Histórico de Teziutlán</span>
+                    <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Teziutlán | Piedra y Niebla</span>
                     <div class="flex gap-8 sans-label text-[9px] text-stone-400">
                         <a href="#" class="hover:text-stone-900 transition-colors">Instagram</a>
                         <a href="#" class="hover:text-stone-900 transition-colors">Facebook</a>
@@ -728,7 +742,34 @@
         </footer>
     </main>
 
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
+        // Variables para el reproductor de YouTube
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'U-sXhV6I0V8', // Música ambiental prehispánica
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': 'U-sXhV6I0V8'
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Se prepara el video pero el navegador suele bloquear el sonido hasta interacción
+            event.target.setVolume(50);
+        }
+
         const events = [
             { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Hallazgos monumentales en Chignautla revelan una civilización preclásica con astronomía avanzada.", culture: "Formativo" },
             { date: "c. 481 d.C.", title: "Teziuyotepetzintlan", desc: "Fundación mítica. El nombre original que refiere al 'lugar del cerro de granizo'.", culture: "Totonaca" },
@@ -747,6 +788,11 @@
         ];
 
         function handleMainAction() {
+            // Reproducir música al hacer clic (Interacción requerida por navegadores)
+            if (player && player.playVideo) {
+                player.playVideo();
+            }
+
             const intro = document.getElementById('intro');
             const main = document.getElementById('main-content');
             const nav = document.getElementById('mainNav');
