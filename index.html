@@ -178,13 +178,21 @@
             animation: mistMove 10s infinite alternate ease-in-out;
         }
 
-        /* SECCIÓN VIDEO - CÓDICE ANIMADO SUPERIOR */
+        /* SECCIÓN NOTICIAS - ESTILO MAGACÍN OSCURO */
+        .news-section {
+            background-color: var(--obsidian);
+            color: white;
+            padding-bottom: 100px;
+        }
+
         .codex-strip {
-            height: 60px;
+            height: 50px;
             background: var(--obsidian);
             border-bottom: 1px solid rgba(212, 163, 115, 0.2);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .codex-track {
@@ -201,31 +209,19 @@
         .codex-glyph {
             font-family: 'Cinzel', serif;
             color: var(--cantera-rose);
-            opacity: 0.4;
-            font-size: 14px;
-            letter-spacing: 1.5em;
+            opacity: 0.5;
+            font-size: 10px;
+            letter-spacing: 1.2em;
             white-space: nowrap;
             padding: 0 50px;
         }
 
-        .video-void-container {
-            background-color: var(--obsidian);
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .video-placeholder-frame {
-            width: 80%;
-            max-width: 1000px;
-            aspect-ratio: 16/9;
-            border: 1px solid rgba(212, 163, 115, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%);
+        .official-brief {
+            background: rgba(212, 163, 115, 0.03);
+            border-left: 2px solid var(--cantera-rose);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            transition: background 0.3s ease;
         }
 
         .video-gradient-bottom {
@@ -236,6 +232,23 @@
             left: 0;
             width: 100%;
             z-index: 5;
+            pointer-events: none;
+        }
+
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ESTILOS NOTICIAS NUTRIDAS */
+        .category-tag {
+            font-size: 0.6rem;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            padding: 2px 8px;
+            border-radius: 2px;
+            color: var(--cantera-rose);
         }
     </style>
 </head>
@@ -255,6 +268,7 @@
         </div>
         
         <div class="hidden lg:flex gap-10 items-center">
+            <a href="#noticias" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Actualidad</a>
             <a href="#historia" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Historia</a>
             <a href="#gastronomia" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Sabor</a>
             <a href="#niebla" class="sans-label text-[10px] text-white nav-link-hover transition-colors duration-300">Atmósfera</a>
@@ -276,7 +290,7 @@
             <h1 class="serif-title text-5xl md:text-8xl mb-8 leading-tight reveal">Tierra de Niebla</h1>
             <p class="text-lg md:text-xl font-light italic opacity-90 reveal max-w-2xl mx-auto mb-10 font-serif">"Donde la piedra calla y el viento cuenta la historia."</p>
             <div class="reveal">
-                <a href="#historia" class="inline-block border border-white/30 px-10 py-4 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-500 backdrop-blur-sm">Explorar el legado</a>
+                <a href="#noticias" class="inline-block border border-white/30 px-10 py-4 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-500 backdrop-blur-sm">Explorar el legado</a>
             </div>
         </div>
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce opacity-50">
@@ -284,27 +298,165 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE VIDEO (ESTILO OSCURO CON CÓDICE SUPERIOR) -->
-    <section class="relative bg-zinc-950">
+    <!-- SECCIÓN NOTICIAS Y ACTUALIDAD (ESTILO MAGACÍN RESPONSIVO) -->
+    <section id="noticias" class="news-section relative">
         <!-- Franja Animada Tipo Códice Superior -->
-        <div class="codex-strip flex items-center">
+        <div class="codex-strip">
             <div class="codex-track">
-                <span class="codex-glyph">⛰️ XOLOCO ♜ TEZIUTLÁN ✥ SIERRA ☁ NEBLINA ⚖ HISTORIA ⛰️ XOLOCO ♜ TEZIUTLÁN ✥ SIERRA ☁ NEBLINA ⚖ HISTORIA</span>
-                <span class="codex-glyph">⛰️ XOLOCO ♜ TEZIUTLÁN ✥ SIERRA ☁ NEBLINA ⚖ HISTORIA ⛰️ XOLOCO ♜ TEZIUTLÁN ✥ SIERRA ☁ NEBLINA ⚖ HISTORIA</span>
+                <span class="codex-glyph">📜 NOTICIAS ♜ ACTUALIDAD ✥ CRÓNICAS ☁ EVENTOS ⚖ COMUNICADOS 📜 NOTICIAS ♜ ACTUALIDAD ✥ CRÓNICAS ☁ EVENTOS ⚖ COMUNICADOS</span>
+                <span class="codex-glyph">📜 NOTICIAS ♜ ACTUALIDAD ✥ CRÓNICAS ☁ EVENTOS ⚖ COMUNICADOS 📜 NOTICIAS ♜ ACTUALIDAD ✥ CRÓNICAS ☁ EVENTOS ⚖ COMUNICADOS</span>
             </div>
         </div>
 
-        <!-- Contenedor Central para Futuro Video -->
-        <div class="video-void-container">
-            <div class="video-placeholder-frame reveal">
-                <div class="text-center">
-                    <span class="sans-label text-[8px] text-amber-500/30 block mb-4 tracking-[0.8em]"><iframe width="560" height="315" src="https://www.youtube.com/embed/Dw3ZGA5OdbY?si=mbsq5OAhHzh6CUFR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></span>
-                    <div class="w-10 h-px bg-amber-500/20 mx-auto"></div>
-                </div>
+        <div class="container mx-auto px-6 md:px-12 lg:px-16 pt-16 lg:pt-24 pb-40">
+            <!-- TITULAR DE SECCIÓN -->
+            <div class="mb-12 lg:mb-20 text-center lg:text-left reveal">
+                <span class="sans-label text-amber-500/50 block mb-2">Gaceta de la Sierra</span>
+                <h2 class="serif-title text-4xl lg:text-6xl tracking-tight">Noticias <span class="text-white/30 italic">&</span> Actualidad</h2>
             </div>
-            <!-- Degradado Inferior hacia la siguiente sección -->
-            <div class="video-gradient-bottom"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                
+                <!-- COLUMNA IZQUIERDA: NOTICIA DESTACADA Y NOTAS SECUNDARIAS (8 columnas en desktop) -->
+                <div class="lg:col-span-8 space-y-16">
+                    
+                    <!-- NOTICIA PRINCIPAL -->
+                    <div class="news-featured reveal">
+                        <div class="group cursor-pointer">
+                            <div class="relative overflow-hidden aspect-video lg:aspect-[21/9] mb-8 border border-white/5">
+                                <img src="https://storage.googleapis.com/retodiario/2024/01/74286411-museo-en-centro-ferrocarrilero-teziutlan.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" alt="Titular">
+                                <div class="absolute top-4 left-4">
+                                    <span class="category-tag bg-black/80 backdrop-blur-md">Titular Destacado</span>
+                                </div>
+                            </div>
+                            <div class="max-w-3xl">
+                                <h2 class="serif-title text-3xl md:text-5xl mb-6 leading-tight group-hover:text-amber-200 transition-colors">Festivales Culturales: Un Renacer de la Identidad Serrana</h2>
+                                <p class="text-white/60 font-serif italic text-lg leading-relaxed mb-6">La Perla de la Sierra se prepara para recibir a las delegaciones artísticas que celebrarán el legado de la cantera rosa en un encuentro sin precedentes que unirá a las siete regiones de la sierra.</p>
+                                <div class="flex items-center gap-4 text-[9px] uppercase tracking-widest text-white/40">
+                                    <span>Enero 11, 2026</span>
+                                    <span class="w-1 h-1 bg-amber-500 rounded-full"></span>
+                                    <span>Lectura: 5 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRID DE NOTAS SECUNDARIAS -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-16 border-t border-white/10">
+                        <article class="reveal group hover-lift cursor-pointer">
+                            <div class="aspect-square overflow-hidden mb-6 border border-white/5">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK0uqkIhQowT3MjwdPAgorJ18_EbpA5abRkw&s" class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700" alt="Teatro">
+                            </div>
+                            <span class="category-tag mb-4 inline-block">Cultura</span>
+                            <h4 class="serif-title text-xl mb-3 leading-snug group-hover:text-amber-200">Restauración del Teatro Victoria: Preservando el Neoclásico</h4>
+                            <p class="text-white/40 text-sm font-serif italic line-clamp-2">Inician los trabajos especializados de cantería y carpintería fina en los palcos principales.</p>
+                        </article>
+
+                        <article class="reveal group hover-lift cursor-pointer">
+                            <div class="aspect-square overflow-hidden mb-6 border border-white/5">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700" alt="Cafe">
+                            </div>
+                            <span class="category-tag mb-4 inline-block">Sociedad</span>
+                            <h4 class="serif-title text-xl mb-3 leading-snug group-hover:text-amber-200">Temporada de Cosecha: El Café de Altura más Fino</h4>
+                            <p class="text-white/40 text-sm font-serif italic line-clamp-2">Productores locales celebran una cata internacional para posicionar el grano teziuteco en Europa.</p>
+                        </article>
+
+                        <article class="reveal group hover-lift cursor-pointer md:col-span-2 flex flex-col md:flex-row gap-8 items-center bg-white/5 p-6 border border-white/5 rounded-sm">
+                            <div class="w-full md:w-1/3 aspect-video overflow-hidden">
+                                <img src="https://i.ytimg.com/vi/Gi34mUzmX1Q/maxresdefault.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Calle">
+                            </div>
+                            <div class="flex-1">
+                                <span class="category-tag mb-2 inline-block">Turismo</span>
+                                <h4 class="serif-title text-xl mb-2">Ruta de los Barrios Antiguos</h4>
+                                <p class="text-white/40 text-sm font-serif italic">Se inaugura el recorrido nocturno por las leyendas y casonas coloniales de Xoloco y Ahuateno.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- COLUMNA DERECHA: COMUNICADOS Y AGENDA (4 columnas en desktop) -->
+                <div class="lg:col-span-4 space-y-12">
+                    
+                    <!-- COMUNICADOS OFICIALES -->
+                    <div class="reveal">
+                        <div class="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
+                            <h3 class="serif-title text-xs tracking-[0.4em] uppercase text-white/80">Comunicados</h3>
+                            <div class="flex-1 h-px bg-amber-500/20"></div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="official-brief hover:bg-white/10 cursor-pointer">
+                                <span class="sans-label text-[8px] text-amber-500 mb-2 block">Vialidad & Cívica</span>
+                                <h5 class="serif-title text-lg mb-2 italic">Actualización en el Centro Histórico</h5>
+                                <p class="text-white/40 text-xs font-serif leading-relaxed mb-4">Reducción de velocidad y zonas peatonales exclusivas durante fines de semana.</p>
+                                <span class="text-[9px] uppercase tracking-widest text-white/20">Publicado: 11 Ene</span>
+                            </div>
+
+                            <div class="official-brief border-l-white/20 hover:bg-white/10 cursor-pointer">
+                                <span class="sans-label text-[8px] text-white/40 mb-2 block">Clima</span>
+                                <h5 class="serif-title text-lg mb-2 italic">Protocolo ante Niebla Densa</h5>
+                                <p class="text-white/40 text-xs font-serif leading-relaxed mb-4">Recomendaciones de Protección Civil por visibilidad mínima en zona de montaña.</p>
+                                <span class="text-[9px] uppercase tracking-widest text-white/20">Publicado: 10 Ene</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AGENDA CULTURAL RÁPIDA -->
+                    <div class="reveal bg-stone-900/50 p-8 border border-white/5">
+                        <h3 class="serif-title text-xs tracking-[0.4em] uppercase text-amber-500/80 mb-8">Próximos Eventos</h3>
+                        <ul class="space-y-8">
+                            <li class="flex gap-4 group cursor-pointer">
+                                <div class="text-center min-w-[40px]">
+                                    <span class="block serif-title text-xl leading-none">15</span>
+                                    <span class="block sans-label text-[7px] text-white/40">Ene</span>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-serif italic text-white/80 group-hover:text-amber-200 transition-colors">Concierto en Catedral</h6>
+                                    <p class="text-[10px] text-white/30 uppercase tracking-widest mt-1">19:00 hrs · Entrada Libre</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 group cursor-pointer">
+                                <div class="text-center min-w-[40px]">
+                                    <span class="block serif-title text-xl leading-none">22</span>
+                                    <span class="block sans-label text-[7px] text-white/40">Ene</span>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-serif italic text-white/80 group-hover:text-amber-200 transition-colors">Feria del Tlayoyo Regional</h6>
+                                    <p class="text-[10px] text-white/30 uppercase tracking-widest mt-1">Plaza Principal · Todo el día</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 group cursor-pointer">
+                                <div class="text-center min-w-[40px]">
+                                    <span class="block serif-title text-xl leading-none">28</span>
+                                    <span class="block sans-label text-[7px] text-white/40">Ene</span>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-serif italic text-white/80 group-hover:text-amber-200 transition-colors">Exposición de Arte Sacro</h6>
+                                    <p class="text-[10px] text-white/30 uppercase tracking-widest mt-1">Museo de la Ciudad</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-10 py-3 border border-white/10 text-[9px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">Ver Calendario Completo</button>
+                    </div>
+
+                    <!-- ESPACIO PUBLICITARIO/EDITORIAL BREVE -->
+                    <div class="reveal pt-8 text-center">
+                        <div class="inline-block p-1 border border-white/10">
+                            <div class="border border-white/5 px-6 py-8">
+                                <span class="sans-label text-[7px] text-white/20 block mb-4 uppercase">Archivo Histórico</span>
+                                <p class="text-xs font-serif italic text-white/40 mb-6 leading-relaxed">Suscríbete para recibir la gaceta impresa trimestral sobre la historia de Teziutlán.</p>
+                                <a href="#" class="text-[9px] text-amber-500 underline underline-offset-4 tracking-widest uppercase">Más información</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
+
+        <!-- Degradado Inferior hacia la siguiente sección -->
+        <div class="video-gradient-bottom"></div>
     </section>
 
     <!-- HISTORIA -->
