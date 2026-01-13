@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palimpsesto: Línea del Tiempo Teziutlán</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
+
     <!-- Importación de Tailwind CSS y Fuentes de Google -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,900&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --parchment: #f4e9d9;
@@ -24,7 +27,8 @@
             --gold-gradient: linear-gradient(135deg, #b38b45 0%, #f0cc85 50%, #b38b45 100%);
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -47,10 +51,10 @@
 
         .parchment-bg {
             background-color: var(--parchment);
-            background-image: 
+            background-image:
                 url("https://www.transparenttextures.com/patterns/natural-paper.png"),
-                radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.12) 100%);
-            box-shadow: inset 0 0 200px rgba(0,0,0,0.3);
+                radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.12) 100%);
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.3);
             position: relative;
             min-height: 100vh;
         }
@@ -59,14 +63,21 @@
             position: absolute;
             pointer-events: none;
             z-index: 1;
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+            filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
             animation: slowSway 30s infinite ease-in-out;
             transition: opacity 2s ease;
         }
 
         @keyframes slowSway {
-            0%, 100% { transform: translate(0, 0) rotate(var(--rot)); }
-            50% { transform: translate(20px, 30px) rotate(calc(var(--rot) + 15deg)); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(var(--rot));
+            }
+
+            50% {
+                transform: translate(20px, 30px) rotate(calc(var(--rot) + 15deg));
+            }
         }
 
         .card-glyph {
@@ -76,20 +87,30 @@
             opacity: 0.45;
             pointer-events: none;
             z-index: -1;
-            filter: drop-shadow(4px 6px 12px rgba(0,0,0,0.2));
+            filter: drop-shadow(4px 6px 12px rgba(0, 0, 0, 0.2));
             animation: cardFloat 20s infinite ease-in-out;
         }
 
         @keyframes cardFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(15px, -20px) rotate(10deg) scale(1.08); }
-            66% { transform: translate(-15px, 15px) rotate(-8deg) scale(0.92); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+
+            33% {
+                transform: translate(15px, -20px) rotate(10deg) scale(1.08);
+            }
+
+            66% {
+                transform: translate(-15px, 15px) rotate(-8deg) scale(0.92);
+            }
         }
 
         .intro-parchment {
             background-color: var(--parchment);
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-            box-shadow: 0 0 120px rgba(0,0,0,0.9), inset 0 0 80px rgba(0,0,0,0.1);
+            box-shadow: 0 0 120px rgba(0, 0, 0, 0.9), inset 0 0 80px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--gold);
             position: relative;
             transform-style: preserve-3d;
@@ -97,10 +118,24 @@
             margin: auto;
         }
 
-        .cinzel { font-family: 'Cinzel', serif; }
-        .playfair { font-family: 'Playfair Display', serif; }
-        .serif-title { font-family: 'Playfair Display', serif; font-weight: 900; }
-        .sans-label { font-family: 'Cinzel', serif; font-weight: 700; text-transform: uppercase; }
+        .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+        }
+
+        .sans-label {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
         .btn-gold-ornament {
             display: inline-flex;
@@ -119,7 +154,7 @@
             cursor: pointer;
             text-decoration: none;
             font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .btn-gold-ornament:hover {
@@ -150,7 +185,10 @@
         }
 
         @media (min-width: 768px) {
-            .timeline-line { left: 50%; transform: translateX(-50%); }
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         .event-card {
@@ -160,7 +198,10 @@
             width: 100%;
         }
 
-        .event-card.visible { opacity: 1; transform: translateY(0); }
+        .event-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .event-marker {
             width: 22px;
@@ -174,12 +215,16 @@
             box-shadow: 0 0 0 8px var(--parchment);
         }
 
-        @media (min-width: 768px) { .event-marker { left: 50%; } }
+        @media (min-width: 768px) {
+            .event-marker {
+                left: 50%;
+            }
+        }
 
         .glass-panel {
             background: rgba(255, 255, 255, 0.75);
             border: 4px solid var(--ink);
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.1);
+            box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.1);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
@@ -195,8 +240,14 @@
         }
 
         @media (max-width: 767px) {
-            .event-content { margin-left: 50px !important; width: calc(100% - 75px) !important; }
-            .glass-panel { padding: 1.5rem !important; }
+            .event-content {
+                margin-left: 50px !important;
+                width: calc(100% - 75px) !important;
+            }
+
+            .glass-panel {
+                padding: 1.5rem !important;
+            }
         }
 
         /* ESTILOS DEL MENÚ PORTAL */
@@ -206,7 +257,7 @@
             border-bottom: 1px solid var(--gold);
             transition: transform 0.4s ease;
         }
-        
+
         .nav-link {
             font-family: 'Cinzel', serif;
             position: relative;
@@ -214,7 +265,7 @@
             font-size: 0.75rem;
             letter-spacing: 0.2em;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -225,26 +276,31 @@
             background: var(--oxblood);
             transition: width 0.3s ease;
         }
-        
-        .nav-link:hover::after { width: 100%; }
-        .nav-link:hover { color: var(--oxblood); }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--oxblood);
+        }
 
         /* --- ESTILOS DE LA BIBLIOTECA INTERACTIVA --- */
         .book-case {
             perspective: 1000px;
         }
-        
+
         .book-item {
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             position: relative;
         }
-        
+
         .book-item:hover {
             transform: rotateY(-25deg) translateY(-10px);
         }
-        
+
         .book-spine {
             position: absolute;
             left: 0;
@@ -261,7 +317,7 @@
             background-size: cover;
             background-position: center;
             border: 2px solid var(--gold);
-            box-shadow: 10px 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -272,7 +328,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
             z-index: 1;
         }
 
@@ -291,7 +347,7 @@
             width: 100%;
             margin-top: -4px;
             border-radius: 2px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* --- SECCIÓN FUENTES WEB --- */
@@ -312,6 +368,7 @@
             filter: grayscale(1) opacity(0.6);
             transition: all 0.5s ease;
         }
+
         .inst-logo-container:hover {
             filter: grayscale(0) opacity(1);
             transform: scale(1.1);
@@ -337,35 +394,119 @@
         }
 
         @keyframes slidePattern {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         /* ESTILOS DE LA RUEDA LOGO */
-        .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#80CBF2;}
-        .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#00A3DD;}
-        .st2{fill-rule:evenodd;clip-rule:evenodd;fill:#0075B8;}
-        .st3{fill-rule:evenodd;clip-rule:evenodd;fill:#AA84B3;}
-        .st4{fill-rule:evenodd;clip-rule:evenodd;fill:#743B8C;}
-        .st5{fill-rule:evenodd;clip-rule:evenodd;fill:#372C65;}
-        .st6{fill-rule:evenodd;clip-rule:evenodd;fill:#EE9ABD;}
-        .st7{fill-rule:evenodd;clip-rule:evenodd;fill:#C22A75;}
-        .st8{fill-rule:evenodd;clip-rule:evenodd;fill:#F1AE88;}
-        .st9{fill-rule:evenodd;clip-rule:evenodd;fill:#CE2C1E;}
-        .st10{fill-rule:evenodd;clip-rule:evenodd;fill:#AECE93;}
-        .st11{fill-rule:evenodd;clip-rule:evenodd;fill:#176633;}
-        .st12{fill-rule:evenodd;clip-rule:evenodd;fill:#39A338;}
-        .st13{fill-rule:evenodd;clip-rule:evenodd;fill:#E54E23;}
-        .st14{fill-rule:evenodd;clip-rule:evenodd;fill:#E5007E;}
-        
+        .st0 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #80CBF2;
+        }
+
+        .st1 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #00A3DD;
+        }
+
+        .st2 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #0075B8;
+        }
+
+        .st3 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #AA84B3;
+        }
+
+        .st4 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #743B8C;
+        }
+
+        .st5 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #372C65;
+        }
+
+        .st6 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #EE9ABD;
+        }
+
+        .st7 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #C22A75;
+        }
+
+        .st8 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #F1AE88;
+        }
+
+        .st9 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #CE2C1E;
+        }
+
+        .st10 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #AECE93;
+        }
+
+        .st11 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #176633;
+        }
+
+        .st12 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #39A338;
+        }
+
+        .st13 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #E54E23;
+        }
+
+        .st14 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #E5007E;
+        }
+
         .wheel {
             animation: 12s rotate linear infinite;
             transform-origin: 50% 50%;
-        } 
+        }
 
         @keyframes rotate {
-            from {transform: rotate(0deg);}
-            to {transform: rotate(360deg);}
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Contenedor oculto para el audio de YouTube */
@@ -376,29 +517,114 @@
             overflow: hidden;
             pointer-events: none;
         }
+
+        /* BOTÓN FLOTANTE DE REGRESO */
+        .floating-back-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            overflow: hidden;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .floating-back-btn.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .btn-circle {
+            width: 50px;
+            height: 50px;
+            background: var(--oxblood);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .btn-circle::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px dashed var(--gold);
+            border-radius: 50%;
+            animation: spinSlow 10s linear infinite;
+        }
+
+        @keyframes spinSlow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-label {
+            background: var(--ink);
+            color: var(--gold-bright);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border: 1px solid var(--gold);
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .floating-back-btn:hover .btn-circle {
+            background: var(--ink);
+            transform: scale(1.1);
+            border-color: var(--gold-bright);
+        }
+
+        .floating-back-btn:hover .btn-label {
+            transform: translateX(0);
+            opacity: 1;
+        }
     </style>
 </head>
+
 <body class="selection:bg-oxblood/20">
+
+    <!-- BOTÓN FLOTANTE REGRESAR -->
+    <a href="archivodigital.html" class="floating-back-btn" id="backBtn">
+        <span class="btn-label">Regresar</span>
+        <div class="btn-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                class="text-[#f0cc85]">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+        </div>
+    </a>
 
     <!-- REPRODUCTOR DE AUDIO OCULTO -->
     <div id="youtube-audio-container">
-        <div id="player"><iframe width="560" height="315" src="https://www.youtube.com/embed/kG_gV4nC6tM?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <!-- Script de la API de IFrame Player de YouTube -->
-    <script src="www.youtube.com"></script>
-    <!-- Tu script personalizado -->
-    <script src="tu_script.js"></script>
-        </div>
+        <div id="youtube-audio-source"></div>
     </div>
 
     <!-- MENÚ DE NAVEGACIÓN -->
-    <nav id="mainNav" class="fixed top-0 left-0 w-full z-[110] nav-glass py-4 px-6 md:px-12 flex justify-between items-center opacity-0 pointer-events-none transition-opacity duration-1000">
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-[110] nav-glass py-4 px-6 md:px-12 flex justify-between items-center opacity-0 pointer-events-none transition-opacity duration-1000">
         <div class="flex items-center gap-3">
             <div class="w-8 h-8 bg-oxblood rotate-45 flex items-center justify-center border border-gold-bright">
                 <span class="cinzel text-white text-[10px] -rotate-45 font-bold"></span>
             </div>
-            <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true" alt="Teziutlán Portal Logo" class="h-8 md:h-10 object-contain">
+            <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true"
+                alt="Teziutlán Portal Logo" class="h-8 md:h-10 object-contain">
         </div>
-        
+
         <div class="hidden md:flex items-center gap-10">
             <a href="#intro" class="nav-link text-ink uppercase font-bold">Inicio</a>
             <a href="#timeline-title" class="nav-link text-ink uppercase font-bold">Cronología</a>
@@ -410,7 +636,8 @@
     </nav>
 
     <!-- BIENVENIDA -->
-    <div id="intro" class="fixed inset-0 z-[100] bg-black transition-all duration-[1500ms] flex flex-col justify-center">
+    <div id="intro"
+        class="fixed inset-0 z-[100] bg-black transition-all duration-[1500ms] flex flex-col justify-center">
         <div class="intro-parchment w-[94%] max-w-4xl p-10 md:p-24 text-center relative z-10 my-auto">
             <div class="ornament-corner top-0 left-0 border-r-0 border-b-0 m-6"></div>
             <div class="ornament-corner top-0 right-0 border-l-0 border-b-0 m-6"></div>
@@ -418,17 +645,22 @@
             <div class="ornament-corner bottom-0 right-0 border-l-0 border-t-0 m-6"></div>
 
             <header class="mb-8">
-                <span class="cinzel text-oxblood text-sm tracking-[0.7em] font-bold uppercase block mb-6 opacity-80">Prehispanidad | Orígenes</span>
-                <h1 class="cinzel text-4xl md:text-8xl text-ink mb-6 tracking-[0.05em] font-black leading-tight">TEZIUTLÁN</h1>
+                <span
+                    class="cinzel text-oxblood text-sm tracking-[0.7em] font-bold uppercase block mb-6 opacity-80">Prehispanidad
+                    | Orígenes</span>
+                <h1 class="cinzel text-4xl md:text-8xl text-ink mb-6 tracking-[0.05em] font-black leading-tight">
+                    TEZIUTLÁN</h1>
                 <div class="h-1 w-32 bg-oxblood mx-auto opacity-60"></div>
             </header>
 
-            <p class="playfair text-lg md:text-2xl text-stone-800 italic mb-14 font-medium leading-relaxed max-w-2xl mx-auto">
-                "La prehispanidad de Teziutlán no es solo un capítulo remoto, sino un legado vivo que nos recuerda la fuerza de nuestras raíces."
+            <p
+                class="playfair text-lg md:text-2xl text-stone-800 italic mb-14 font-medium leading-relaxed max-w-2xl mx-auto">
+                "La prehispanidad de Teziutlán no es solo un capítulo remoto, sino un legado vivo que nos recuerda la
+                fuerza de nuestras raíces."
             </p>
 
             <button onclick="handleMainAction()" class="btn-gold-ornament cinzel font-black uppercase">
-                <span >CALAQUI (Entrar)</span>
+                <span>CALAQUI (Entrar)</span>
             </button>
         </div>
     </div>
@@ -444,11 +676,15 @@
                     <span class="cinzel text-sm tracking-[0.6em] uppercase text-oxblood font-bold">Cronología</span>
                     <div class="h-px w-16 bg-oxblood opacity-40"></div>
                 </div>
-                <h2 class="cinzel text-3xl md:text-8xl mb-6 font-black tracking-tighter text-ink uppercase leading-tight">Crónicas de Piedra y Niebla</h2>
-                
+                <h2
+                    class="cinzel text-3xl md:text-8xl mb-6 font-black tracking-tighter text-ink uppercase leading-tight">
+                    Crónicas de Piedra y Niebla</h2>
+
                 <div class="max-w-3xl mx-auto px-6">
                     <p class="playfair text-xl md:text-2xl text-stone-700 italic leading-relaxed font-medium">
-                        Aunque la documentación histórica oficial presenta lagunas, las fuentes permiten reconstruir una línea del tiempo de los procesos culturales y políticos en el área de Teziutlán (antiguamente parte del Totonacapan) antes de la llegada de los españoles:
+                        Aunque la documentación histórica oficial presenta lagunas, las fuentes permiten reconstruir una
+                        línea del tiempo de los procesos culturales y políticos en el área de Teziutlán (antiguamente
+                        parte del Totonacapan) antes de la llegada de los españoles:
                     </p>
                 </div>
             </header>
@@ -461,32 +697,44 @@
             <!-- SECCIÓN DE REFLEXIÓN -->
             <section id="reflexion" class="max-w-3xl mx-auto px-6 py-24 relative z-10">
                 <p class="playfair text-center text-xl md:text-2xl text-stone-700 italic leading-relaxed font-medium">
-                    Para comprender esta evolución, se puede ver a Teziutlán como un <strong>palimpsesto histórico</strong>: un manuscrito antiguo donde cada cultura borró parte de la anterior para escribir su propia historia. 
-                    <br>La descripción de Teziutlán como un palimpsesto (un espacio donde se superponen capas de historia, cultura y arquitectura) es una metáfora utilizada principalmente por historiadores y académicos locales para explicar su compleja evolución urbana y social. </br>
+                    Para comprender esta evolución, se puede ver a Teziutlán como un <strong>palimpsesto
+                        histórico</strong>: un manuscrito antiguo donde cada cultura borró parte de la anterior para
+                    escribir su propia historia.
+                    <br>La descripción de Teziutlán como un palimpsesto (un espacio donde se superponen capas de
+                    historia, cultura y arquitectura) es una metáfora utilizada principalmente por historiadores y
+                    académicos locales para explicar su compleja evolución urbana y social. </br>
                 </p>
             </section>
 
             <!-- SECCIÓN DE BIBLIOTECA INTERACTIVA -->
             <section id="biblioteca" class="relative max-w-6xl mx-auto mt-24 md:mt-48 mb-24 md:mb-48 z-10 px-4">
                 <div class="text-center mb-20">
-                    <div class="cinzel text-oxblood text-xs tracking-[0.5em] font-bold uppercase mb-4">Fuentes y Documentos</div>
+                    <div class="cinzel text-oxblood text-xs tracking-[0.5em] font-bold uppercase mb-4">Fuentes y
+                        Documentos</div>
                     <h2 class="cinzel text-4xl md:text-6xl font-black text-ink uppercase">La Estantería del Tiempo</h2>
                     <div class="h-1 w-24 bg-oxblood mx-auto mt-4 opacity-40"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-4 book-case">
                     <!-- Libro 1 -->
-                    <a href="https://www.gob.mx/cultura/articulos/codices-prehispanicos-fuentes-de-informacion-historica" target="_blank" class="book-item group">
+                    <a href="https://www.gob.mx/cultura/articulos/codices-prehispanicos-fuentes-de-informacion-historica"
+                        target="_blank" class="book-item group">
                         <div class="book-spine"></div>
-                        <div class="book-cover h-[400px] p-8" style="background-image: url('https://images.unsplash.com/photo-1598367772323-3ae0687f5979?auto=format&fit=crop&q=80&w=800');">
+                        <div class="book-cover h-[400px] p-8"
+                            style="background-image: url('https://images.unsplash.com/photo-1598367772323-3ae0687f5979?auto=format&fit=crop&q=80&w=800');">
                             <div class="book-content">
                                 <div>
-                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO I</div>
-                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">LOS CÓDICES DE LA SIERRA</h4>
+                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO I
+                                    </div>
+                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">LOS CÓDICES
+                                        DE LA SIERRA</h4>
                                 </div>
                                 <div>
-                                    <p class="playfair italic text-white/90 text-sm mb-4">Análisis de la iconografía nahua en la región norte de Puebla.</p>
-                                    <span class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver Documento →</span>
+                                    <p class="playfair italic text-white/90 text-sm mb-4">Análisis de la iconografía
+                                        nahua en la región norte de Puebla.</p>
+                                    <span
+                                        class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver
+                                        Documento →</span>
                                 </div>
                             </div>
                         </div>
@@ -495,15 +743,21 @@
                     <!-- Libro 2 -->
                     <a href="https://www.inah.gob.mx/" target="_blank" class="book-item group">
                         <div class="book-spine" style="background-color: var(--codex-green);"></div>
-                        <div class="book-cover h-[400px] p-8" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800');">
+                        <div class="book-cover h-[400px] p-8"
+                            style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800');">
                             <div class="book-content">
                                 <div>
-                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO II</div>
-                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">ARQUEOLOGÍA DE CHIGNAUTLA</h4>
+                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO II
+                                    </div>
+                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">ARQUEOLOGÍA
+                                        DE CHIGNAUTLA</h4>
                                 </div>
                                 <div>
-                                    <p class="playfair italic text-white/90 text-sm mb-4">Investigación sobre los montículos y centros ceremoniales circundantes.</p>
-                                    <span class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver Documento →</span>
+                                    <p class="playfair italic text-white/90 text-sm mb-4">Investigación sobre los
+                                        montículos y centros ceremoniales circundantes.</p>
+                                    <span
+                                        class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver
+                                        Documento →</span>
                                 </div>
                             </div>
                         </div>
@@ -512,15 +766,21 @@
                     <!-- Libro 3 -->
                     <a href="https://mexicana.cultura.gob.mx/" target="_blank" class="book-item group">
                         <div class="book-spine" style="background-color: var(--maya-blue);"></div>
-                        <div class="book-cover h-[400px] p-8" style="background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=800');">
+                        <div class="book-cover h-[400px] p-8"
+                            style="background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=800');">
                             <div class="book-content">
                                 <div>
-                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO III</div>
-                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">LINGÜÍSTICA SERRANA</h4>
+                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO III
+                                    </div>
+                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">LINGÜÍSTICA
+                                        SERRANA</h4>
                                 </div>
                                 <div>
-                                    <p class="playfair italic text-white/90 text-sm mb-4">Evolución de las variantes del náhuatl y el totonaco en la niebla.</p>
-                                    <span class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver Documento →</span>
+                                    <p class="playfair italic text-white/90 text-sm mb-4">Evolución de las variantes del
+                                        náhuatl y el totonaco en la niebla.</p>
+                                    <span
+                                        class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver
+                                        Documento →</span>
                                 </div>
                             </div>
                         </div>
@@ -529,15 +789,21 @@
                     <!-- Libro 4 -->
                     <a href="https://arqueologiamexicana.mx/" target="_blank" class="book-item group">
                         <div class="book-spine" style="background-color: var(--ink);"></div>
-                        <div class="book-cover h-[400px] p-8" style="background-image: url('https://images.unsplash.com/photo-1566847438217-76e82d383f84?auto=format&fit=crop&q=80&w=800');">
+                        <div class="book-cover h-[400px] p-8"
+                            style="background-image: url('https://images.unsplash.com/photo-1566847438217-76e82d383f84?auto=format&fit=crop&q=80&w=800');">
                             <div class="book-content">
                                 <div>
-                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO IV</div>
-                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">MITOLOGÍA DEL GRANIZO</h4>
+                                    <div class="cinzel text-[10px] text-[#f0cc85] tracking-widest font-bold">ESTUDIO IV
+                                    </div>
+                                    <h4 class="cinzel text-[#f0cc85] text-xl font-black leading-tight mt-4">MITOLOGÍA
+                                        DEL GRANIZO</h4>
                                 </div>
                                 <div>
-                                    <p class="playfair italic text-white/90 text-sm mb-4">Recopilación de leyendas sobre el origen cósmico de la región.</p>
-                                    <span class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver Documento →</span>
+                                    <p class="playfair italic text-white/90 text-sm mb-4">Recopilación de leyendas sobre
+                                        el origen cósmico de la región.</p>
+                                    <span
+                                        class="cinzel text-[9px] text-[#f0cc85] border-t border-[#f0cc85]/30 pt-2 block font-bold tracking-tighter uppercase">Ver
+                                        Documento →</span>
                                 </div>
                             </div>
                         </div>
@@ -548,43 +814,54 @@
 
             <!-- SECCIÓN: FUENTES WEB (DISEÑO CÓDICE DIGITAL) -->
             <section id="fuentes-web" class="relative max-w-5xl mx-auto py-12 md:py-24 mb-16 md:mb-32 z-10 px-6">
-                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 border-y border-gold/20 py-12 md:py-16 bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden relative">
+                <div
+                    class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 border-y border-gold/20 py-12 md:py-16 bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden relative">
                     <!-- Fondo Ornamenal de Códice -->
                     <div class="absolute -right-20 -bottom-20 opacity-5 pointer-events-none">
                         <svg width="400" height="400" viewBox="0 0 100 100" class="rotate-12">
-                            <path d="M10 10 H90 V90 H10 Z M20 20 H80 V80 H20 Z" fill="none" stroke="currentColor" stroke-width="1"/>
-                            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="1"/>
+                            <path d="M10 10 H90 V90 H10 Z M20 20 H80 V80 H20 Z" fill="none" stroke="currentColor"
+                                stroke-width="1" />
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="1" />
                         </svg>
                     </div>
 
                     <div class="w-full lg:w-1/3 text-center lg:text-left">
                         <h3 class="cinzel text-oxblood text-3xl font-black mb-4">Códices de la Red</h3>
                         <p class="playfair text-stone-700 italic text-lg leading-relaxed">
-                            Navega por los repositorios digitales que resguardan el saber prehispánico de la Sierra Norte.
+                            Navega por los repositorios digitales que resguardan el saber prehispánico de la Sierra
+                            Norte.
                         </p>
                     </div>
 
                     <div class="w-full lg:w-2/3 space-y-4">
                         <!-- Fuente 1 -->
-                        <a href="https://amoxcalli.org.mx/" target="_blank" class="web-source-card p-6 flex justify-between items-center group">
+                        <a href="https://amoxcalli.org.mx/" target="_blank"
+                            class="web-source-card p-6 flex justify-between items-center group">
                             <div>
-                                <h5 class="cinzel text-ink font-bold group-hover:text-oxblood transition-colors">Amoxcalli</h5>
-                                <p class="playfair text-xs text-stone-500">Diccionario de glifos y manuscritos antiguos.</p>
+                                <h5 class="cinzel text-ink font-bold group-hover:text-oxblood transition-colors">
+                                    Amoxcalli</h5>
+                                <p class="playfair text-xs text-stone-500">Diccionario de glifos y manuscritos antiguos.
+                                </p>
                             </div>
                             <div class="text-gold group-hover:translate-x-2 transition-transform">→</div>
                         </a>
                         <!-- Fuente 2 -->
-                        <a href="https://codices.inah.gob.mx/" target="_blank" class="web-source-card p-6 flex justify-between items-center group">
+                        <a href="https://codices.inah.gob.mx/" target="_blank"
+                            class="web-source-card p-6 flex justify-between items-center group">
                             <div>
-                                <h5 class="cinzel text-ink font-bold group-hover:text-oxblood transition-colors">Biblioteca de Códices INAH</h5>
-                                <p class="playfair text-xs text-stone-500">Colección digital de testimonios pictográficos.</p>
+                                <h5 class="cinzel text-ink font-bold group-hover:text-oxblood transition-colors">
+                                    Biblioteca de Códices INAH</h5>
+                                <p class="playfair text-xs text-stone-500">Colección digital de testimonios
+                                    pictográficos.</p>
                             </div>
                             <div class="text-gold group-hover:translate-x-2 transition-transform">→</div>
                         </a>
                         <!-- Fuente 3 -->
-                        <a href="https://www.wdl.org/es/" target="_blank" class="web-source-card p-6 flex justify-between items-center group">
+                        <a href="https://www.wdl.org/es/" target="_blank"
+                            class="web-source-card p-6 flex justify-between items-center group">
                             <div>
-                                <h5 class="cinzel text-ink font-bold group-hover:text-oxblood transition-colors">World Digital Library</h5>
+                                <h5 class="cinzel text-ink font-bold group-hover:text-oxblood transition-colors">World
+                                    Digital Library</h5>
                                 <p class="playfair text-xs text-stone-500">Mapas y crónicas de la Nueva España.</p>
                             </div>
                             <div class="text-gold group-hover:translate-x-2 transition-transform">→</div>
@@ -596,42 +873,53 @@
             <!-- SECCIÓN: ALIANZAS INSTITUCIONALES (FRANJA 3x3) -->
             <section id="instituciones" class="relative max-w-5xl mx-auto mb-32 z-10 px-6">
                 <div class="text-center mb-16">
-                    <span class="cinzel text-[10px] text-stone-400 tracking-[0.4em] font-bold block mb-4 uppercase">Respaldo Académico y Cultural</span>
+                    <span
+                        class="cinzel text-[10px] text-stone-400 tracking-[0.4em] font-bold block mb-4 uppercase">Respaldo
+                        Académico y Cultural</span>
                     <div class="h-px w-16 bg-gold/30 mx-auto"></div>
                 </div>
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-20 items-center justify-items-center">
                     <!-- Fila 1 -->
                     <div class="inst-logo-container">
-                        <img src="https://www.noticonquista.unam.mx/themes/custom/noticonquista/img/logo-unam.svg" alt="UNAM" class="h-24 object-contain">
+                        <img src="https://www.noticonquista.unam.mx/themes/custom/noticonquista/img/logo-unam.svg"
+                            alt="UNAM" class="h-24 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://www.inah.gob.mx/images/logos/LogoINAH_Dorado.png" alt="INAH" class="h-16 object-contain">
+                        <img src="https://www.inah.gob.mx/images/logos/LogoINAH_Dorado.png" alt="INAH"
+                            class="h-16 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Secretar%C3%ADa_de_Cultura_logotipo.svg/1280px-Secretar%C3%ADa_de_Cultura_logotipo.svg.png" alt="Cultura" class="h-16 object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Secretar%C3%ADa_de_Cultura_logotipo.svg/1280px-Secretar%C3%ADa_de_Cultura_logotipo.svg.png"
+                            alt="Cultura" class="h-16 object-contain">
                     </div>
-                    
+
                     <!-- Fila 2 -->
                     <div class="inst-logo-container">
-                        <img src="https://static.wikia.nocookie.net/mexico/images/8/84/300px-SEP_Logo_2019.svg.png/revision/latest/thumbnail/width/360/height/450?cb=20190711173805&path-prefix=es" alt="SEP" class="h-12 object-contain">
+                        <img src="https://static.wikia.nocookie.net/mexico/images/8/84/300px-SEP_Logo_2019.svg.png/revision/latest/thumbnail/width/360/height/450?cb=20190711173805&path-prefix=es"
+                            alt="SEP" class="h-12 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://pbr.puebla.gob.mx/images/2017/logoGEP.png" alt="Estado de Puebla" class="h-20 object-contain">
+                        <img src="https://pbr.puebla.gob.mx/images/2017/logoGEP.png" alt="Estado de Puebla"
+                            class="h-20 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Logo_del_Gobierno_de_M%C3%A9xico_%282018%29.png" alt="México" class="h-16 object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Logo_del_Gobierno_de_M%C3%A9xico_%282018%29.png"
+                            alt="México" class="h-16 object-contain">
                     </div>
 
                     <!-- Fila 3 -->
                     <div class="inst-logo-container">
-                        <img src="https://images.seeklogo.com/logo-png/47/2/unesco-logo-png_seeklogo-479744.png" alt="UNESCO" class="h-16 object-contain">
+                        <img src="https://images.seeklogo.com/logo-png/47/2/unesco-logo-png_seeklogo-479744.png"
+                            alt="UNESCO" class="h-16 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Seal_of_the_Organization_of_American_States_%28_In_Spanish%29.svg/1200px-Seal_of_the_Organization_of_American_States_%28_In_Spanish%29.svg.png" alt="OEA" class="h-20 object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Seal_of_the_Organization_of_American_States_%28_In_Spanish%29.svg/1200px-Seal_of_the_Organization_of_American_States_%28_In_Spanish%29.svg.png"
+                            alt="OEA" class="h-20 object-contain">
                     </div>
                     <div class="inst-logo-container">
-                        <img src="https://1000marcas.net/wp-content/uploads/2022/01/BUAP-Logo.png" alt="BUAP" class="h-20 object-contain">
+                        <img src="https://1000marcas.net/wp-content/uploads/2022/01/BUAP-Logo.png" alt="BUAP"
+                            class="h-20 object-contain">
                     </div>
                 </div>
             </section>
@@ -645,9 +933,13 @@
         </div>
 
         <!-- PIE DE PÁGINA -->
-        <footer class="pt-8 md:pt-12 pb-12 md:pb-16 border-t border-gold/30 relative z-20" style="background-color: var(--parchment);">
+        <footer class="pt-8 md:pt-12 pb-12 md:pb-16 border-t border-gold/30 relative z-20"
+            style="background-color: var(--parchment);">
             <center class="mb-10">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve" width="8em" class="lg:justify-center-start reveal">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400"
+                    style="enable-background:new 0 0 400 400;" xml:space="preserve" width="8em"
+                    class="lg:justify-center-start reveal">
                     <g class="wheel">
                         <path class="st0" d="M198.4,191.3c-18-15.2-41-24.2-66.3-24.2c-57,0-103.4,46.2-103.4,103.3c0,42,25.1,78.2,61.1,94.4
                             c-9.8-16.4-15.4-35.1-15.5-54.8c-5.6-11.7-8.7-24.8-8.7-38.4c0-50.1,40.5-90.5,90.5-90.5c14.7,0,28.4,3.5,40.6,9.8
@@ -658,36 +950,43 @@
                                 c0,0.3,0,0.7,0,1.2c0,0.2,0,0.3,0,0.5V307.8L74,307.8z"></path>
                         </g>
                         <path class="st2" d="M196.7,190.7c-12.2-6.3-26-9.8-40.6-9.8c-50.1,0-90.5,40.5-90.5,90.5c0,13.6,3.1,26.7,8.7,38.4
-                            c0-0.4-0.2-0.5-0.2-0.9c0-61.4,52.9-112,120.2-117.6C195.1,191.3,195.8,190.9,196.7,190.7z"></path>
+                            c0-0.4-0.2-0.5-0.2-0.9c0-61.4,52.9-112,120.2-117.6C195.1,191.3,195.8,190.9,196.7,190.7z">
+                        </path>
                         <path class="st3" d="M183.9,199.8c-19.4,12.9-34.7,32.6-41.9,56.9c-16.2,54.8,15,112.3,69.4,128.6c40.3,11.9,82-1.7,107.8-31.7
                             c-18.5,4.9-37.9,4.9-56.9-0.5c-12.7,1.9-26.2,1.2-39.4-2.8c-47.6-14.1-75-64.5-60.7-112.3c4.2-14.1,11.5-26.3,20.8-36.5
                             c0,0.9,0,1.7,0,2.6C183.4,202.6,183.7,201.2,183.9,199.8z"></path>
                         <g>
-                            <path class="st4" d="M183.1,201.4c0,0.9,0,1.7,0,2.6c-1.7,8.5-2.8,17.1-3,25.6v8.7c1.6,53.2,32.8,100,81.5,114.4
+                            <path class="st4"
+                                d="M183.1,201.4c0,0.9,0,1.7,0,2.6c-1.7,8.5-2.8,17.1-3,25.6v8.7c1.6,53.2,32.8,100,81.5,114.4
                                 c0.2,0,0.5,0,0.9,0.2c24.4-3.8,46.6-17.4,60.9-38.2c-18.3,4-37.9,3.5-57-2.3C215.8,297.5,183.2,251.4,183.1,201.4L183.1,201.4
                                 L183.1,201.4z M262.4,353c-1.4,0.2-3,0.3-4.4,0.5C259.5,353.3,260.9,353.1,262.4,353L262.4,353z"></path>
                         </g>
-                        <path class="st5" d="M183.1,201.4c-9.2,10.1-16.6,22.3-20.8,36.5C148,285.6,175.4,336,223,350.2c13.3,4,26.7,4.7,39.4,2.8
+                        <path class="st5"
+                            d="M183.1,201.4c-9.2,10.1-16.6,22.3-20.8,36.5C148,285.6,175.4,336,223,350.2c13.3,4,26.7,4.7,39.4,2.8
                             c-0.3-0.2-0.5-0.2-0.9-0.2c-59-17.6-92.1-82.5-78.5-148.8C183.1,203.1,183.1,202.3,183.1,201.4z"></path>
                         <path class="st6" d="M187.8,216.7c6.3,22.7,20.2,43.3,41,57.7c47.1,32.3,111.5,20.2,143.7-26.9c23.9-34.5,23.5-78.5,3.1-112.2
                             c-1.2,19-7,37.5-18.1,53.9c-2.1,12.7-6.8,25.3-14.7,36.6c-28.3,41.2-84.6,51.6-125.8,23.4c-12-8.4-21.6-19.2-28.1-31.2
                             c0.7,0.3,1.6,0.5,2.4,0.7C190.2,218.1,189,217.4,187.8,216.7z"></path>
-                        <path class="st7" d="M189,218.1c6.5,12,16,22.9,28.1,31.2c41.2,28.3,97.5,17.8,125.8-23.4c7.9-11.3,12.6-23.9,14.7-36.6
+                        <path class="st7"
+                            d="M189,218.1c6.5,12,16,22.9,28.1,31.2c41.2,28.3,97.5,17.8,125.8-23.4c7.9-11.3,12.6-23.9,14.7-36.6
                             c-0.2,0.2-0.4,0.5-0.5,0.7c-34.7,50.8-106.8,62.5-165.5,28.8C190.6,218.6,189.7,218.5,189,218.1z"></path>
                         <path class="st8" d="M204.5,217.1c23.5,1.2,47.4-5.6,67.7-20.9c45.5-34.4,54.4-99.3,19.9-144.8c-25.3-33.5-67.2-47.1-105.5-38.2
                             c17.6,7,33.3,18.5,45.5,34c11.3,6.1,21.6,14.7,30,25.6c30.2,39.8,22.3,96.5-17.4,126.6c-11.7,8.9-24.8,14.5-38.4,16.9
                             c0.5-0.7,1-1.4,1.4-2.1C206.6,215.2,205.6,216.2,204.5,217.1z"></path>
-                        <path class="st9" d="M206.3,216.4c13.6-2.4,26.7-8,38.4-16.9c39.8-30.2,47.6-86.9,17.4-126.6c-8.4-11-18.7-19.5-30-25.6
+                        <path class="st9"
+                            d="M206.3,216.4c13.6-2.4,26.7-8,38.4-16.9c39.8-30.2,47.6-86.9,17.4-126.6c-8.4-11-18.7-19.5-30-25.6
                             c0.2,0.3,0.4,0.5,0.5,0.9c37.2,48.8,25.5,121.1-24.9,166.2C207.3,215,206.8,215.7,206.3,216.4z"></path>
                         <path class="st10" d="M209.4,199.5c8-22,8.7-46.9,0-70.8C190,75.1,130.9,47.3,77.2,66.9c-39.4,14.3-64.9,50.2-67.9,89.5
                             c12-14.8,27.6-26.3,46.1-33.3c9.2-9.2,20.4-16.6,33.3-21.3c46.9-16.9,98.7,7.2,115.7,54.1c5.1,14,6.5,28.1,4.9,41.9
                             c-0.5-0.7-1-1.4-1.6-2.1C208.2,196.8,208.9,198.2,209.4,199.5z"></path>
-                        <path class="st11" d="M209.2,197.7c1.6-13.8,0.2-27.9-4.9-41.9c-16.9-46.9-68.7-71-115.7-54.1c-12.9,4.7-24.1,12-33.3,21.3
+                        <path class="st11"
+                            d="M209.2,197.7c1.6-13.8,0.2-27.9-4.9-41.9c-16.9-46.9-68.7-71-115.7-54.1c-12.9,4.7-24.1,12-33.3,21.3
                             c0.4-0.2,0.7-0.2,0.9-0.3c57.7-20.9,123.2,11.3,151.4,72.9C208.2,196.3,208.7,197,209.2,197.7z"></path>
                         <path class="st12" d="M206.7,193.7c0.9,1.1,1.7,2.2,2.6,3.3c-0.5-0.8-1-1.3-1.5-2.1c-27.9-60.9-92.7-93.4-150.2-73.5
                             c-0.2,0.1-0.4,0.1-0.6,0.2l0.2-0.2c-0.1,0.1-0.1,0.1-0.2,0.2c-0.2,0.1-0.3,0.1-0.5,0.2c-0.2,0.1-0.3,0.1-0.5,0.2
                             c0,0-0.1,0.2-0.3,0.3C38.2,139.7,28.4,164,29.1,189c0,0,0.1-0.1,0.1-0.1v1C37,181,46.5,173.3,57.1,167c5.9-3.7,12.4-6.6,19.4-9.2
-                            c49.4-18,102.9-0.2,132.7,39.9c-0.5-0.7-1-1.4-1.6-2.1C207.4,195,207,194.4,206.7,193.7z"></path>
+                            c49.4-18,102.9-0.2,132.7,39.9c-0.5-0.7-1-1.4-1.6-2.1C207.4,195,207,194.4,206.7,193.7z">
+                        </path>
                         <path class="st13" d="M207.2,215c0.2-0.3,0.4-0.6,0.6-0.9c-0.1,0.1-0.1,0.1-0.2,0.2C207.5,214.5,207.4,214.7,207.2,215z M240,59.2
                             c-0.4-0.7-0.8-1.3-1.2-2c-0.2-0.3-0.4-0.6-0.6-1c-1.5-2.5-3.2-5-4.9-7.4c-0.2-0.3-0.4-0.6-0.7-1c-0.1-0.1-0.1-0.2-0.2-0.3
                             c0.5,0.3,1,0.6,1.6,0.8c0.5,0.3,1.2,0.7,1.9,1c-0.7-0.4-1.4-0.9-1.9-1.2c-0.7-0.4-1.4-0.7-1.9-1v0.1c0,0-0.1,0-0.1-0.1
@@ -706,9 +1005,12 @@
             </center>
 
             <div class="max-w-7xl mx-auto px-6 md:px-16 text-center">
-                <div class="serif-title text-3xl md:text-5xl mb-4 text-stone-900 tracking-tighter uppercase">TEZIUTLÁN</div>
-                <div class="sans-label text-[8px] md:text-[9px] text-amber-700 tracking-[0.5em] md:tracking-[0.8em] mb-12">Pueblo Mágico | La Perla de la Sierra</div>
-                
+                <div class="serif-title text-3xl md:text-5xl mb-4 text-stone-900 tracking-tighter uppercase">TEZIUTLÁN
+                </div>
+                <div
+                    class="sans-label text-[8px] md:text-[9px] text-amber-700 tracking-[0.5em] md:tracking-[0.8em] mb-12">
+                    Pueblo Mágico | La Perla de la Sierra</div>
+
                 <div class="w-16 md:w-24 h-px bg-stone-200 mx-auto mb-3"></div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-20 md:mb-24">
@@ -716,7 +1018,8 @@
                         <h6 class="sans-label text-[10px] text-stone-900">Navegación</h6>
                         <ul class="text-sm font-light text-stone-500 space-y-2 italic">
                             <li><a href="#intro" class="hover:text-amber-700 transition-colors">Inicio</a></li>
-                            <li><a href="#timeline-title" class="hover:text-amber-700 transition-colors">Cronología</a></li>
+                            <li><a href="#timeline-title" class="hover:text-amber-700 transition-colors">Cronología</a>
+                            </li>
                             <li><a href="#biblioteca" class="hover:text-amber-700 transition-colors">Biblioteca</a></li>
                         </ul>
                     </div>
@@ -729,15 +1032,21 @@
                         </ul>
                     </div>
                     <div class="sm:col-span-2 space-y-4 md:space-y-6">
-                        <h6 class="sans-label text-[10px] text-stone-900 text-left md:text-right">Crónica del Archivo</h6>
-                        <p class="text-xs md:text-sm font-light text-stone-700 italic text-left md:text-right leading-relaxed">
-                            Este archivo digital es un esfuerzo colaborativo por preservar la memoria histórica de nuestra ciudad. Cada dato ha sido verificado en las crónicas municipales y relatos de cronistas locales.
+                        <h6 class="sans-label text-[10px] text-stone-900 text-left md:text-right">Crónica del Archivo
+                        </h6>
+                        <p
+                            class="text-xs md:text-sm font-light text-stone-700 italic text-left md:text-right leading-relaxed">
+                            Este archivo digital es un esfuerzo colaborativo por preservar la memoria histórica de
+                            nuestra ciudad. Cada dato ha sido verificado en las crónicas municipales y relatos de
+                            cronistas locales.
                         </p>
                     </div>
                 </div>
 
-                <div class="flex flex-col md:flex-row justify-between items-center gap-2 border-t border-stone-200 pt-8">
-                    <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Teziutlán | Piedra y Niebla</span>
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center gap-2 border-t border-stone-200 pt-8">
+                    <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Teziutlán | Piedra y
+                        Niebla</span>
                     <div class="flex gap-8 sans-label text-[9px] text-stone-400">
                         <a href="#" class="hover:text-stone-900 transition-colors">Instagram</a>
                         <a href="#" class="hover:text-stone-900 transition-colors">Facebook</a>
@@ -752,45 +1061,29 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-// Variable global para el reproductor de YouTube
-let player;
+        // Variable global para el reproductor de YouTube
+        let player;
 
-// Esta función es llamada automáticamente por la API de YouTube cuando se carga
-function onYouTubeIframeAPIReady() {
-    console.log("API de YouTube cargada y lista.");
-}
+        // Esta función es llamada automáticamente por la API de YouTube cuando se carga
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-audio-source', {
+                height: '0',
+                width: '0',
+                videoId: '4Q92z1SvDH8',
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 0
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
 
-// Función que se ejecuta al hacer clic en el botón
-function cargarVideo() {
-    // Reemplaza 'VIDEO_ID' con el ID real de tu video de YouTube (ej. 'dQw4w9WgXcQ')
-    const videoId = 'VIDEO_ID'; 
+        function onPlayerReady(event) {
+            console.log("Reproductor de audio listo.");
+        }
 
-    if (!player) {
-        player = new YT.Player('youtube-player', {
-            height: '390',
-            width: '640',
-            videoId: videoId,
-            events: {
-                // Puedes añadir funciones para manejar eventos aquí si lo deseas
-                // 'onReady': onPlayerReady,
-                // 'onStateChange': onPlayerStateChange
-            }
-        });
-        // Opcional: Ocultar el botón después de cargar el video
-        document.querySelector('button').style.display = 'none';
-    }
-}
-
-// Funciones de manejo de eventos opcionales (ejemplo)
-/*
-function onPlayerReady(event) {
-    event.target.playVideo(); // Reproduce el video automáticamente al cargar
-}
-
-function onPlayerStateChange(event) {
-    // Maneja cambios de estado (pausa, finalizado, etc.)
-}
-*/
 
         const events = [
             { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Hallazgos monumentales en Chignautla revelan una civilización preclásica con astronomía avanzada.", culture: "Formativo" },
@@ -818,12 +1111,12 @@ function onPlayerStateChange(event) {
             const intro = document.getElementById('intro');
             const main = document.getElementById('main-content');
             const nav = document.getElementById('mainNav');
-            
-            if(intro) intro.style.opacity = "0";
+
+            if (intro) intro.style.opacity = "0";
             setTimeout(() => {
-                if(intro) intro.style.display = 'none';
-                if(main) main.classList.remove('hidden');
-                if(nav) nav.classList.remove('opacity-0', 'pointer-events-none');
+                if (intro) intro.style.display = 'none';
+                if (main) main.classList.remove('hidden');
+                if (nav) nav.classList.remove('opacity-0', 'pointer-events-none');
                 document.body.classList.add('scroll-enabled');
                 initTimeline();
                 initAmbientGlyphs();
@@ -834,9 +1127,9 @@ function onPlayerStateChange(event) {
 
         function initAmbientGlyphs() {
             const container = document.getElementById('ambient-glyphs-container');
-            if(!container) return;
+            if (!container) return;
             const totalHeight = document.body.scrollHeight || 5000;
-            for(let i = 0; i < 25; i++) {
+            for (let i = 0; i < 25; i++) {
                 const glyphDiv = document.createElement('div');
                 glyphDiv.className = 'ambient-glyph';
                 const randomGlyph = aztecGlyphs[Math.floor(Math.random() * aztecGlyphs.length)];
@@ -852,8 +1145,8 @@ function onPlayerStateChange(event) {
 
         function initAztecFrieze() {
             const container = document.getElementById('aztec-pattern-row');
-            if(!container) return;
-            
+            if (!container) return;
+
             const aztecUnit = `
                 <div class="flex items-center mx-4 opacity-30">
                     <svg width="40" height="40" viewBox="0 0 100 100" class="mr-4">
@@ -870,10 +1163,10 @@ function onPlayerStateChange(event) {
                     </svg>
                 </div>
             `;
-            
+
             // Llenamos el contenedor para el efecto infinito
             let fullPattern = "";
-            for(let i = 0; i < 30; i++) {
+            for (let i = 0; i < 30; i++) {
                 fullPattern += aztecUnit;
             }
             container.innerHTML = fullPattern;
@@ -881,7 +1174,7 @@ function onPlayerStateChange(event) {
 
         function initTimeline() {
             const container = document.getElementById('timeline-container');
-            if(!container || container.children.length > 0) return;
+            if (!container || container.children.length > 0) return;
 
             events.forEach((event, index) => {
                 const isEven = index % 2 === 0;
@@ -915,7 +1208,18 @@ function onPlayerStateChange(event) {
         let lastScrollY = window.scrollY;
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
-            if(!nav) return;
+            const backBtn = document.getElementById('backBtn');
+
+            // Lógica del botón de regreso
+            if (backBtn) {
+                if (window.scrollY > 300) {
+                    backBtn.classList.add('visible');
+                } else {
+                    backBtn.classList.remove('visible');
+                }
+            }
+
+            if (!nav) return;
             if (window.scrollY > lastScrollY && window.scrollY > 150) {
                 nav.style.transform = 'translateY(-100%)';
             } else {
@@ -925,4 +1229,5 @@ function onPlayerStateChange(event) {
         });
     </script>
 </body>
+
 </html>
