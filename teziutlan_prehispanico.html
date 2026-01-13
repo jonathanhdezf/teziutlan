@@ -626,7 +626,7 @@
         </div>
 
         <div class="hidden md:flex items-center gap-10">
-            <a href="#intro" class="nav-link text-ink uppercase font-bold">Inicio</a>
+            <a href="archivodigital.html" class="nav-link text-ink uppercase font-bold">Inicio</a>
             <a href="#timeline-title" class="nav-link text-ink uppercase font-bold">Cronología</a>
             <a href="#reflexion" class="nav-link text-ink uppercase font-bold">Reflexión</a>
             <a href="#biblioteca" class="nav-link text-ink uppercase font-bold">Biblioteca</a>
@@ -655,8 +655,9 @@
 
             <p
                 class="playfair text-lg md:text-2xl text-stone-800 italic mb-14 font-medium leading-relaxed max-w-2xl mx-auto">
-                "La prehispanidad de Teziutlán no es solo un capítulo remoto, sino un legado vivo que nos recuerda la
-                fuerza de nuestras raíces."
+                "La prehispanidad de Teziutlán no es solo un capítulo remoto, <strong> sino un legado vivo que nos
+                    recuerda la
+                    fuerza de nuestras raíces.</strong>"
             </p>
 
             <button onclick="handleMainAction()" class="btn-gold-ornament cinzel font-black uppercase">
@@ -683,7 +684,8 @@
                 <div class="max-w-3xl mx-auto px-6">
                     <p class="playfair text-xl md:text-2xl text-stone-700 italic leading-relaxed font-medium">
                         Aunque la documentación histórica oficial presenta lagunas, las fuentes permiten reconstruir una
-                        línea del tiempo de los procesos culturales y políticos en el área de Teziutlán (antiguamente
+                        <strong>línea del tiempo de los procesos culturales y políticos</strong> en el área de Teziutlán
+                        (antiguamente
                         parte del Totonacapan) antes de la llegada de los españoles:
                     </p>
                 </div>
@@ -698,8 +700,8 @@
             <section id="reflexion" class="max-w-3xl mx-auto px-6 py-24 relative z-10">
                 <p class="playfair text-center text-xl md:text-2xl text-stone-700 italic leading-relaxed font-medium">
                     Para comprender esta evolución, se puede ver a Teziutlán como un <strong>palimpsesto
-                        histórico</strong>: un manuscrito antiguo donde cada cultura borró parte de la anterior para
-                    escribir su propia historia.
+                        histórico: un manuscrito antiguo donde cada cultura borró parte de la anterior para
+                        escribir su propia historia</strong>.<br>
                     <br>La descripción de Teziutlán como un palimpsesto (un espacio donde se superponen capas de
                     historia, cultura y arquitectura) es una metáfora utilizada principalmente por historiadores y
                     académicos locales para explicar su compleja evolución urbana y social. </br>
@@ -1086,13 +1088,17 @@
 
 
         const events = [
-            { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Hallazgos monumentales en Chignautla revelan una civilización preclásica con astronomía avanzada.", culture: "Formativo" },
-            { date: "c. 481 d.C.", title: "Teziuyotepetzintlan", desc: "Fundación mítica. El nombre original que refiere al 'lugar del cerro de granizo'.", culture: "Totonaca" },
-            { date: "752 - 804 d.C.", title: "Hegemonía Tolteca", desc: "La influencia de Tula transforma la cosmogonía y la arquitectura de la región.", culture: "Tolteca" },
-            { date: "818 d.C.", title: "El Gran Repliegue", desc: "Migraciones masivas documentadas que definen la frontera cultural de la Sierra.", culture: "Totonaca" },
-            { date: "c. 1180 d.C.", title: "Señorío Chichimeca", desc: "Guerreros del norte se asientan, fusionando sus tradiciones con las locales.", culture: "Chichimeca" },
-            { date: "Siglo XV", title: "Expansión Mexica", desc: "Axayácatl consolidida el dominio de la Triple Alianza sobre el enclave serrano.", culture: "Mexica" },
-            { date: "1519", title: "Encuentro de Mundos", desc: "La llegada de los europeos marca el fin de la era del Quinto Sol.", culture: "Ocaso del Sol" }
+            { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Periodo estimado de ocupación de asentamientos en el municipio vecino de Chignautla (históricamente vinculado a Teziutlán), donde existen vestigios de montículos piramidales que demuestran una sofisticada organización temprana.", culture: "Formativo" },
+            { date: "Siglo V (c. 481 d.C.)", title: "Teziuyotepetzintlan", desc: "Se sitúa la probable fundación de Teziutlán (Teziuyotepetzintlan) por grupos de origen totonaca que se asentaron permanentemente en la Sierra de Puebla.", culture: "Totonaca" },
+            { date: "Siglo IX (c. 752-804 d.C.)", title: "Hegemonía Tolteca", desc: "La presión de las inmigraciones toltecas en el centro de México provoca el repliegue de los totonacas hacia la costa y la Sierra, iniciando la expansión de la lengua náhuatl en la región.", culture: "Tolteca" },
+            { date: "818 d.C.", title: "El Gran Repliegue", desc: "Según la Relación de Tetela, este año marca una migración totonaca clave hacia la zona serrana proveniente de 'donde sale el sol'.", culture: "Totonaca" },
+            { date: "Siglo XII (c. 1180 d.C.)", title: "Señorío Chichimeca", desc: "La llegada masiva de grupos chichimecas al valle de Puebla desplaza a los olmecas-xicalancas hacia la región oriental de la Sierra, ocupando áreas en Zacatlán, Tlatlauquitepec y la zona de Teziutlán.", culture: "Chichimeca" },
+            { date: "Siglo XV", title: "Consolidación Altepetl", desc: "Consolidación de Teziutlán como un altepetl (unidad político-territorial) bien definido, integrado al sistema tributario de la Triple Alianza (Tenochtitlán, Texcoco y Tlacopan) bajo el dominio mexica.", culture: "Mexica" },
+            { date: "1450", title: "La Gran Hambruna", desc: "Una hambruna de cinco años en el Altiplano central obliga a los mexicas a depender del abasto de maíz de los totonacas de la Sierra, evidenciando el valor estratégico de la región.", culture: "Crisis" },
+            { date: "c. 1460", title: "Dominio Militar", desc: "Los mexicas consolidan su dominio militar sobre la zona oriental de la Sierra para asegurar el control de las rutas hacia la costa.", culture: "Mexica" },
+            { date: "1486", title: "Conquista Texcocana", desc: "El rey texcocano Nezahualpilli conquista las tierras bajas de los totonacas, reforzando la influencia de la cuenca de México en la zona.", culture: "Texcoco" },
+            { date: "1505", title: "Crisis Alimentaria", desc: "Una nueva crisis alimentaria en el Altiplano reafirma la importancia vital de la Sierra y el Totonacapan para la supervivencia de la Triple Alianza.", culture: "Triple Alianza" },
+            { date: "19 de agosto de 1519", title: "Encuentro de Mundos", desc: "Las tropas de Hernán Cortés transitan por los límites de la región de Teziutlán en su avance hacia Tenochtitlán, marcando el primer contacto europeo en la zona.", culture: "Conquista" }
         ];
 
         const aztecGlyphs = [
