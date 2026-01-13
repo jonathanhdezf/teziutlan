@@ -751,29 +751,45 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        // Variables para el reproductor de YouTube
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: 'U-sXhV6I0V8', // Música ambiental prehispánica
-                playerVars: {
-                    'autoplay': 1,
-                    'controls': 0,
-                    'loop': 1,
-                    'playlist': 'U-sXhV6I0V8'
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
+// Variable global para el reproductor de YouTube
+let player;
 
-        function onPlayerReady(event) {
-            // Se prepara el video pero el navegador suele bloquear el sonido hasta interacción
-            event.target.setVolume(50);
-        }
+// Esta función es llamada automáticamente por la API de YouTube cuando se carga
+function onYouTubeIframeAPIReady() {
+    console.log("API de YouTube cargada y lista.");
+}
+
+// Función que se ejecuta al hacer clic en el botón
+function cargarVideo() {
+    // Reemplaza 'VIDEO_ID' con el ID real de tu video de YouTube (ej. 'dQw4w9WgXcQ')
+    const videoId = 'VIDEO_ID'; 
+
+    if (!player) {
+        player = new YT.Player('youtube-player', {
+            height: '390',
+            width: '640',
+            videoId: videoId,
+            events: {
+                // Puedes añadir funciones para manejar eventos aquí si lo deseas
+                // 'onReady': onPlayerReady,
+                // 'onStateChange': onPlayerStateChange
+            }
+        });
+        // Opcional: Ocultar el botón después de cargar el video
+        document.querySelector('button').style.display = 'none';
+    }
+}
+
+// Funciones de manejo de eventos opcionales (ejemplo)
+/*
+function onPlayerReady(event) {
+    event.target.playVideo(); // Reproduce el video automáticamente al cargar
+}
+
+function onPlayerStateChange(event) {
+    // Maneja cambios de estado (pausa, finalizado, etc.)
+}
+*/
 
         const events = [
             { date: "900 a.C. - 900 d.C.", title: "Génesis Serrana", desc: "Hallazgos monumentales en Chignautla revelan una civilización preclásica con astronomía avanzada.", culture: "Formativo" },
