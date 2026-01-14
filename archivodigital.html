@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archivo Histórico | Teziutlán: El Legado Mágico</title>
-    
+
     <!-- Framework & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --cantera: #d4a373;
@@ -28,12 +31,29 @@
         }
 
         /* TIPOGRAFÍA MAESTRA */
-        .serif-title { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 0.05em; }
-        .hero-title { font-size: clamp(2.5rem, 10vw, 8.5rem); }
-        .sans-label { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.6rem; }
+        .serif-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 10vw, 8.5rem);
+        }
+
+        .sans-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.6rem;
+        }
 
         @media (min-width: 768px) {
-            .sans-label { font-size: 0.65rem; letter-spacing: 0.4em; }
+            .sans-label {
+                font-size: 0.65rem;
+                letter-spacing: 0.4em;
+            }
         }
 
         /* TEXTURAS */
@@ -64,17 +84,10 @@
             border: 1px solid rgba(212, 163, 115, 0.15);
             transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
             cursor: pointer;
         }
-                /* TARJETAS Y RETRATOS (CORRECCIÓN DE CLASES) */
-        .archive-card {
-            background: white;
-            border: 1px solid rgba(212, 163, 115, 0.15);
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-        }
+
 
         .portrait-container {
             position: relative;
@@ -97,10 +110,11 @@
         .portrait-wrapper:hover .portrait-container {
             clip-path: inset(15px 15px 15px 15px);
         }
+
         @media (hover: hover) {
             .archive-card:hover {
                 transform: translateY(-12px) scale(1.02);
-                box-shadow: 0 40px 80px -15px rgba(0,0,0,0.15);
+                box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.15);
                 border-color: var(--cantera);
                 z-index: 20;
             }
@@ -127,7 +141,10 @@
         }
 
         @media (min-width: 768px) {
-            .timeline-line { left: 50%; transform: translateX(-50%); }
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         .timeline-item {
@@ -138,7 +155,10 @@
         }
 
         @media (min-width: 768px) {
-            .timeline-item { margin-bottom: 8rem; padding-left: 0; }
+            .timeline-item {
+                margin-bottom: 8rem;
+                padding-left: 0;
+            }
         }
 
         .timeline-dot {
@@ -154,10 +174,10 @@
             box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.2);
         }
 
-         /* =============================================
+        /* =============================================
            INICIO: CLASES DE LA SECCIÓN LEGADO MÁGICO
            ============================================= */
-        
+
         /* Textura de puntos sutiles para el fondo oscuro */
         .magic-pattern {
             background-image: radial-gradient(var(--cantera) 0.6px, transparent 0.6px);
@@ -168,6 +188,7 @@
         /* Efecto de brillo metálico animado para el texto principal */
         .glimmer-text {
             background: linear-gradient(to right, #b8860b, #fcfaf2, #b8860b);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
@@ -175,7 +196,9 @@
         }
 
         @keyframes shine {
-            to { background-position: 200% center; }
+            to {
+                background-position: 200% center;
+            }
         }
 
         /* Badge/Etiqueta con borde dorado y sombra para el distintivo */
@@ -210,7 +233,9 @@
            ============================================= */
 
         @media (min-width: 768px) {
-            .timeline-dot { left: 50%; }
+            .timeline-dot {
+                left: 50%;
+            }
         }
 
         /* --- CORRECCIÓN DEFINITIVA DE MENÚ MÓVIL --- */
@@ -239,7 +264,8 @@
         }
 
         .burger-btn {
-            z-index: 600; /* Siempre por encima del overlay */
+            z-index: 600;
+            /* Siempre por encima del overlay */
             position: relative;
         }
 
@@ -248,9 +274,17 @@
             transform-origin: center;
         }
 
-        .active-burger .line-1 { transform: translateY(7px) rotate(45deg); }
-        .active-burger .line-2 { opacity: 0; }
-        .active-burger .line-3 { transform: translateY(-7px) rotate(-45deg); }
+        .active-burger .line-1 {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .active-burger .line-2 {
+            opacity: 0;
+        }
+
+        .active-burger .line-3 {
+            transform: translateY(-7px) rotate(-45deg);
+        }
 
         nav.scrolled {
             background: rgba(252, 250, 242, 0.9);
@@ -278,27 +312,30 @@
             background-image: radial-gradient(var(--cantera) 0.6px, transparent 0.6px);
             background-size: 30px 30px;
             opacity: 0.15;
-        }		
+        }
     </style>
 </head>
+
 <body>
 
     <div class="grain-overlay"></div>
 
     <!-- NAVEGACIÓN -->
-    <nav id="mainNav" class="fixed top-0 w-full z-[400] px-6 md:px-16 py-6 transition-all duration-500 flex justify-between items-center">
+    <nav id="mainNav"
+        class="fixed top-0 w-full z-[400] px-6 md:px-16 py-6 transition-all duration-500 flex justify-between items-center">
         <!-- Logo / Back -->
         <a href="index.html" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center bg-white/50">
                 <svg viewBox="0 0 24 24" class="w-4 h-4 stroke-stone-900" fill="none" stroke-width="2.5">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
                 </svg>
             </div>
             <span class="sans-label text-stone-900 hidden md:block">Regresar</span>
         </a>
 
         <!-- Botón Menú (Mobile) -->
-        <button id="menuTrigger" class="burger-btn md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-white border border-stone-200 rounded-full shadow-sm">
+        <button id="menuTrigger"
+            class="burger-btn md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-white border border-stone-200 rounded-full shadow-sm">
             <div class="burger-line line-1 w-6 h-0.5 bg-stone-900"></div>
             <div class="burger-line line-2 w-6 h-0.5 bg-stone-900"></div>
             <div class="burger-line line-3 w-6 h-0.5 bg-stone-900"></div>
@@ -306,10 +343,10 @@
 
         <!-- Menú Desktop -->
         <div class="hidden md:flex gap-10 items-center">
-			<a href="#inicio" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Inicio</a>
+            <a href="#inicio" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Inicio</a>
             <a href="#origenes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Orígenes</a>
             <a href="#cronologia" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Cronología</a>
-			<a href="#personajes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Biografías</a>
+            <a href="#personajes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Biografías</a>
             <a href="#hemeroteca" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Hemeroteca</a>
             <a href="#legado" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Legado</a>
         </div>
@@ -318,10 +355,10 @@
     <!-- OVERLAY MENÚ MÓVIL -->
     <div id="mobileOverlay">
         <div class="flex flex-col items-center gap-8">
-           	<a href="#inicio" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Inicio</a>
+            <a href="#inicio" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Inicio</a>
             <a href="#origenes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Orígenes</a>
             <a href="#cronologia" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Cronología</a>
-			<a href="#personajes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Biografías</a>
+            <a href="#personajes" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Biografías</a>
             <a href="#hemeroteca" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Hemeroteca</a>
             <a href="#legado" class="sans-label text-[10px] text-stone-600 hover:text-amber-800">Legado</a>
             <div class="h-px w-20 bg-amber-400 mt-4"></div>
@@ -340,20 +377,25 @@
                 <h1 class="serif-title hero-title leading-[0.9] text-stone-900 mb-10 reveal">
                     Crónicas de <br><span class="text-stone-300 italic">Niebla y Piedra</span>
                 </h1>
-                <p class="text-stone-500 text-xl md:text-3xl font-light italic max-w-2xl mx-auto lg:mx-0 reveal leading-relaxed">
-                    "Bienvenido al registro oficial de la memoria teziuteca. Aquí, la historia se conserva con galardía y se comparte con calidez. Cada documento, cada imagen y cada relato son ventanas que te invitan a conocer un Teziutlán que no solo se visita, sino que se siente en la piedra, en la niebla y en el corazón de su gente."
+                <p
+                    class="text-stone-500 text-xl md:text-3xl font-light italic max-w-2xl mx-auto lg:mx-0 reveal leading-relaxed">
+                    "Bienvenido al registro oficial de la memoria teziuteca. Aquí, la historia se conserva con galardía
+                    y se comparte con calidez. Cada documento, cada imagen y cada relato son ventanas que te invitan a
+                    conocer un Teziutlán que no solo se visita, sino que se siente en la piedra, en la niebla y en el
+                    corazón de su gente."
                 </p>
                 <div class="mt-16 py-10 flex justify-center lg:justify-start reveal">
                     <a href="#origenes" class="btn-premium sans-label">
-                       Orígenes <span>→</span>
+                        Orígenes <span>→</span>
                     </a>
                 </div>
             </div>
-            
+
             <div class="lg:col-span-4 relative hidden lg:block reveal">
                 <div class="archive-card p-4 rotate-2 shadow-2xl scale-110">
                     <div class="image-wrapper aspect-[3/4]">
-                        <img src="https://www.eluniversalpuebla.com.mx/resizer/v2/OXJACAQMY5AO7IED4KOJIRVZCY.png?auth=4cc32298fd5cc44db3bf9887f39db3595971521bf176b21333311602f6d463b4&smart=true&height=620" alt="Archivo" class="w-full h-full object-cover sepia-archive">
+                        <img src="https://i.pinimg.com/736x/90/23/3d/90233d94a9bfc55473e7e6daf07d25a7.jpg" alt="Archivo"
+                            class="w-full h-full object-cover sepia-archive">
                     </div>
                     <div class="mt-6 flex justify-between items-end border-t border-stone-100 pt-4">
                         <span class="sans-label text-[7px] text-stone-400">Foto: Facebook Teziutlán Desconocido</span>
@@ -371,27 +413,33 @@
                 <div class="reveal">
                     <div class="archive-card p-2 -rotate-3">
                         <div class="image-wrapper aspect-video">
-                            <img src="https://scontent.fpbc2-2.fna.fbcdn.net/v/t39.30808-6/492144929_1775122059869626_3873508045593805272_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VZVQHDgOXlMQ7kNvwGkwyX8&_nc_oc=AdmLeELYYNIlADktllcP2crw0te95PB9WAo7a_SPT_qzilbDrFcbktqBt664pz27eQo&_nc_zt=23&_nc_ht=scontent.fpbc2-2.fna&_nc_gid=KTAGOODs7aHTa7ubz8GDnA&oh=00_Afom57kW8ppxVoHmTH4r6yKyODmaCG5n2bsKLIrSIM3HDQ&oe=696190E1" alt="Historia" class="w-full h-full object-cover">
+                            <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/teziutlan-prehispanico.jpeg?raw=true"
+                                alt="Historia" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
                 <div class="reveal">
                     <span class="sans-label text-amber-800 mb-6 block">Prehispanidad</span>
-                    <h2 class="serif-title text-4xl md:text-6xl mb-10 leading-tight">Raices <br><span class="text-amber-600 italic">Prehispánicas</span></h2>
+                    <h2 class="serif-title text-4xl md:text-6xl mb-10 leading-tight">Raices <br><span
+                            class="text-amber-600 italic">Prehispánicas</span></h2>
                     <p class="text-stone-600 text-xl leading-relaxed font-light">
-                       En Teziutlán, cada piedra guarda un secreto y cada neblina acaricia la memoria de los siglos. Antes que la arquitectura colonial se levantara, estas montañas fueron hogar de pueblos totonacos, nahuas y otomíes, que hicieron de la Sierra Norte un puente entre el altiplano y el mar. Este archivo digital abre sus puertas para que descubras esa herencia viva: un pasado que no se visita, se siente.
+                        En Teziutlán, cada piedra guarda un secreto y cada neblina acaricia la memoria de los siglos.
+                        Antes que la arquitectura colonial se levantara, estas montañas fueron hogar de pueblos
+                        totonacos, nahuas y otomíes, que hicieron de la Sierra Norte un puente entre el altiplano y el
+                        mar. Este archivo digital abre sus puertas para que descubras esa herencia viva: un pasado que
+                        no se visita, se siente.
                     </p>
-					<div class="mt-10 py-10 flex justify-center start reveal">
-                    <a href="teziutlan_prehispanico" class="btn-premium sans-label">
-                        Saber más <span>→</span>
-                    </a>
-                </div>
+                    <div class="mt-10 py-10 flex justify-center start reveal">
+                        <a href="teziutlan_prehispanico.html" class="btn-premium sans-label">
+                            Saber más <span>→</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-<!-- SECCIÓN: LÍNEA DEL TIEMPO (CRÓNICA) -->
+    <!-- SECCIÓN: LÍNEA DEL TIEMPO (CRÓNICA) -->
     <section id="cronologia" class="py-24 md:py-10 bg-stone-50 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-6 relative">
             <div class="text-center mb-16 md:mb-32 reveal">
@@ -401,13 +449,15 @@
 
             <div class="relative">
                 <div class="timeline-line"></div>
-                
+
                 <!-- 1552 -->
                 <div class="timeline-item flex flex-col md:flex-row items-start md:items-center reveal">
                     <div class="w-full md:w-1/2 md:pr-20 md:text-right mb-4 md:mb-0">
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">1552</span>
                         <h4 class="serif-title text-lg md:text-xl mb-2 md:mb-4">La Fundación</h4>
-                        <p class="text-stone-500 font-light italic text-sm md:text-base">Se registra la fundación oficial de Teziutlán el 15 de marzo, estableciéndose como un punto estratégico en la ruta hacia el Golfo.</p>
+                        <p class="text-stone-500 font-light italic text-sm md:text-base">Se registra la fundación
+                            oficial de Teziutlán el 15 de marzo, estableciéndose como un punto estratégico en la ruta
+                            hacia el Golfo.</p>
                     </div>
                     <div class="timeline-dot"></div>
                     <div class="md:w-1/2 md:pl-20"></div>
@@ -420,7 +470,8 @@
                     <div class="w-full md:w-1/2 md:pl-20">
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">1881</span>
                         <h4 class="serif-title text-lg md:text-xl mb-2 md:mb-4">Siglo de las Artes</h4>
-                        <p class="text-stone-500 font-light italic text-sm md:text-base">Inauguración del Teatro Victoria, convirtiéndose en el epicentro cultural de la sierra poblana.</p>
+                        <p class="text-stone-500 font-light italic text-sm md:text-base">Inauguración del Teatro
+                            Victoria, convirtiéndose en el epicentro cultural de la sierra poblana.</p>
                     </div>
                 </div>
 
@@ -429,7 +480,8 @@
                     <div class="w-full md:w-1/2 md:pr-20 md:text-right mb-4 md:mb-0">
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">1940</span>
                         <h4 class="serif-title text-lg md:text-xl mb-2 md:mb-4">Modernidad Porfiriana</h4>
-                        <p class="text-stone-500 font-light italic text-sm md:text-base">La llegada del ferrocarril y el auge de la cantera rosa definen el paisaje arquitectónico que hoy admiramos.</p>
+                        <p class="text-stone-500 font-light italic text-sm md:text-base">La llegada del ferrocarril y el
+                            auge de la cantera rosa definen el paisaje arquitectónico que hoy admiramos.</p>
                     </div>
                     <div class="timeline-dot"></div>
                     <div class="md:w-1/2 md:pl-20"></div>
@@ -443,19 +495,21 @@
                         <span class="serif-title text-2xl md:text-3xl text-amber-700 block mb-1">2023</span>
                         <h4 class="serif-title text-lg md:text-xl mb-2">Pueblo Mágico</h4>
                         <h5 class="sans-label text-[7px] md:text-[8px] text-amber-600 mb-2">Hito Contemporáneo</h5>
-                        <p class="text-stone-500 font-light italic text-sm md:text-base">El reconocimiento oficial de Teziutlán como Pueblo Mágico, consolidando su legado para el mundo.</p>
+                        <p class="text-stone-500 font-light italic text-sm md:text-base">El reconocimiento oficial de
+                            Teziutlán como Pueblo Mágico, consolidando su legado para el mundo.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-        <!-- SECCIÓN PERSONAJES (REDISEÑADA) -->
+
+    <!-- SECCIÓN PERSONAJES (REDISEÑADA) -->
     <section id="personajes" class="py-32 md:py-10 bg-stone-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
             <div class="text-center mb-32 reveal">
                 <span class="sans-label text-amber-700 block mb-6">Galería de Ilustres</span>
-                <h2 class="serif-title text-5xl md:text-8xl">Hijos de la <span class="italic text-stone-300">Sierra</span></h2>
+                <h2 class="serif-title text-5xl md:text-8xl">Hijos de la <span
+                        class="italic text-stone-300">Sierra</span></h2>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-24 lg:gap-x-12">
@@ -463,16 +517,19 @@
                 <div class="lg:col-span-7 reveal">
                     <div class="portrait-wrapper group cursor-pointer">
                         <div class="portrait-container aspect-[16/10] md:aspect-[16/8] bg-stone-200 shadow-2xl mb-10">
-                            <img src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2021/04/avila01-900x675.jpg" alt="Manuel Ávila Camacho" class="portrait-img w-full h-full object-cover">
+                            <img src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2021/04/avila01-900x675.jpg"
+                                alt="Manuel Ávila Camacho" class="portrait-img w-full h-full object-cover">
                         </div>
-                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 border-l-2 border-amber-600 pl-8">
+                        <div
+                            class="flex flex-col md:flex-row md:items-start justify-between gap-6 border-l-2 border-amber-600 pl-8">
                             <div>
                                 <span class="sans-label text-amber-700 text-[9px] mb-2 block">1897 — 1955</span>
                                 <h3 class="serif-title text-3xl md:text-5xl mb-2">Manuel Ávila Camacho</h3>
                                 <p class="sans-label text-stone-400 text-[10px]">Presidente de la República</p>
                             </div>
                             <p class="text-stone-500 font-light italic max-w-sm text-lg leading-relaxed">
-                                "El Presidente Caballero". Su liderazgo conciliador durante la Segunda Guerra Mundial posicionó a México en el escenario global desde sus raíces teziutecas.
+                                "El Presidente Caballero". Su liderazgo conciliador durante la Segunda Guerra Mundial
+                                posicionó a México en el escenario global desde sus raíces teziutecas.
                             </p>
                         </div>
                     </div>
@@ -482,13 +539,15 @@
                 <div class="lg:col-span-4 lg:col-start-9 lg:-mt-20 reveal">
                     <div class="portrait-wrapper group cursor-pointer">
                         <div class="portrait-container aspect-[4/5] bg-stone-200 shadow-xl mb-8">
-                            <img src="https://relatosehistorias.mx/sites/default/files/styles/relato750x650/public/vicente_lombardo_toledano.jpg?itok=B16KrJeg" alt="Vicente Lombardo Toledano" class="portrait-img w-full h-full object-cover">
+                            <img src="https://relatosehistorias.mx/sites/default/files/styles/relato750x650/public/vicente_lombardo_toledano.jpg?itok=B16KrJeg"
+                                alt="Vicente Lombardo Toledano" class="portrait-img w-full h-full object-cover">
                         </div>
                         <div class="pl-2">
                             <span class="sans-label text-amber-700 text-[9px] mb-2 block">1894 — 1968</span>
                             <h3 class="serif-title text-2xl mb-2">V. Lombardo Toledano</h3>
                             <p class="text-stone-500 font-light italic text-base leading-relaxed mb-4">
-                                Filósofo y humanista. Uno de los intelectuales más influyentes del siglo XX en Latinoamérica, forjado en la disciplina serrana.
+                                Filósofo y humanista. Uno de los intelectuales más influyentes del siglo XX en
+                                Latinoamérica, forjado en la disciplina serrana.
                             </p>
                             <div class="h-px w-10 bg-stone-200 group-hover:w-full transition-all duration-700"></div>
                         </div>
@@ -499,12 +558,16 @@
                 <div class="lg:col-span-5 lg:col-start-2 lg:mt-12 reveal">
                     <div class="portrait-wrapper group cursor-pointer">
                         <div class="portrait-container aspect-square bg-stone-200 shadow-xl mb-8">
-                            <img src="https://tse3.mm.bing.net/th/id/OIP.4kZKH9RJ0PJEDiZ5WlnPKgHaD0?pid=Api&P=0&h=180" alt="María del Carmen Millán Acevedo" class="portrait-img w-full h-full object-cover">
+                            <img src="https://tse3.mm.bing.net/th/id/OIP.4kZKH9RJ0PJEDiZ5WlnPKgHaD0?pid=Api&P=0&h=180"
+                                alt="María del Carmen Millán Acevedo" class="portrait-img w-full h-full object-cover">
                         </div>
                         <div class="text-right pr-8 border-r-2 border-stone-200">
                             <span class="sans-label text-amber-700 text-[9px] mb-2 block">La Promotora Cultural</span>
                             <h3 class="serif-title text-3xl mb-2">María del Carmen Millán Acevedo</h3>
-                            <p class="text-stone-500 font-light italic text-base">María del Carmen Millán Acevedo, nacida el 3 de diciembre de 1914 en Teziutlán, fue una destacada escritora, académica y promotora cultural. Su trabajo fue fundamental en la promoción de la literatura y la cultura mexicana.</p>
+                            <p class="text-stone-500 font-light italic text-base">María del Carmen Millán Acevedo,
+                                nacida el 3 de diciembre de 1914 en Teziutlán, fue una destacada escritora, académica y
+                                promotora cultural. Su trabajo fue fundamental en la promoción de la literatura y la
+                                cultura mexicana.</p>
                         </div>
                     </div>
                 </div>
@@ -512,9 +575,11 @@
                 <!-- Cita Editorial -->
                 <div class="lg:col-span-4 lg:col-start-8 lg:mt-32 flex items-center reveal">
                     <div class="relative">
-                        <span class="serif-title text-8xl text-stone-200 absolute -top-12 -left-8 pointer-events-none">“</span>
+                        <span
+                            class="serif-title text-8xl text-stone-200 absolute -top-12 -left-8 pointer-events-none">“</span>
                         <p class="serif-title text-2xl md:text-3xl italic text-stone-400 leading-snug">
-                            La grandeza de un pueblo no se mide por sus fronteras, sino por la estatura moral de sus <span class="text-amber-800">arquitectos de historia</span>.
+                            La grandeza de un pueblo no se mide por sus fronteras, sino por la estatura moral de sus
+                            <span class="text-amber-800">arquitectos de historia</span>.
                         </p>
                     </div>
                 </div>
@@ -525,11 +590,13 @@
     <!-- SECCIÓN: HEMEROTECA VISUAL (GALERÍA) -->
     <section id="hemeroteca" class="py-24 md:py-40 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
-            <div class="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-16 md:mb-24 reveal text-center lg:text-left">
+            <div
+                class="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-16 md:mb-24 reveal text-center lg:text-left">
                 <div class="max-w-2xl">
                     <span class="sans-label text-amber-700 mb-4 block">Memoria Fotográfica</span>
                     <h2 class="serif-title text-3xl md:text-6xl">Hemeroteca Visual</h2>
-                    <p class="text-stone-500 mt-4 md:mt-6 text-lg md:text-xl font-light italic">Un recorrido por el tiempo a través del lente de los cronistas de ayer.</p>
+                    <p class="text-stone-500 mt-4 md:mt-6 text-lg md:text-xl font-light italic">Un recorrido por el
+                        tiempo a través del lente de los cronistas de ayer.</p>
                 </div>
                 <div class="mt-8 lg:mt-0 hidden sm:block">
                     <span class="sans-label text-[9px] opacity-40">Explora la historia ↓</span>
@@ -541,12 +608,15 @@
                 <div class="sm:col-span-2 lg:col-span-8 reveal">
                     <div class="archive-card p-4 md:p-6 h-full group">
                         <div class="image-wrapper aspect-video mb-4 md:mb-6">
-                            <img src="https://www.mexicoenfotos.com/MX15083360486514.jpg" alt="Palacio Teziutlán" class="w-full h-full object-cover sepia-archive">
+                            <img src="null" alt="Palacio Teziutlán" class="w-full h-full object-cover sepia-archive">
                         </div>
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4 class="serif-title text-xl md:text-2xl group-hover:text-amber-700 transition-colors">El Palacio de Cantera</h4>
-                                <p class="text-xs md:text-sm text-stone-400 italic">Sede del poder civil y símbolo de orgullo local.</p>
+                                <h4
+                                    class="serif-title text-xl md:text-2xl group-hover:text-amber-700 transition-colors">
+                                    El Palacio de Cantera</h4>
+                                <p class="text-xs md:text-sm text-stone-400 italic">Sede del poder civil y símbolo de
+                                    orgullo local.</p>
                             </div>
                             <span class="serif-title text-stone-200 text-3xl md:text-4xl">01</span>
                         </div>
@@ -557,10 +627,12 @@
                 <div class="reveal sm:col-span-2 lg:col-span-4" style="transition-delay: 150ms;">
                     <div class="archive-card p-4 md:p-6 h-full group">
                         <div class="image-wrapper aspect-square lg:aspect-square sm:aspect-video mb-4 md:mb-6">
-                            <img src="https://www.mexicoenfotos.com/MX14138276927388.jpg" alt="Detalle Catedral" class="w-full h-full object-cover sepia-archive">
+                            <img src="null alt=" Detalle Catedral" class="w-full h-full object-cover sepia-archive">
                         </div>
-                        <h4 class="serif-title text-lg md:text-xl mb-2 group-hover:text-amber-700 transition-colors">Sacristía del Tiempo</h4>
-                        <p class="text-[10px] md:text-xs text-stone-400 italic leading-relaxed">Detalles ornamentales tallados a mano por maestros canteros del siglo XIX.</p>
+                        <h4 class="serif-title text-lg md:text-xl mb-2 group-hover:text-amber-700 transition-colors">
+                            Sacristía del Tiempo</h4>
+                        <p class="text-[10px] md:text-xs text-stone-400 italic leading-relaxed">Detalles ornamentales
+                            tallados a mano por maestros canteros del siglo XIX.</p>
                     </div>
                 </div>
 
@@ -568,41 +640,50 @@
                 <div class="reveal sm:col-span-1 lg:col-span-4" style="transition-delay: 200ms;">
                     <div class="archive-card p-4 md:p-6 group h-full">
                         <div class="image-wrapper aspect-square mb-4 md:mb-6">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStFhBP-kdI10CWCFTWLc9-RHULROxZesocRg&s" alt="Plaza El Pinal" class="w-full h-full object-cover sepia-archive">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStFhBP-kdI10CWCFTWLc9-RHULROxZesocRg&s"
+                                alt="Plaza El Pinal" class="w-full h-full object-cover sepia-archive">
                         </div>
-                        <h4 class="serif-title text-lg md:text-xl mb-2 group-hover:text-amber-700 transition-colors">Plaza El Pinal</h4>
-                        <p class="text-[10px] md:text-xs text-stone-400 italic">La primera plaza de toros techada del mundo.</p>
+                        <h4 class="serif-title text-lg md:text-xl mb-2 group-hover:text-amber-700 transition-colors">
+                            Plaza El Pinal</h4>
+                        <p class="text-[10px] md:text-xs text-stone-400 italic">La primera plaza de toros techada del
+                            mundo.</p>
                     </div>
                 </div>
 
                 <div class="reveal sm:col-span-1 lg:col-span-8" style="transition-delay: 300ms;">
                     <div class="archive-card p-4 md:p-6 group h-full">
                         <div class="image-wrapper aspect-video mb-4 md:mb-6">
-                            <img src="https://teziutlandesconocido.com/wp-content/uploads/2022/06/escudo-2-359x280.jpg" alt="Niebla Teziutlán" class="w-full h-full object-cover sepia-archive">
+                            <img src="https://teziutlandesconocido.com/wp-content/uploads/2022/06/escudo-2-359x280.jpg"
+                                alt="Niebla Teziutlán" class="w-full h-full object-cover sepia-archive">
                         </div>
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4 class="serif-title text-xl md:text-2xl group-hover:text-amber-700 transition-colors">Inauguración del Parque Zoológico de Teziutlán</h4>
-                                <p class="text-xs md:text-sm text-stone-400 italic">En diciembre de 1968 se inauguraría en Teziutlán el primer zoológico de la región norte de Puebla.</p>
+                                <h4
+                                    class="serif-title text-xl md:text-2xl group-hover:text-amber-700 transition-colors">
+                                    Inauguración del Parque Zoológico de Teziutlán</h4>
+                                <p class="text-xs md:text-sm text-stone-400 italic">En diciembre de 1968 se inauguraría
+                                    en Teziutlán el primer zoológico de la región norte de Puebla.</p>
                             </div>
                             <span class="serif-title text-stone-200 text-3xl md:text-4xl">04</span>
-                        </div>                            
+                        </div>
                     </div>
                 </div>
             </div>
-                <div class="mt-16 flex justify-center lg:justify-center-start reveal">
-                    <a href="#hemeroteca_visual" class="btn-premium sans-label">Ver más <span>→</span>
-                    </a>
-                </div>
+            <div class="mt-16 flex justify-center lg:justify-center-start reveal">
+                <a href="#hemeroteca_visual" class="btn-premium sans-label">Ver más <span>→</span>
+                </a>
+            </div>
         </div>
-    </section>					 
+    </section>
 
 
     <!-- Hero / Legado Mágico -->
-    <section id="legado" class="relative min-h-screen flex flex-col justify-center py-20 md:py-32 lg:py-18 bg-[#0a0a0a] text-white overflow-hidden">
+    <section id="legado"
+        class="relative min-h-screen flex flex-col justify-center py-20 md:py-32 lg:py-18 bg-[#0a0a0a] text-white overflow-hidden">
         <div class="container mx-auto px-6 relative z-10">
             <div class="reveal mb-8">
-                <span class="inline-block px-4 py-1 border border-amber-600/50 rounded-full text-[10px] tracking-[0.3em] uppercase text-amber-500 mb-4">
+                <span
+                    class="inline-block px-4 py-1 border border-amber-600/50 rounded-full text-[10px] tracking-[0.3em] uppercase text-amber-500 mb-4">
                     Nombramiento Oficial
                 </span>
                 <h2 class="serif-title text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none">
@@ -615,11 +696,13 @@
                 <!-- Columna de Texto Principal -->
                 <div class="lg:col-span-5 reveal" style="transition-delay: 0.2s">
                     <p class="text-stone-400 text-lg md:text-xl font-light leading-relaxed mb-8">
-                        Teziutlán es más que un destino: es un legado vivo. Como Pueblo Mágico, nuestra ciudad guarda en cada cantera rosa y en cada neblina la memoria de siglos de historia.
+                        Teziutlán es más que un destino: es un legado vivo. Como Pueblo Mágico, nuestra ciudad guarda en
+                        cada cantera rosa y en cada neblina la memoria de siglos de historia.
                     </p>
                     <div class="w-20 h-px bg-amber-600 mb-8"></div>
                     <blockquote class="serif-title italic text-2xl text-stone-200">
-                        "Hoy, Teziutlán se abre al visitante con orgullo y cercanía, invitando a recorrer sus calles, escuchar sus relatos y sentir el alma que nos distingue."
+                        "Hoy, Teziutlán se abre al visitante con orgullo y cercanía, invitando a recorrer sus calles,
+                        escuchar sus relatos y sentir el alma que nos distingue."
                     </blockquote>
                 </div>
 
@@ -628,19 +711,22 @@
                     <div class="archive-card-dark p-8 rounded-xl group">
                         <div class="w-8 h-[1px] bg-amber-600 group-hover:w-full transition-all duration-500 mb-6"></div>
                         <h4 class="serif-title text-2xl mb-4">Patrimonio Vivo</h4>
-                        <p class="text-stone-500 text-sm leading-relaxed">Arquitectura que narra la opulencia de una ciudad que fue puerto de montaña y nexo cultural.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed">Arquitectura que narra la opulencia de una
+                            ciudad que fue puerto de montaña y nexo cultural.</p>
                     </div>
 
                     <div class="archive-card-dark p-8 rounded-xl group">
                         <div class="w-8 h-[1px] bg-amber-600 group-hover:w-full transition-all duration-500 mb-6"></div>
                         <h4 class="serif-title text-2xl mb-4">Clima de Niebla</h4>
-                        <p class="text-stone-500 text-sm leading-relaxed">El misticismo de sus calles se acentúa con el descenso de las nubes, creando una atmósfera de archivo eterno.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed">El misticismo de sus calles se acentúa con el
+                            descenso de las nubes, creando una atmósfera de archivo eterno.</p>
                     </div>
 
                     <div class="archive-card-dark p-8 rounded-xl group">
                         <div class="w-8 h-[1px] bg-amber-600 group-hover:w-full transition-all duration-500 mb-6"></div>
                         <h4 class="serif-title text-2xl mb-4">Tradición</h4>
-                        <p class="text-stone-500 text-sm leading-relaxed">Desde el Teatro Victoria hasta la Santa Iglesia Catedral, cada piedra tiene un eco de ayer.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed">Desde el Teatro Victoria hasta la Santa
+                            Iglesia Catedral, cada piedra tiene un eco de ayer.</p>
                     </div>
 
                     <div class="archive-card-dark p-8 rounded-xl group flex items-center justify-center border-dashed">
@@ -655,106 +741,201 @@
 
     <!-- FOOTER: EL COLofÓN -->
     <footer class="pt-10 md:pt-32 pb-12 md:pb-16 bg-stone-50">
-		<center>
-			<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve" width="8em" class="lg:justify-center-start reveal">
-			<style type="text/css">
-				.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#80CBF2;}
-				.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#00A3DD;}
-				.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#0075B8;}
-				.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#AA84B3;}
-				.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#743B8C;}
-				.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#372C65;}
-				.st6{fill-rule:evenodd;clip-rule:evenodd;fill:#EE9ABD;}
-				.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#C22A75;}
-				.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#F1AE88;}
-				.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#CE2C1E;}
-				.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#AECE93;}
-				.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#176633;}
-				.st12{fill-rule:evenodd;clip-rule:evenodd;fill:#39A338;}
-				.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#E54E23;}
-				.st14{fill-rule:evenodd;clip-rule:evenodd;fill:#E5007E;}
-				.wheel{
-					-webkit-animation: 4s rotate linear infinite;
-				animation: 4s rotate linear infinite;
-				-webkit-transform-origin: 50% 50%;
-				transform-origin: 50% 50%;
-			  } 
+        <center>
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve"
+                width="8em" class="lg:justify-center-start reveal">
+                <style type="text/css">
+                    .st0 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #80CBF2;
+                    }
+
+                    .st1 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #00A3DD;
+                    }
+
+                    .st2 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #0075B8;
+                    }
+
+                    .st3 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #AA84B3;
+                    }
+
+                    .st4 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #743B8C;
+                    }
+
+                    .st5 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #372C65;
+                    }
+
+                    .st6 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #EE9ABD;
+                    }
+
+                    .st7 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #C22A75;
+                    }
+
+                    .st8 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #F1AE88;
+                    }
+
+                    .st9 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #CE2C1E;
+                    }
+
+                    .st10 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #AECE93;
+                    }
+
+                    .st11 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #176633;
+                    }
+
+                    .st12 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #39A338;
+                    }
+
+                    .st13 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #E54E23;
+                    }
+
+                    .st14 {
+                        fill-rule: evenodd;
+                        clip-rule: evenodd;
+                        fill: #E5007E;
+                    }
+
+                    .wheel {
+                        -webkit-animation: 4s rotate linear infinite;
+                        animation: 4s rotate linear infinite;
+                        -webkit-transform-origin: 50% 50%;
+                        transform-origin: 50% 50%;
+                    }
 
 
 
-			@keyframes rotate {from {transform: rotate(0deg);}
-				to {transform: rotate(360deg);}}
-			@-webkit-keyframes rotate {from {-webkit-transform: rotate(0deg);}
-			  to {-webkit-transform: rotate(360deg);}}
-			</style>
-			<g class="wheel">
-				<path class="st0" d="M198.4,191.3c-18-15.2-41-24.2-66.3-24.2c-57,0-103.4,46.2-103.4,103.3c0,42,25.1,78.2,61.1,94.4
+                    @keyframes rotate {
+                        from {
+                            transform: rotate(0deg);
+                        }
+
+                        to {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    @-webkit-keyframes rotate {
+                        from {
+                            -webkit-transform: rotate(0deg);
+                        }
+
+                        to {
+                            -webkit-transform: rotate(360deg);
+                        }
+                    }
+                </style>
+                <g class="wheel">
+                    <path class="st0" d="M198.4,191.3c-18-15.2-41-24.2-66.3-24.2c-57,0-103.4,46.2-103.4,103.3c0,42,25.1,78.2,61.1,94.4
 					c-9.8-16.4-15.4-35.1-15.5-54.8c-5.6-11.7-8.7-24.8-8.7-38.4c0-50.1,40.5-90.5,90.5-90.5c14.7,0,28.4,3.5,40.6,9.8
 					c-0.9,0.2-1.6,0.5-2.4,0.7C195.6,191.4,197,191.3,198.4,191.3z"></path>
-				<g>
-					<path class="st1" d="M196.7,190.7c-0.9,0.2-1.6,0.5-2.4,0.7C127.4,197,74.9,246.9,74,307.8v1.7c0,0,0.2,0.2,0.2,0.4
+                    <g>
+                        <path class="st1" d="M196.7,190.7c-0.9,0.2-1.6,0.5-2.4,0.7C127.4,197,74.9,246.9,74,307.8v1.7c0,0,0.2,0.2,0.2,0.4
 						c10.5,22.3,30,39.8,53.7,47.6c-8.9-16.6-14-35.4-14-55.5C114,249.5,148.9,205,196.7,190.7L196.7,190.7L196.7,190.7z M74,307.8
 						c0,0.3,0,0.7,0,1.2c0,0.2,0,0.3,0,0.5V307.8L74,307.8z"></path>
-				</g>
-				<path class="st2" d="M196.7,190.7c-12.2-6.3-26-9.8-40.6-9.8c-50.1,0-90.5,40.5-90.5,90.5c0,13.6,3.1,26.7,8.7,38.4
+                    </g>
+                    <path class="st2" d="M196.7,190.7c-12.2-6.3-26-9.8-40.6-9.8c-50.1,0-90.5,40.5-90.5,90.5c0,13.6,3.1,26.7,8.7,38.4
 					c0-0.4-0.2-0.5-0.2-0.9c0-61.4,52.9-112,120.2-117.6C195.1,191.3,195.8,190.9,196.7,190.7z"></path>
-				<path class="st3" d="M183.9,199.8c-19.4,12.9-34.7,32.6-41.9,56.9c-16.2,54.8,15,112.3,69.4,128.6c40.3,11.9,82-1.7,107.8-31.7
+                    <path class="st3" d="M183.9,199.8c-19.4,12.9-34.7,32.6-41.9,56.9c-16.2,54.8,15,112.3,69.4,128.6c40.3,11.9,82-1.7,107.8-31.7
 					c-18.5,4.9-37.9,4.9-56.9-0.5c-12.7,1.9-26.2,1.2-39.4-2.8c-47.6-14.1-75-64.5-60.7-112.3c4.2-14.1,11.5-26.3,20.8-36.5
 					c0,0.9,0,1.7,0,2.6C183.4,202.6,183.7,201.2,183.9,199.8z"></path>
-				<g>
-					<path class="st4" d="M183.1,201.4c0,0.9,0,1.7,0,2.6c-1.7,8.5-2.8,17.1-3,25.6v8.7c1.6,53.2,32.8,100,81.5,114.4
+                    <g>
+                        <path class="st4" d="M183.1,201.4c0,0.9,0,1.7,0,2.6c-1.7,8.5-2.8,17.1-3,25.6v8.7c1.6,53.2,32.8,100,81.5,114.4
 						c0.2,0,0.5,0,0.9,0.2c24.4-3.8,46.6-17.4,60.9-38.2c-18.3,4-37.9,3.5-57-2.3C215.8,297.5,183.2,251.4,183.1,201.4L183.1,201.4
 						L183.1,201.4z M262.4,353c-1.4,0.2-3,0.3-4.4,0.5C259.5,353.3,260.9,353.1,262.4,353L262.4,353z"></path>
-				</g>
-				<path class="st5" d="M183.1,201.4c-9.2,10.1-16.6,22.3-20.8,36.5C148,285.6,175.4,336,223,350.2c13.3,4,26.7,4.7,39.4,2.8
+                    </g>
+                    <path class="st5" d="M183.1,201.4c-9.2,10.1-16.6,22.3-20.8,36.5C148,285.6,175.4,336,223,350.2c13.3,4,26.7,4.7,39.4,2.8
 					c-0.3-0.2-0.5-0.2-0.9-0.2c-59-17.6-92.1-82.5-78.5-148.8C183.1,203.1,183.1,202.3,183.1,201.4z"></path>
-				<path class="st6" d="M187.8,216.7c6.3,22.7,20.2,43.3,41,57.7c47.1,32.3,111.5,20.2,143.7-26.9c23.9-34.5,23.5-78.5,3.1-112.2
+                    <path class="st6" d="M187.8,216.7c6.3,22.7,20.2,43.3,41,57.7c47.1,32.3,111.5,20.2,143.7-26.9c23.9-34.5,23.5-78.5,3.1-112.2
 					c-1.2,19-7,37.5-18.1,53.9c-2.1,12.7-6.8,25.3-14.7,36.6c-28.3,41.2-84.6,51.6-125.8,23.4c-12-8.4-21.6-19.2-28.1-31.2
 					c0.7,0.3,1.6,0.5,2.4,0.7C190.2,218.1,189,217.4,187.8,216.7z"></path>
-				<path class="st7" d="M189,218.1c6.5,12,16,22.9,28.1,31.2c41.2,28.3,97.5,17.8,125.8-23.4c7.9-11.3,12.6-23.9,14.7-36.6
+                    <path class="st7" d="M189,218.1c6.5,12,16,22.9,28.1,31.2c41.2,28.3,97.5,17.8,125.8-23.4c7.9-11.3,12.6-23.9,14.7-36.6
 					c-0.2,0.2-0.4,0.5-0.5,0.7c-34.7,50.8-106.8,62.5-165.5,28.8C190.6,218.6,189.7,218.5,189,218.1z"></path>
-				<path class="st8" d="M204.5,217.1c23.5,1.2,47.4-5.6,67.7-20.9c45.5-34.4,54.4-99.3,19.9-144.8c-25.3-33.5-67.2-47.1-105.5-38.2
+                    <path class="st8" d="M204.5,217.1c23.5,1.2,47.4-5.6,67.7-20.9c45.5-34.4,54.4-99.3,19.9-144.8c-25.3-33.5-67.2-47.1-105.5-38.2
 					c17.6,7,33.3,18.5,45.5,34c11.3,6.1,21.6,14.7,30,25.6c30.2,39.8,22.3,96.5-17.4,126.6c-11.7,8.9-24.8,14.5-38.4,16.9
 					c0.5-0.7,1-1.4,1.4-2.1C206.6,215.2,205.6,216.2,204.5,217.1z"></path>
-				<path class="st9" d="M206.3,216.4c13.6-2.4,26.7-8,38.4-16.9c39.8-30.2,47.6-86.9,17.4-126.6c-8.4-11-18.7-19.5-30-25.6
+                    <path class="st9" d="M206.3,216.4c13.6-2.4,26.7-8,38.4-16.9c39.8-30.2,47.6-86.9,17.4-126.6c-8.4-11-18.7-19.5-30-25.6
 					c0.2,0.3,0.4,0.5,0.5,0.9c37.2,48.8,25.5,121.1-24.9,166.2C207.3,215,206.8,215.7,206.3,216.4z"></path>
-				<path class="st10" d="M209.4,199.5c8-22,8.7-46.9,0-70.8C190,75.1,130.9,47.3,77.2,66.9c-39.4,14.3-64.9,50.2-67.9,89.5
+                    <path class="st10" d="M209.4,199.5c8-22,8.7-46.9,0-70.8C190,75.1,130.9,47.3,77.2,66.9c-39.4,14.3-64.9,50.2-67.9,89.5
 					c12-14.8,27.6-26.3,46.1-33.3c9.2-9.2,20.4-16.6,33.3-21.3c46.9-16.9,98.7,7.2,115.7,54.1c5.1,14,6.5,28.1,4.9,41.9
 					c-0.5-0.7-1-1.4-1.6-2.1C208.2,196.8,208.9,198.2,209.4,199.5z"></path>
-				<path class="st11" d="M209.2,197.7c1.6-13.8,0.2-27.9-4.9-41.9c-16.9-46.9-68.7-71-115.7-54.1c-12.9,4.7-24.1,12-33.3,21.3
+                    <path class="st11" d="M209.2,197.7c1.6-13.8,0.2-27.9-4.9-41.9c-16.9-46.9-68.7-71-115.7-54.1c-12.9,4.7-24.1,12-33.3,21.3
 					c0.4-0.2,0.7-0.2,0.9-0.3c57.7-20.9,123.2,11.3,151.4,72.9C208.2,196.3,208.7,197,209.2,197.7z"></path>
-				<path class="st12" d="M206.7,193.7c0.9,1.1,1.7,2.2,2.6,3.3c-0.5-0.8-1-1.3-1.5-2.1c-27.9-60.9-92.7-93.4-150.2-73.5
+                    <path class="st12" d="M206.7,193.7c0.9,1.1,1.7,2.2,2.6,3.3c-0.5-0.8-1-1.3-1.5-2.1c-27.9-60.9-92.7-93.4-150.2-73.5
 					c-0.2,0.1-0.4,0.1-0.6,0.2l0.2-0.2c-0.1,0.1-0.1,0.1-0.2,0.2c-0.2,0.1-0.3,0.1-0.5,0.2c-0.2,0.1-0.3,0.1-0.5,0.2
 					c0,0-0.1,0.2-0.3,0.3C38.2,139.7,28.4,164,29.1,189c0,0,0.1-0.1,0.1-0.1v1C37,181,46.5,173.3,57.1,167c5.9-3.7,12.4-6.6,19.4-9.2
 					c49.4-18,102.9-0.2,132.7,39.9c-0.5-0.7-1-1.4-1.6-2.1C207.4,195,207,194.4,206.7,193.7z"></path>
-				<path class="st13" d="M207.2,215c0.2-0.3,0.4-0.6,0.6-0.9c-0.1,0.1-0.1,0.1-0.2,0.2C207.5,214.5,207.4,214.7,207.2,215z M240,59.2
+                    <path class="st13" d="M207.2,215c0.2-0.3,0.4-0.6,0.6-0.9c-0.1,0.1-0.1,0.1-0.2,0.2C207.5,214.5,207.4,214.7,207.2,215z M240,59.2
 					c-0.4-0.7-0.8-1.3-1.2-2c-0.2-0.3-0.4-0.6-0.6-1c-1.5-2.5-3.2-5-4.9-7.4c-0.2-0.3-0.4-0.6-0.7-1c-0.1-0.1-0.1-0.2-0.2-0.3
 					c0.5,0.3,1,0.6,1.6,0.8c0.5,0.3,1.2,0.7,1.9,1c-0.7-0.4-1.4-0.9-1.9-1.2c-0.7-0.4-1.4-0.7-1.9-1v0.1c0,0-0.1,0-0.1-0.1
 					c-21.8-11.5-47.9-13.7-71.6-5.7c0.2,0.1,0.3,0.2,0.5,0.3c-0.1,0-0.2,0.1-0.3,0.1c15.8,7.2,30.2,18.2,42,32.6c0.8,1,1.6,1.9,2.3,2.9
 					c31.6,41.9,30.6,98.4,1,138.6c0.6-0.7,0.9-1.4,1.5-2c0.3-0.3,0.7-0.6,1-0.9c-0.2,0.3-0.4,0.7-0.6,1c10.4-9.4,19-19.8,26.2-30.9
 					c12.7-20.6,19.9-43.6,20.4-66.3v-5.8C254,93,249.3,75.2,240,59.2z"></path>
-				<path class="st14" d="M191,218.7c-0.7-0.2-1.3-0.4-2-0.6C189.6,218.4,190.3,218.6,191,218.7z M340.3,119.4c0,0.2-0.1,0.4-0.1,0.6
+                    <path class="st14" d="M191,218.7c-0.7-0.2-1.3-0.4-2-0.6C189.6,218.4,190.3,218.6,191,218.7z M340.3,119.4c0,0.2-0.1,0.4-0.1,0.6
 					c0-0.1-0.1-0.1-0.2-0.2c-1.9,18.5-8.5,37-19.9,53.4c-10.8,15.8-24.8,28.1-40.6,36.6c-0.2,0.1-0.4,0.2-0.6,0.3
 					c-0.7,0.4-1.5,0.8-2.3,1.2c-0.7,0.4-1.4,0.7-2.1,1c-0.3,0.2-0.7,0.3-1,0.5c-26.1,12.1-56.3,14.3-84.2,5.4c0.7,0.3,1.3,0.4,2,0.7
 					c-0.1,0-0.2-0.1-0.4-0.1c0.2,0.1,0.4,0.1,0.6,0.2c0,0-0.1,0-0.1-0.1c0.1,0,0.2,0.1,0.3,0.1c0,0,0,0,0,0c-0.1,0-0.2,0-0.2-0.1
 					c47.5,27.1,103.7,24.7,141.8-4.1c0,0,0.1,0,0.1-0.1c0.7-0.5,1.3-1,2-1.6c8-6.3,15.2-13.7,21.3-22.3c0.2-0.3,0.4-0.6,0.7-1
 					c0,0,0-0.1,0.1-0.1c-0.1,0.6-0.1,1.1-0.3,1.7c-0.2,0.9-0.3,1.6-0.3,2.3c0-0.7,0.2-1.4,0.3-2.1c0.1-0.6,0.3-1.3,0.3-1.9
 					c0.1-0.1,0.1-0.2,0.2-0.3c0,0,0-0.2,0.1-0.4C361.7,164.7,355.4,139.3,340.3,119.4z"></path>
-			</g>
-			</svg>
-			</center>
+                </g>
+            </svg>
+        </center>
         <div class="max-w-7xl mx-auto px-6 md:px-16 text-center">
             <div class="serif-title text-3xl md:text-5xl mb-4 text-stone-900 tracking-tighter">TEZIUTLÁN</div>
-            <div class="sans-label text-[8px] md:text-[9px] text-amber-700 tracking-[0.5em] md:tracking-[0.8em] mb-12">Pueblo Mágico | La Perla de la Sierra</div>
-            
+            <div class="sans-label text-[8px] md:text-[9px] text-amber-700 tracking-[0.5em] md:tracking-[0.8em] mb-12">
+                Pueblo Mágico | La Perla de la Sierra</div>
+
             <div class="w-16 md:w-24 h-px bg-stone-200 mx-auto mb-3"></div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-20 md:mb-24">
                 <div class="space-y-4">
                     <h6 class="sans-label text-[10px] text-stone-900">Navegación</h6>
                     <ul class="text-sm font-light text-stone-500 space-y-2 italic">
-                        <li><a href="index.html" class="hover:text-amber-700 transition-colors">Portal Principal</a></li>
-                        <li><a href="#origenes" class="hover:text-amber-700 transition-colors">Orígenes Ancestrales</a></li>
+                        <li><a href="index.html" class="hover:text-amber-700 transition-colors">Portal Principal</a>
+                        </li>
+                        <li><a href="#origenes" class="hover:text-amber-700 transition-colors">Orígenes Ancestrales</a>
+                        </li>
                         <li><a href="#cronica" class="hover:text-amber-700 transition-colors">Cronología</a></li>
                     </ul>
                 </div>
@@ -768,14 +949,17 @@
                 </div>
                 <div class="sm:col-span-2 space-y-4 md:space-y-6">
                     <h6 class="sans-label text-[10px] text-stone-900 text-left md:text-right">Crónica del Archivo</h6>
-                    <p class="text-xs md:text-sm font-light text-stone-700 italic text-left md:text-right leading-relaxed">
-                        Este archivo digital es un esfuerzo colaborativo por preservar la memoria histórica de nuestra ciudad. Cada dato ha sido verificado en las crónicas municipales y relatos de cronistas locales.
+                    <p
+                        class="text-xs md:text-sm font-light text-stone-700 italic text-left md:text-right leading-relaxed">
+                        Este archivo digital es un esfuerzo colaborativo por preservar la memoria histórica de nuestra
+                        ciudad. Cada dato ha sido verificado en las crónicas municipales y relatos de cronistas locales.
                     </p>
                 </div>
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center gap-2 border-t border-stone-100 pt-1">
-                <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Archivo Histórico de Teziutlán</span>
+                <span class="text-[8px] md:text-[9px] sans-label text-stone-400">© 2026 - Archivo Histórico de
+                    Teziutlán</span>
                 <div class="flex gap-8 sans-label text-[9px] text-stone-400">
                     <a href="#" class="hover:text-stone-900 transition-colors">Instagram</a>
                     <a href="#" class="hover:text-stone-900 transition-colors">Facebook</a>
@@ -797,7 +981,7 @@
         function toggleMenu() {
             const isActive = overlay.classList.toggle('active');
             menuBtn.classList.toggle('active-burger');
-            
+
             // Bloquear scroll cuando el menú está abierto
             if (isActive) {
                 document.body.style.overflow = 'hidden';
@@ -822,7 +1006,7 @@
 
         // Cerrar al clickear fuera del contenido del menú
         overlay.addEventListener('click', (e) => {
-            if(e.target === overlay) {
+            if (e.target === overlay) {
                 toggleMenu();
             }
         });
@@ -848,4 +1032,5 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
-</html>/* 
+
+</html>/*
