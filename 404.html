@@ -34,14 +34,55 @@
             z-index: 10;
         }
 
+        /* Animación de parpadeo de fuego */
+        @keyframes fire-flicker {
+            0% {
+                opacity: 0.9;
+                transform: scale(1);
+                filter: hue-rotate(0deg);
+            }
+
+            25% {
+                opacity: 0.85;
+                transform: scale(1.02);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(0.98);
+                filter: hue-rotate(-5deg);
+            }
+
+            75% {
+                opacity: 0.95;
+                transform: scale(1.01);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: scale(1);
+                filter: hue-rotate(0deg);
+            }
+        }
+
         /* Resplandor cálido de la antorcha */
         .torch-glow {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle 300px at var(--x) var(--y), rgba(255, 140, 0, 0.25), transparent 40%);
+            background: radial-gradient(circle 350px at var(--x) var(--y),
+                    rgba(255, 240, 150, 0.4) 0%,
+                    /* Centro blanco/amarillo caliente */
+                    rgba(255, 140, 0, 0.5) 20%,
+                    /* Naranja intenso */
+                    rgba(160, 20, 0, 0.3) 45%,
+                    /* Rojo oscuro borde */
+                    transparent 70%);
             z-index: 20;
             pointer-events: none;
-            mix-blend-mode: overlay;
+            mix-blend-mode: hard-light;
+            /* Mezcla más intensa con el fondo */
+            animation: fire-flicker 0.12s infinite alternate;
+            /* Parpadeo rápido */
         }
     </style>
 </head>
