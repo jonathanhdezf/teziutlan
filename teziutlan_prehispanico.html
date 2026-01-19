@@ -251,11 +251,20 @@
         }
 
         /* ESTILOS DEL MENÚ PORTAL */
+        .nav-base {
+            transition: all 0.5s ease;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+
         .nav-glass {
-            background: rgba(244, 233, 217, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(244, 233, 217, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--gold);
-            transition: transform 0.4s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
         }
 
         .nav-link {
@@ -737,13 +746,14 @@
 
     <!-- MENÚ DE NAVEGACIÓN -->
     <nav id="mainNav"
-        class="fixed top-0 left-0 w-full z-[110] nav-glass py-4 px-6 md:px-12 flex justify-between items-center opacity-0 pointer-events-none transition-opacity duration-1000">
+        class="fixed top-0 left-0 w-full z-[1000] nav-base py-4 px-6 md:px-12 flex justify-between items-center opacity-0 pointer-events-none transition-opacity duration-1000">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-oxblood rotate-45 flex items-center justify-center border border-gold-bright">
-                <span class="cinzel text-white text-[10px] -rotate-45 font-bold"></span>
+            <div class="w-8 h-8 bg-oxblood rotate-45 flex items-center justify-center border-gold-bright">
+                <span class="cinzel text-white text-[10px] -rotate-45 font-bold"><img
+                        src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true"
+                        alt="Teziutlán Portal Logo" class="h-8 md:h-10 object-contain"></span>
             </div>
-            <img src="https://github.com/jonathanhdezf/teziutlan/blob/main/catedral-black.png?raw=true"
-                alt="Teziutlán Portal Logo" class="h-8 md:h-10 object-contain">
+
         </div>
 
         <div class="hidden md:flex items-center gap-10">
@@ -752,7 +762,7 @@
             <a href="#reflexion" class="nav-link text-ink uppercase font-bold">Reflexión</a>
             <a href="#biblioteca" class="nav-link text-ink uppercase font-bold">Biblioteca</a>
             <div class="h-4 w-px bg-gold opacity-50 mx-2"></div>
-            <span class="cinzel text-[10px] text-oxblood font-bold tracking-widest">Prehispanidad</span>
+            <span class="cinzel text-[10px] text-oxblood font-bold tracking-widest">Palimpsesto</span>
         </div>
 
         <!-- Boton Hamburguesa Movil -->
@@ -789,7 +799,11 @@
             </p>
 
             <button onclick="handleMainAction()" class="btn-gold-ornament cinzel font-black uppercase">
-                <span>CALAQUI (Entrar)</span>
+                <div class="flex flex-col items-center leading-none">
+                    <span class="text-lg">CALAQUI</span>
+                    <span class="text-[0.6rem] normal-case font-serif italic opacity-70 mt-1 tracking-wider">(Náhuatl:
+                        Entrar a la casa)</span>
+                </div>
             </button>
         </div>
     </div>
@@ -835,33 +849,46 @@
                 <div
                     class="mt-12 space-y-6 text-justify text-stone-800 font-normal leading-loose text-lg md:text-xl font-[Cormorant Garamond]">
                     <p>
+                        Reflexión:
+                    </p>
+                    <p>
                         La historia no es simplemente un registro de sucesos lejanos, sino la herramienta fundamental
                         para saber quiénes somos, ya que nuestro presente es el resultado de una construcción de largo
                         tiempo que define nuestras características actuales. En lugares como la Sierra Norte de Puebla,
-                        a menudo se etiqueta a las comunidades como "pueblos sin historia" debido a la falta de
+                        a menudo se etiqueta a las comunidades como <strong>"pueblos sin historia"</strong> debido a la
+                        falta de
                         documentos oficiales; sin embargo, sus raíces son profundas y habitan en un paisaje mítico donde
-                        los cerros, manantiales y caminos cuentan la verdadera biografía de la región.
+                        los cerros, la piedra, la neblina, los manantiales y sus caminos cuentan la verdadera biografía
+                        de la
+                        región.
                     </p>
                     <p>
-                        No podemos permitir que el pasado se pierda en el olvido frente a la creciente influencia de la
-                        tecnología y los valores externos, pues la globalización amenaza con imponernos una
-                        "homogeneidad cultural" que borra lo que nos hace únicos. Conservar la memoria colectiva —desde
+                        <strong>No podemos permitir que el pasado se pierda en el olvido frente a la creciente
+                            influencia
+                            de la
+                            tecnología y los valores externos, pues la globalización amenaza con imponernos una
+                            "homogeneidad cultural" que borra lo que nos hace únicos.</strong> Conservar la memoria
+                        colectiva —desde
                         los antiguos altepeme prehispánicos hasta las leyendas de los abuelos— es un acto de resistencia
-                        que permite a las nuevas generaciones tener un lugar de donde "asirse para hacerse" y no
+                        que permite a las nuevas generaciones tener un lugar de donde <strong>"asirse para
+                            hacerse"</strong> y no
                         perderse en la ignorancia del tiempo.
                     </p>
                     <p>
                         Personajes ilustres de nuestra tierra, como Vicente Lombardo Toledano, insistieron en que
                         debemos estudiar con cariño los problemas y la historia de nuestra región, pues proteger el
-                        patrimonio histórico y cultural es la prueba más elocuente de amor a nuestras raíces. Ignorar
-                        los siglos de historia que nos preceden no solo nos vuelve vulnerables, sino que crea vacíos que
-                        se traducirán en pérdidas irreparables para quienes vendrán después de nosotros.
+                        patrimonio histórico y cultural es la prueba más elocuente de amor a nuestras raíces.
+                        <strong>Ignorar
+                            los siglos de historia que nos preceden no solo nos vuelve vulnerables, sino que crea
+                            vacíos que
+                            se traducirán en pérdidas irreparables para quienes vendrán después de
+                            nosotros.</strong>
                     </p>
                     <p>
                         Para entender la importancia de nuestras raíces, podemos compararlas con los cimientos de una
-                        casona antigua: aunque hoy solo veamos las paredes pintadas y las ventanas modernas, es la
-                        piedra sólida y enterrada la que permite que la estructura se mantenga en pie frente a los
-                        vientos y la niebla del tiempo.
+                        casona antigua: <i>aunque hoy solo veamos las paredes pintadas y las ventanas modernas, es la
+                            piedra sólida y enterrada la que permite que la estructura se mantenga en pie frente a los
+                            vientos y la niebla del tiempo.</i>
                     </p>
                 </div>
             </section>
@@ -1247,6 +1274,7 @@
 
         function onPlayerReady(event) {
             console.log("Reproductor de audio listo.");
+            event.target.setVolume(50);
         }
 
 
@@ -1389,11 +1417,15 @@
             }
 
             if (!nav) return;
-            if (window.scrollY > lastScrollY && window.scrollY > 150) {
-                nav.style.transform = 'translateY(-100%)';
+
+            // Logic for sticky glass nav
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (scrollTop > 50) {
+                nav.classList.add('nav-glass');
             } else {
-                nav.style.transform = 'translateY(0)';
+                nav.classList.remove('nav-glass');
             }
+
             lastScrollY = window.scrollY;
         });
 
